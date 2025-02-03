@@ -7,4 +7,7 @@ class AppColors {
   static const backgroundScreen = Color(0xFFffffff);
   static const backgroundCard = Color(0xFFf6f7f9);
   static const descriptionColor = Color(0xFFa9b5ca);
+
+  static const disableItems = Color(0xFFc6cfdc);
+  static const checkboxBorder = Color(0xFFc5cedc);
 }

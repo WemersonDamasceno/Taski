@@ -19,7 +19,7 @@ class TaskItemWidget extends StatelessWidget {
         titleAlignment: ListTileTitleAlignment.top,
         leading: Checkbox(
           visualDensity: VisualDensity.compact,
-          activeColor: AppColors.primaryColor,
+          side: const BorderSide(color: AppColors.checkboxBorder),
           value: task.isCompleted,
           onChanged: (_) => onToggle(),
         ),

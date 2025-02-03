@@ -96,8 +96,8 @@ class TaskListView extends StatelessWidget {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: 0,
         enableFeedback: true,
-        selectedItemColor: Colors.blue,
-        unselectedItemColor: Colors.grey,
+        selectedItemColor: AppColors.primaryColor,
+        unselectedItemColor: AppColors.disableItems,
         showSelectedLabels: true,
         showUnselectedLabels: true,
         items: const [
