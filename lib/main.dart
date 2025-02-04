@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:taski/src/list_task/presentation/view/list_task_view.dart';
-import 'package:taski/src/list_task/presentation/view_model/task_view_model.dart';
+import 'package:taski/src/core/theme/theme_app.dart';
+import 'package:taski/src/injection_container.dart';
+import 'package:taski/src/list_task/presentation/view/list_task_page.dart';
 
-void main() {
+void main() async {
+  await initDependency();
   runApp(const TaskiApp());
 }
 
@@ -12,12 +13,10 @@ class TaskiApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => TaskViewModel(),
-      child: const MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: TaskListView(),
-      ),
+    return MaterialApp(
+      theme: AppTheme.lightTheme,
+      debugShowCheckedModeBanner: false,
+      home: const ListTaskPage(),
     );
   }
 }
