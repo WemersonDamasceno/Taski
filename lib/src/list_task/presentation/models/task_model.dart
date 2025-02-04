@@ -8,4 +8,12 @@ class TaskModel {
     required this.description,
     this.isCompleted = false,
   });
+
+  toggleValue({required bool isCompleted}) {
+    return TaskModel(
+      title: title,
+      description: description,
+      isCompleted: isCompleted,
+    );
+  }
 }
