@@ -1,119 +1,89 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 import 'package:taski/src/core/constants/app_colors.dart';
-import 'package:taski/src/list_task/presentation/view_model/task_view_model.dart';
-import 'package:taski/src/list_task/presentation/widgets/task_item_widget.dart';
+import 'package:taski/src/core/enums/state_enum.dart';
+import 'package:taski/src/core/widgets/app_bar_widget.dart';
+import 'package:taski/src/list_task/presentation/bloc/list_task_bloc.dart';
+import 'package:taski/src/list_task/presentation/bloc/list_task_event.dart';
+import 'package:taski/src/list_task/presentation/bloc/list_task_state.dart';
+import 'package:taski/src/list_task/presentation/widgets/empty_list_task_widget.dart';
+import 'package:taski/src/list_task/presentation/widgets/error_list_task_widget.dart';
+import 'package:taski/src/list_task/presentation/widgets/loading_list_task_widget.dart';
+import 'package:taski/src/list_task/presentation/widgets/success_list_task_widget.dart';
 
-class TaskListView extends StatelessWidget {
-  const TaskListView({super.key});
+class ListTaskView extends StatefulWidget {
+  const ListTaskView({super.key});
+
+  @override
+  State<ListTaskView> createState() => _ListTaskViewState();
+}
+
+class _ListTaskViewState extends State<ListTaskView> {
+  late ListTaskBloc _taskCubit;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _taskCubit = GetIt.I.get<ListTaskBloc>();
+    _taskCubit.add(GetUncompletedTasksEvent());
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.backgroundScreen,
-      appBar: AppBar(
-        backgroundColor: AppColors.backgroundScreen,
-        surfaceTintColor: AppColors.backgroundScreen,
-        title: const Row(
-          children: [
-            Icon(Icons.check_box_sharp, color: AppColors.primaryColor),
-            Text("Taski"),
-          ],
-        ),
-        centerTitle: false,
-        actions: const [
-          Padding(
-            padding: EdgeInsets.only(right: 16),
-            child: Row(
-              children: [
-                Text("John"),
-                SizedBox(width: 10),
-                CircleAvatar(
-                  backgroundImage: NetworkImage(
-                    "https://images.pexels.com/photos/1040880/pexels-photo-1040880.jpeg?auto=compress&cs=tinysrgb&w=800",
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
+      backgroundColor: AppColors.white,
+      appBar: const PreferredSize(
+        preferredSize: Size.fromHeight(kToolbarHeight),
+        child: AppBarWidget(),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            RichText(
-              text: const TextSpan(
-                style: TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
-                ),
-                children: [
-                  TextSpan(
-                    text: "Welcome, ",
-                    style: TextStyle(
-                      color: AppColors.secondaryColor,
-                    ),
-                  ),
-                  TextSpan(
-                    text: "John.",
-                    style: TextStyle(
-                      color: AppColors.primaryColor,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 8),
-            const Text(
-              "You've got 7 tasks to do.",
-              style: TextStyle(
-                color: AppColors.descriptionColor,
-                fontSize: 16,
-              ),
-            ),
-            const SizedBox(height: 24),
-            Expanded(
-              child: Consumer<TaskViewModel>(
-                builder: (context, taskViewModel, child) {
-                  return ListView.builder(
-                    itemCount: taskViewModel.tasks.length,
-                    itemBuilder: (context, index) {
-                      return TaskItemWidget(
-                        task: taskViewModel.tasks[index],
-                        onToggle: () => taskViewModel.toggleTaskStatus(index),
-                      );
-                    },
-                  );
-                },
-              ),
-            ),
-          ],
+        child: BlocBuilder<ListTaskBloc, StateListTask>(
+          bloc: _taskCubit,
+          builder: (context, state) {
+            switch (state.stateEnum) {
+              case StateEnum.success:
+                return SuccessListTaskWidget(tasks: state.tasks!);
+              case StateEnum.error:
+                return ErrorListTaskWidget(
+                  onPressed: () => _taskCubit.add(GetUncompletedTasksEvent()),
+                );
+              case StateEnum.empty:
+                return const EmptyListTaskWidget();
+              case StateEnum.loading:
+              case StateEnum.initial:
+                return const LoadingListTaskWidget();
+            }
+          },
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: 0,
         enableFeedback: true,
-        selectedItemColor: AppColors.primaryColor,
-        unselectedItemColor: AppColors.disableItems,
+        selectedItemColor: AppColors.blue,
+        unselectedItemColor: AppColors.mutedAzure,
         showSelectedLabels: true,
         showUnselectedLabels: true,
         items: const [
           BottomNavigationBarItem(
+            backgroundColor: AppColors.white,
             icon: Icon(Icons.ballot_outlined),
             label: "Todo",
           ),
           BottomNavigationBarItem(
+            backgroundColor: AppColors.white,
             icon: Icon(Icons.add_box_outlined),
             label: "Create",
           ),
           BottomNavigationBarItem(
+            backgroundColor: AppColors.white,
             icon: Icon(Icons.search),
             label: "Search",
           ),
           BottomNavigationBarItem(
+            backgroundColor: AppColors.white,
             icon: Icon(Icons.check_box_outlined),
             label: "Done",
           ),
