@@ -1,16 +1,16 @@
 import 'package:get_it/get_it.dart';
 import 'package:taski/src/core/widgets/button/bloc/button_cubit.dart';
-import 'package:taski/src/create_task/domain/usecase/create_task_usecase.dart';
-import 'package:taski/src/create_task/presentation/bloc/create_task_bloc.dart';
-import 'package:taski/src/done_tasks/domain/usecases/delete_all_tasks_done_usecase.dart';
-import 'package:taski/src/done_tasks/domain/usecases/delete_task_by_id_usecase.dart';
-import 'package:taski/src/done_tasks/domain/usecases/get_done_task_usecase.dart';
-import 'package:taski/src/done_tasks/presentation/bloc/list_done_task_bloc.dart';
-import 'package:taski/src/list_task/domain/usecase/get_uncompleted_tasks_usecase.dart';
-import 'package:taski/src/list_task/presentation/bloc/list_task_bloc.dart';
-import 'package:taski/src/search_task/domain/usecase/get_all_tasks_usecase.dart';
-import 'package:taski/src/search_task/domain/usecase/search_task_by_title_usecase.dart';
-import 'package:taski/src/search_task/presentation/bloc/search_task_bloc.dart';
+import 'package:taski/src/domain/usecase/create_task_usecase.dart';
+import 'package:taski/src/domain/usecase/delete_all_tasks_done_usecase.dart';
+import 'package:taski/src/domain/usecase/delete_task_by_id_usecase.dart';
+import 'package:taski/src/domain/usecase/get_all_tasks_usecase.dart';
+import 'package:taski/src/domain/usecase/get_done_task_usecase.dart';
+import 'package:taski/src/domain/usecase/get_uncompleted_tasks_usecase.dart';
+import 'package:taski/src/domain/usecase/search_task_by_title_usecase.dart';
+import 'package:taski/src/features/create_task/bloc/create_task_bloc.dart';
+import 'package:taski/src/features/done_tasks/bloc/list_done_task_bloc.dart';
+import 'package:taski/src/features/list_task/bloc/list_task_bloc.dart';
+import 'package:taski/src/features/search_task/bloc/search_task_bloc.dart';
 
 final GetIt getIt = GetIt.instance;
 

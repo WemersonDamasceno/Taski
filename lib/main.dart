@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:taski/src/core/theme/theme_app.dart';
-import 'package:taski/src/home_navigation/presentation/views/home_navigation.dart';
+import 'package:taski/src/features/home_navigation/views/home_navigation.dart';
 import 'package:taski/src/injection_container.dart';
 
 void main() async {
