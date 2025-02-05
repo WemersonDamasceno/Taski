@@ -6,6 +6,8 @@ class AppStrings {
 
   // ******* Empty Strings *******//
   static const emptyTitle = 'You have no task listed';
+
+  static const notFoundTaks = 'No result found.';
   static const emptyDescription = 'Create tasks to achieve more.';
   static const createTask = 'Create task';
 
@@ -22,4 +24,7 @@ class AppStrings {
   // ******* Bottom Sheet Strings *******//
   static const hintTask = 'What\'s in your mind?';
   static const hintAddNote = 'Add a note...';
+
+  // ******* Search Strings *******//
+  static const searchTask = 'Search by task...';
 }
