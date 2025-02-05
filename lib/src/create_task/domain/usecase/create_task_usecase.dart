@@ -4,7 +4,7 @@ import 'package:taski/src/core/usecase/usecase.dart';
 
 class CreateTaskUsecase implements Usecase<bool, CreateTaskParams> {
   @override
-  Future<(bool?, Failure?)> call() async {
+  Future<(bool?, Failure?)> call(CreateTaskParams params) async {
     await Future.delayed(const Duration(seconds: 1));
     return (true, null);
   }
