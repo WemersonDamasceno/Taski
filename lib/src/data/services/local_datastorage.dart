@@ -2,20 +2,20 @@ import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:taski/src/core/models/task_model.dart';
 
-abstract class DatabaseService {
+abstract class LocalDatabaseService {
   Future<int> insertTask(TaskModel task);
   Future<List<TaskModel>> getUncompletedTasks();
   Future<int> updateTask(TaskModel task);
   Future<int> deleteTask(int id);
 }
 
-class DatabaseHelper implements DatabaseService {
-  DatabaseHelper._();
+class LocalDatabaseServiceImpl implements LocalDatabaseService {
+  LocalDatabaseServiceImpl._();
 
-  static DatabaseHelper? _instance;
+  static LocalDatabaseServiceImpl? _instance;
 
-  factory DatabaseHelper() {
-    _instance ??= DatabaseHelper._();
+  factory LocalDatabaseServiceImpl() {
+    _instance ??= LocalDatabaseServiceImpl._();
     return _instance!;
   }
 

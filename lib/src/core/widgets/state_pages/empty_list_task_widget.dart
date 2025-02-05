@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:taski/src/core/constants/app_colors.dart';
 import 'package:taski/src/core/constants/app_images.dart';
 import 'package:taski/src/core/constants/app_strings.dart';
 import 'package:taski/src/core/extensions/theme_extension.dart';
@@ -7,7 +6,9 @@ import 'package:taski/src/core/widgets/button/view/app_buttom_widget.dart';
 import 'package:taski/src/features/create_task/view/create_task_view.dart';
 
 class EmptyListTaskWidget extends StatelessWidget {
-  const EmptyListTaskWidget({super.key});
+  final bool showButton;
+
+  const EmptyListTaskWidget({super.key, this.showButton = true});
 
   @override
   Widget build(BuildContext context) {
@@ -15,37 +16,6 @@ class EmptyListTaskWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        RichText(
-          text: const TextSpan(
-            style: TextStyle(
-              fontSize: 22,
-              fontWeight: FontWeight.bold,
-              color: Colors.black,
-            ),
-            children: [
-              TextSpan(
-                text: AppStrings.welcomeTitle,
-                style: TextStyle(
-                  color: AppColors.slatePurple,
-                ),
-              ),
-              TextSpan(
-                text: "John.",
-                style: TextStyle(
-                  color: AppColors.blue,
-                ),
-              ),
-            ],
-          ),
-        ),
-        const SizedBox(height: 8),
-        const Text(
-          AppStrings.emptyDescription,
-          style: TextStyle(
-            color: AppColors.slateBlue,
-            fontSize: 16,
-          ),
-        ),
         SizedBox(height: size.height * .15),
         Center(
           child: Column(
@@ -57,12 +27,15 @@ class EmptyListTaskWidget extends StatelessWidget {
                 style: context.textTheme.bodyMedium,
               ),
               const SizedBox(height: 24),
-              AppButtonWidget.filled(
-                label: AppStrings.createTask,
-                iconData: Icons.add,
-                onPressed: () {
-                  CreateTaskView.showBottomSheet(context);
-                },
+              Visibility(
+                visible: showButton,
+                child: AppButtonWidget.filled(
+                  label: AppStrings.createTask,
+                  iconData: Icons.add,
+                  onPressed: () {
+                    CreateTaskView.showBottomSheet(context);
+                  },
+                ),
               ),
             ],
           ),

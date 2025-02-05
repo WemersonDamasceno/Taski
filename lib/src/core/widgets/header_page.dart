@@ -5,6 +5,7 @@ import 'package:taski/src/core/models/task_model.dart';
 
 class HeaderPage extends StatelessWidget {
   final List<TaskModel> tasks;
+
   const HeaderPage({super.key, required this.tasks});
 
   @override
@@ -39,7 +40,9 @@ class HeaderPage extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           Text(
-            AppStrings.welcomeDescription(tasks.length.toString()),
+            tasks.isEmpty
+                ? AppStrings.emptyDescription
+                : AppStrings.welcomeDescription(tasks.length.toString()),
             style: const TextStyle(
               color: AppColors.slateBlue,
               fontSize: 16,

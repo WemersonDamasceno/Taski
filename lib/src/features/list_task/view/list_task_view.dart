@@ -40,7 +40,13 @@ class _ListTaskViewState extends State<ListTaskView> {
           switch (state.stateEnum) {
             case StateEnum.empty:
             case StateEnum.notFound:
-              return const EmptyListTaskWidget();
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  HeaderPage(tasks: state.tasks!),
+                  const EmptyListTaskWidget(),
+                ],
+              );
             case StateEnum.error:
               return ErrorListTaskWidget(
                 onPressed: () => _taskCubit.add(GetUncompletedTasksEvent()),
