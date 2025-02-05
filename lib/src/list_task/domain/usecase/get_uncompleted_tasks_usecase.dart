@@ -5,8 +5,10 @@ import 'package:taski/src/list_task/data/mocks/tasks_mocks.dart';
 
 class FetchTasksUseCase implements Usecase<List<TaskModel>, NoParams> {
   @override
-  Future<(List<TaskModel>?, Failure?)> call() async {
+  Future<(List<TaskModel>?, Failure?)> call(NoParams params) async {
     await Future.delayed(const Duration(seconds: 1));
-    return (mockListTasks, null);
+    // TODO: Simulando o retorno das tasks
+    final tasks = mockListTasks.where((task) => !task.isCompleted).toList();
+    return (tasks, null);
   }
 }

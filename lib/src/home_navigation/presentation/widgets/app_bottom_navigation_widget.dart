@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:taski/src/core/constants/app_colors.dart';
+import 'package:taski/src/core/constants/app_images.dart';
+import 'package:taski/src/home_navigation/presentation/widgets/icon_bottom_navigation_widget.dart';
 
 class AppBottomNavigationWidget extends StatelessWidget {
   final int selectedIndex;
@@ -21,24 +23,36 @@ class AppBottomNavigationWidget extends StatelessWidget {
       unselectedItemColor: AppColors.mutedAzure,
       showSelectedLabels: true,
       showUnselectedLabels: true,
-      items: const [
+      items: [
         BottomNavigationBarItem(
-          icon: Icon(Icons.ballot_outlined),
+          icon: IconBottomNavigationWidget(
+            image: AppImages.todo,
+            isSelected: selectedIndex == 0,
+          ),
           backgroundColor: AppColors.white,
           label: "Todo",
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.add_box_outlined),
+          icon: IconBottomNavigationWidget(
+            image: AppImages.create,
+            isSelected: selectedIndex == 1,
+          ),
           backgroundColor: AppColors.white,
           label: "Create",
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.search),
+          icon: IconBottomNavigationWidget(
+            image: AppImages.searchImage,
+            isSelected: selectedIndex == 2,
+          ),
           backgroundColor: AppColors.white,
           label: "Search",
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.check_box_outlined),
+          icon: IconBottomNavigationWidget(
+            image: AppImages.done,
+            isSelected: selectedIndex == 3,
+          ),
           backgroundColor: AppColors.white,
           label: "Done",
         ),

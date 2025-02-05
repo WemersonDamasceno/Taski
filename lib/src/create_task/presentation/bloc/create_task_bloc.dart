@@ -19,7 +19,9 @@ class CreateTaskBloc extends Bloc<CreateTaskEvent, CreateTaskState> {
   ) async {
     emit(state.copyWith(stateEnum: StateEnum.loading));
     try {
-      final successOrFailure = await _createTaskUsecase();
+      final successOrFailure = await _createTaskUsecase(
+        CreateTaskParams(task: event.task, note: event.note),
+      );
 
       if (successOrFailure.$2 != null) {
         return emit(state.copyWith(stateEnum: StateEnum.error));

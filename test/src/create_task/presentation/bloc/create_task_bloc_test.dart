@@ -13,9 +13,11 @@ class MockCreateTaskUsecase extends Mock implements CreateTaskUsecase {}
 void main() {
   late CreateTaskBloc bloc;
   late MockCreateTaskUsecase mockUsecase;
+  late CreateTaskParams params;
 
   setUp(() {
     mockUsecase = MockCreateTaskUsecase();
+    params = const CreateTaskParams(task: 'New Task', note: 'note');
     bloc = CreateTaskBloc(createTaskUsecase: mockUsecase);
   });
 
@@ -23,7 +25,7 @@ void main() {
     blocTest<CreateTaskBloc, CreateTaskState>(
       'emits [loading, success] when CreateTask is added and usecase succeeds',
       build: () {
-        when(() => mockUsecase()).thenAnswer((_) async => (true, null));
+        when(() => mockUsecase(params)).thenAnswer((_) async => (true, null));
         return bloc;
       },
       act: (bloc) => bloc.add(CreateTask(task: 'New Task', note: 'Task Note')),
@@ -36,7 +38,7 @@ void main() {
     blocTest<CreateTaskBloc, CreateTaskState>(
       'emits [loading, error] when CreateTask is added and usecase fails',
       build: () {
-        when(() => mockUsecase()).thenAnswer(
+        when(() => mockUsecase(params)).thenAnswer(
             (_) async => (false, const GenericsFailure(message: 'Error')));
         return bloc;
       },
@@ -50,7 +52,8 @@ void main() {
     blocTest<CreateTaskBloc, CreateTaskState>(
       'emits [loading, error] when CreateTask is added and an exception is thrown',
       build: () {
-        when(() => mockUsecase()).thenThrow(Exception('Unexpected error'));
+        when(() => mockUsecase(params))
+            .thenThrow(Exception('Unexpected error'));
         return bloc;
       },
       act: (bloc) => bloc.add(CreateTask(task: 'New Task', note: 'Task Note')),
