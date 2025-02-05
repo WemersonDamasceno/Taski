@@ -67,7 +67,9 @@ class _SearchTaskByTitleViewState extends State<SearchTaskByTitleView> {
                       onPressed: () => _searchTaskBloc.add(CleanInputEvent()),
                     );
                   case StateEnum.empty:
-                    return const EmptyListTaskWidget();
+                    return const EmptyListTaskWidget(
+                      showButton: false,
+                    );
                   case StateEnum.notFound:
                     return const NotFoundTasksWidget();
                   case StateEnum.loading:
