@@ -35,7 +35,12 @@ void main() {
 
   group('SearchTaskBloc Tests', () {
     final mockTasks = [
-      TaskModel(title: 'Task 1', description: 'Description', isCompleted: false)
+      TaskModel(
+        id: 1,
+        title: 'Task 1',
+        description: 'Description',
+        isCompleted: false,
+      )
     ];
 
     blocTest<SearchTaskBloc, SearchTasksState>(

@@ -3,11 +3,15 @@ import 'package:taski/src/core/constants/app_colors.dart';
 import 'package:taski/src/core/extensions/theme_extension.dart';
 import 'package:taski/src/core/models/task_model.dart';
 
-class TaskItemWidget extends StatelessWidget {
+class TaskItemDoneWidget extends StatelessWidget {
   final TaskModel task;
-  final VoidCallback? onToggle;
+  final VoidCallback onDelete;
 
-  const TaskItemWidget({super.key, required this.task, this.onToggle});
+  const TaskItemDoneWidget({
+    super.key,
+    required this.task,
+    required this.onDelete,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -17,14 +21,18 @@ class TaskItemWidget extends StatelessWidget {
           scale: 1.33,
           child: Checkbox(
             value: task.isCompleted,
-            onChanged: (_) => onToggle?.call(),
+            onChanged: (_) => {},
+            checkColor: AppColors.paleWhite,
+            fillColor: WidgetStateProperty.all(
+              AppColors.mutedAzure,
+            ),
           ),
         ),
         title: Text(
           task.title,
           style: const TextStyle(
             fontWeight: FontWeight.bold,
-            color: AppColors.slatePurple,
+            color: AppColors.slateBlue,
           ),
         ),
         subtitle: task.description.isNotEmpty
@@ -35,10 +43,10 @@ class TaskItemWidget extends StatelessWidget {
             : null,
         trailing: IconButton(
           icon: const Icon(
-            Icons.more_horiz,
-            color: AppColors.slateBlue,
+            Icons.delete_rounded,
+            color: AppColors.fireRed,
           ),
-          onPressed: () {},
+          onPressed: () => onDelete(),
         ),
       ),
     );

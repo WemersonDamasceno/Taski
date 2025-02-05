@@ -11,7 +11,7 @@ class AppColors {
 
   // Snackbar
   static const Color redLight = Color(0xFFD65745);
-  static const Color redPure = Colors.red;
+  static const Color fireRed = Color(0xFFff5e5e);
 
   static Color greenPure = const Color(0xFF55B938);
   static Color greenLight = const Color(0xFF9EE889);

@@ -41,7 +41,7 @@ class AppTheme {
       ),
       titleMedium: TextStyle(
         fontSize: 20,
-        fontWeight: FontWeight.w600,
+        fontWeight: FontWeight.w700,
         fontFamily: 'Urbanist',
       ),
       titleSmall: TextStyle(
@@ -56,9 +56,9 @@ class AppTheme {
         fontFamily: 'Urbanist',
       ),
       bodyMedium: TextStyle(
-        fontSize: 16,
+        fontSize: 18,
         color: AppColors.slatePurple,
-        fontWeight: FontWeight.w500,
+        fontWeight: FontWeight.w600,
         fontFamily: 'Urbanist',
       ),
       bodySmall: TextStyle(

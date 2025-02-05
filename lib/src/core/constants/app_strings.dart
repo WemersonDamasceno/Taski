@@ -27,4 +27,8 @@ class AppStrings {
 
   // ******* Search Strings *******//
   static const searchTask = 'Search by task...';
+
+  // ******* Done Tasks Strings *******//
+  static const titleDoneTasks = 'Completed Tasks';
+  static const deleteAllTasks = 'Delete all';
 }
