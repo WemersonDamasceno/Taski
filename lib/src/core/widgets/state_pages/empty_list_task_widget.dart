@@ -4,7 +4,7 @@ import 'package:taski/src/core/constants/app_images.dart';
 import 'package:taski/src/core/constants/app_strings.dart';
 import 'package:taski/src/core/extensions/theme_extension.dart';
 import 'package:taski/src/core/widgets/button/view/app_buttom_widget.dart';
-import 'package:taski/src/create_task/presentation/view/create_task_view.dart';
+import 'package:taski/src/features/create_task/view/create_task_view.dart';
 
 class EmptyListTaskWidget extends StatelessWidget {
   const EmptyListTaskWidget({super.key});
