@@ -3,7 +3,8 @@ import 'package:taski/src/core/constants/app_colors.dart';
 import 'package:taski/src/core/constants/app_images.dart';
 import 'package:taski/src/core/constants/app_strings.dart';
 import 'package:taski/src/core/extensions/theme_extension.dart';
-import 'package:taski/src/core/widgets/app_buttom_widget.dart';
+import 'package:taski/src/core/widgets/button/view/app_buttom_widget.dart';
+import 'package:taski/src/create_task/presentation/view/create_task_view.dart';
 
 class EmptyListTaskWidget extends StatelessWidget {
   const EmptyListTaskWidget({super.key});
@@ -56,10 +57,12 @@ class EmptyListTaskWidget extends StatelessWidget {
                 style: context.textTheme.bodyMedium,
               ),
               const SizedBox(height: 24),
-              AppButtomWidget(
+              AppButtonWidget.filled(
                 label: AppStrings.createTask,
                 iconData: Icons.add,
-                onPressed: () {},
+                onPressed: () {
+                  CreateTaskView.showBottomSheet(context);
+                },
               ),
             ],
           ),

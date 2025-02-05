@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:taski/src/core/enums/state_enum.dart';
-import 'package:taski/src/list_task/presentation/models/task_model.dart';
+import 'package:taski/src/core/models/task_model.dart';
 
 abstract class ListTaskState extends Equatable {
   @override

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:taski/src/core/constants/app_colors.dart';
 import 'package:taski/src/core/extensions/theme_extension.dart';
-import 'package:taski/src/list_task/presentation/models/task_model.dart';
+import 'package:taski/src/core/models/task_model.dart';
 
 class TaskItemWidget extends StatelessWidget {
   final TaskModel task;
