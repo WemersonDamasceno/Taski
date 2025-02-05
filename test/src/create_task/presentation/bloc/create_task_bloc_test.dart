@@ -17,7 +17,7 @@ void main() {
 
   setUp(() {
     mockUsecase = MockCreateTaskUsecase();
-    params = const CreateTaskParams(task: 'New Task', note: 'note');
+    params = const CreateTaskParams(task: 'New Task', note: 'Task Note');
     bloc = CreateTaskBloc(createTaskUsecase: mockUsecase);
   });
 
