@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:taski/src/core/constants/app_colors.dart';
 import 'package:taski/src/core/constants/app_strings.dart';
-import 'package:taski/src/list_task/presentation/models/task_model.dart';
+import 'package:taski/src/core/models/task_model.dart';
 import 'package:taski/src/list_task/presentation/widgets/task_item_widget.dart';
 
 class SuccessListTaskWidget extends StatefulWidget {

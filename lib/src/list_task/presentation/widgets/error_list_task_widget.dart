@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:taski/src/core/constants/app_images.dart';
 import 'package:taski/src/core/constants/app_strings.dart';
 import 'package:taski/src/core/extensions/theme_extension.dart';
-import 'package:taski/src/core/widgets/app_buttom_widget.dart';
+import 'package:taski/src/core/widgets/button/view/app_buttom_widget.dart';
 
 class ErrorListTaskWidget extends StatelessWidget {
   final Function() onPressed;
@@ -33,7 +33,7 @@ class ErrorListTaskWidget extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 24),
-          AppButtomWidget(
+          AppButtonWidget.filled(
             label: AppStrings.tryAgain,
             onPressed: onPressed,
             iconData: Icons.refresh,

@@ -1,4 +1,4 @@
-import 'package:taski/src/list_task/presentation/models/task_model.dart';
+import 'package:taski/src/core/models/task_model.dart';
 
 final mockListTasks = [
   TaskModel(
