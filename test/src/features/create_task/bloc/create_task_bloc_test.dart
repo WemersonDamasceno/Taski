@@ -38,8 +38,8 @@ void main() {
     blocTest<CreateTaskBloc, CreateTaskState>(
       'emits [loading, error] when CreateTask is added and usecase fails',
       build: () {
-        when(() => mockUsecase(params)).thenAnswer(
-            (_) async => (false, const GenericsFailure(message: 'Error')));
+        when(() => mockUsecase(params))
+            .thenAnswer((_) async => (false, GenericsFailure()));
         return bloc;
       },
       act: (bloc) => bloc.add(CreateTask(task: 'New Task', note: 'Task Note')),

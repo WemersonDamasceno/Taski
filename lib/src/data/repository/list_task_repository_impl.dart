@@ -2,10 +2,10 @@ import 'package:taski/src/core/models/task_model.dart';
 import 'package:taski/src/data/services/local_datastorage.dart';
 import 'package:taski/src/domain/repository/list_task_repository.dart';
 
-class ListTaskRepositoryImpl implements ListTaskRepository {
-  final DatabaseService databaseService;
+class TaskRepositoryImpl implements TaskRepository {
+  final LocalDatabaseService databaseService;
 
-  ListTaskRepositoryImpl({required this.databaseService});
+  TaskRepositoryImpl({required this.databaseService});
 
   @override
   Future<List<TaskModel>> getUncompletedTasks() async {
