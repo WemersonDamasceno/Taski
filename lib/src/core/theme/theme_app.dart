@@ -52,7 +52,7 @@ class AppTheme {
       labelMedium: TextStyle(
         fontSize: 16,
         color: AppColors.slatePurple,
-        fontWeight: FontWeight.w500,
+        fontWeight: FontWeight.w700,
         fontFamily: 'Urbanist',
       ),
       bodyMedium: TextStyle(
