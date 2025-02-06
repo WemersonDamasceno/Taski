@@ -1,4 +1,5 @@
 import 'package:get_it/get_it.dart';
+import 'package:taski/src/core/bloc/update_task_bloc.dart';
 import 'package:taski/src/core/widgets/button/bloc/button_cubit.dart';
 import 'package:taski/src/data/repository/list_task_repository_impl.dart';
 import 'package:taski/src/data/services/local_datastorage.dart';
@@ -10,6 +11,7 @@ import 'package:taski/src/domain/usecase/get_all_tasks_usecase.dart';
 import 'package:taski/src/domain/usecase/get_done_task_usecase.dart';
 import 'package:taski/src/domain/usecase/get_uncompleted_tasks_usecase.dart';
 import 'package:taski/src/domain/usecase/search_task_by_title_usecase.dart';
+import 'package:taski/src/domain/usecase/update_task_usecase.dart';
 import 'package:taski/src/features/create_task/bloc/create_task_bloc.dart';
 import 'package:taski/src/features/done_tasks/bloc/list_done_task_bloc.dart';
 import 'package:taski/src/features/list_task/bloc/list_task_bloc.dart';
@@ -37,6 +39,9 @@ Future<void> initDependency() async {
   );
   getIt.registerLazySingleton<CreateTaskUsecase>(
     () => CreateTaskUsecase(repository: getIt()),
+  );
+  getIt.registerLazySingleton<UpdateTaskUsecase>(
+    () => UpdateTaskUsecase(repository: getIt()),
   );
   getIt.registerLazySingleton<GetAllTasksUsecase>(
     () => GetAllTasksUsecase(repository: getIt()),
@@ -66,9 +71,13 @@ Future<void> initDependency() async {
   getIt.registerFactory<CreateTaskBloc>(
     () => CreateTaskBloc(createTaskUsecase: getIt()),
   );
+
+  getIt.registerFactory<UpdateTaskBloc>(
+    () => UpdateTaskBloc(updateTaskUsecase: getIt()),
+  );
   getIt.registerFactory<SearchTaskBloc>(
     () => SearchTaskBloc(
-      fetchTasksUseCase: getIt(),
+      getAllTasksUsecase: getIt(),
       searchTasksByTitleUseCase: getIt(),
     ),
   );
