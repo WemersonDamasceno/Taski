@@ -4,17 +4,17 @@ import 'package:taski/src/core/models/task_model.dart';
 import 'package:taski/src/core/usecase/usecase.dart';
 import 'package:taski/src/domain/repository/list_task_repository.dart';
 
-class GetAllTasksUsecase implements Usecase<List<TaskModel>, NoParams> {
+class UpdateTaskUsecase implements Usecase<TaskModel, TaskModel> {
   final TaskRepository _repository;
 
-  GetAllTasksUsecase({required TaskRepository repository})
+  UpdateTaskUsecase({required TaskRepository repository})
       : _repository = repository;
 
   @override
-  Future<(List<TaskModel>?, Failure?)> call(NoParams params) async {
+  Future<(TaskModel?, Failure?)> call(TaskModel task) async {
     try {
-      final tasks = await _repository.getAllTasks();
-      return (tasks, null);
+      await _repository.updateTask(task);
+      return (task, null);
     } on LocalStorageException {
       return (null, LocalStorageFailure());
     } catch (e) {

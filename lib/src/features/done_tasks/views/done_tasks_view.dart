@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:taski/src/core/enums/state_enum.dart';
+import 'package:taski/src/core/mixins/task_listener_mixin.dart';
+import 'package:taski/src/core/models/task_event.dart';
 import 'package:taski/src/core/widgets/state_pages/empty_list_task_widget.dart';
 import 'package:taski/src/core/widgets/state_pages/error_list_task_widget.dart';
 import 'package:taski/src/core/widgets/state_pages/loading_list_task_widget.dart';
@@ -18,7 +20,8 @@ class CompletedTasksView extends StatefulWidget {
   State<CompletedTasksView> createState() => _CompletedTasksViewState();
 }
 
-class _CompletedTasksViewState extends State<CompletedTasksView> {
+class _CompletedTasksViewState extends State<CompletedTasksView>
+    with TaskListenerMixin {
   late ListDoneTaskBloc _doneTasksBloc;
 
   @override
@@ -26,6 +29,13 @@ class _CompletedTasksViewState extends State<CompletedTasksView> {
     super.initState();
     _doneTasksBloc = GetIt.I.get<ListDoneTaskBloc>();
     _doneTasksBloc.add(GetCompletedTasksEvent());
+  }
+
+  @override
+  void onTaskModified(TaskEvent event) {
+    if (event.operation == TaskOperation.createOrUpdate) {
+      _doneTasksBloc.add(GetCompletedTasksEvent());
+    }
   }
 
   @override

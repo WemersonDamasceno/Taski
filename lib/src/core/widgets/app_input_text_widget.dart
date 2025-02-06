@@ -8,10 +8,11 @@ class AppInputTextWidget extends StatelessWidget {
     super.key,
     required this.controller,
     required this.hintText,
+    this.maxLength = 100,
   });
 
   final TextEditingController controller;
-
+  final int maxLength;
   final String hintText;
 
   @override
@@ -26,7 +27,7 @@ class AppInputTextWidget extends StatelessWidget {
         maxLines: 4,
         minLines: 1,
         inputFormatters: [
-          LengthLimitingTextInputFormatter(100),
+          LengthLimitingTextInputFormatter(maxLength),
         ],
         decoration: InputDecoration(
           hintText: hintText,

@@ -34,7 +34,7 @@ class _ListTaskViewState extends State<ListTaskView> with TaskListenerMixin {
 
   @override
   void onTaskModified(TaskEvent event) {
-    if (event.operation == TaskOperation.create) {
+    if (event.operation == TaskOperation.createOrUpdate) {
       _taskCubit.add(GetUncompletedTasksEvent());
     }
   }

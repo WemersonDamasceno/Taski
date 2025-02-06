@@ -6,7 +6,7 @@ class AppTheme {
     primaryColor: AppColors.blue,
     listTileTheme: const ListTileThemeData(
       contentPadding: EdgeInsets.zero,
-      titleAlignment: ListTileTitleAlignment.center,
+      titleAlignment: ListTileTitleAlignment.titleHeight,
     ),
     cardTheme: const CardTheme(
       color: AppColors.paleWhite,

@@ -4,27 +4,27 @@ import 'package:mocktail/mocktail.dart';
 import 'package:taski/src/core/enums/state_enum.dart';
 import 'package:taski/src/core/models/task_model.dart';
 import 'package:taski/src/core/usecase/usecase.dart';
-import 'package:taski/src/domain/usecase/get_uncompleted_tasks_usecase.dart';
+import 'package:taski/src/domain/usecase/get_all_tasks_usecase.dart';
 import 'package:taski/src/domain/usecase/search_task_by_title_usecase.dart';
 import 'package:taski/src/features/search_task/bloc/search_task_bloc.dart';
 import 'package:taski/src/features/search_task/bloc/search_task_event.dart';
 import 'package:taski/src/features/search_task/bloc/search_task_state.dart';
 
-class MockFetchTasksUseCase extends Mock implements FetchTasksUseCase {}
+class MockGetAllTasksUsecase extends Mock implements GetAllTasksUsecase {}
 
 class MockSearchTasksByTitleUseCase extends Mock
     implements SearchTasksByTitleUseCase {}
 
 void main() {
   late SearchTaskBloc searchTaskBloc;
-  late MockFetchTasksUseCase mockFetchTasksUseCase;
+  late GetAllTasksUsecase mockFetchTasksUseCase;
   late MockSearchTasksByTitleUseCase mockSearchTasksByTitleUseCase;
 
   setUp(() {
-    mockFetchTasksUseCase = MockFetchTasksUseCase();
+    mockFetchTasksUseCase = MockGetAllTasksUsecase();
     mockSearchTasksByTitleUseCase = MockSearchTasksByTitleUseCase();
     searchTaskBloc = SearchTaskBloc(
-      fetchTasksUseCase: mockFetchTasksUseCase,
+      getAllTasksUsecase: mockFetchTasksUseCase,
       searchTasksByTitleUseCase: mockSearchTasksByTitleUseCase,
     );
   });

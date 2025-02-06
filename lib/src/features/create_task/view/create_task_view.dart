@@ -77,7 +77,8 @@ class _CreateTaskViewState extends State<CreateTaskView>
         listener: (context, state) {
           switch (state.stateEnum) {
             case StateEnum.success:
-              notifyTaskModification(state.taskCreated, TaskOperation.create);
+              notifyTaskModification(
+                  state.taskCreated, TaskOperation.createOrUpdate);
               Navigator.pop(context);
 
               showSnackbar(
@@ -119,6 +120,7 @@ class _CreateTaskViewState extends State<CreateTaskView>
                     AppInputTextWidget(
                       hintText: AppStrings.hintTask,
                       controller: _taskController,
+                      maxLength: 40,
                     ),
                   ],
                 ),

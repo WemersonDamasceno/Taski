@@ -36,8 +36,7 @@ class _SearchTaskByTitleViewState extends State<SearchTaskByTitleView>
 
   @override
   void onTaskModified(TaskEvent event) {
-    if (event.operation == TaskOperation.create ||
-        event.operation == TaskOperation.completed) {
+    if (event.operation == TaskOperation.createOrUpdate) {
       _searchTaskBloc.add(CleanInputEvent());
     }
   }
