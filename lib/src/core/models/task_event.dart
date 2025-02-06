@@ -31,6 +31,5 @@ class TaskEvent {
 
 enum TaskOperation {
   delete,
-  create,
-  completed,
+  createOrUpdate,
 }
