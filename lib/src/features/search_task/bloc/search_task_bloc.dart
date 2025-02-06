@@ -1,19 +1,19 @@
 import 'package:bloc/bloc.dart';
 import 'package:taski/src/core/enums/state_enum.dart';
 import 'package:taski/src/core/usecase/usecase.dart';
-import 'package:taski/src/domain/usecase/get_uncompleted_tasks_usecase.dart';
+import 'package:taski/src/domain/usecase/get_all_tasks_usecase.dart';
 import 'package:taski/src/domain/usecase/search_task_by_title_usecase.dart';
 import 'package:taski/src/features/search_task/bloc/search_task_event.dart';
 import 'package:taski/src/features/search_task/bloc/search_task_state.dart';
 
 class SearchTaskBloc extends Bloc<SearchTaskEvent, SearchTasksState> {
-  final FetchTasksUseCase _fetchTasksUseCase;
+  final GetAllTasksUsecase _getAllTasksUsecase;
   final SearchTasksByTitleUseCase _searchTasksByTitleUseCase;
 
   SearchTaskBloc({
-    required FetchTasksUseCase fetchTasksUseCase,
+    required GetAllTasksUsecase getAllTasksUsecase,
     required SearchTasksByTitleUseCase searchTasksByTitleUseCase,
-  })  : _fetchTasksUseCase = fetchTasksUseCase,
+  })  : _getAllTasksUsecase = getAllTasksUsecase,
         _searchTasksByTitleUseCase = searchTasksByTitleUseCase,
         super(const SearchTasksState()) {
     on<SearchTaskByTitleEvent>(searchTaskByTitle);
@@ -52,7 +52,7 @@ class SearchTaskBloc extends Bloc<SearchTaskEvent, SearchTasksState> {
   ) async {
     emit(state.copyWith(stateEnum: StateEnum.loading));
     try {
-      final successOrFailure = await _fetchTasksUseCase(NoParams());
+      final successOrFailure = await _getAllTasksUsecase(NoParams());
 
       if (successOrFailure.$2 != null) {
         return emit(state.copyWith(stateEnum: StateEnum.error));

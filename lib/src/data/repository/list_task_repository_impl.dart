@@ -28,8 +28,8 @@ class TaskRepositoryImpl implements TaskRepository {
   }
 
   @override
-  Future<int> deleteUncompletedTasks() async {
-    return await databaseService.deleteUncompletedTasks();
+  Future<int> deleteAllDoneTasks() async {
+    return await databaseService.deleteAllDoneTasks();
   }
 
   @override
@@ -40,5 +40,10 @@ class TaskRepositoryImpl implements TaskRepository {
   @override
   Future<int> updateTask(TaskModel task) async {
     return await databaseService.updateTask(task);
+  }
+
+  @override
+  Future<List<TaskModel>> getAllTasks() async {
+    return await databaseService.getAllTasks();
   }
 }

@@ -6,9 +6,10 @@ abstract class LocalDatabaseService {
   Future<int> insertTask(TaskModel task);
   Future<List<TaskModel>> getUncompletedTasks();
   Future<List<TaskModel>> getCompletedTasks();
+  Future<List<TaskModel>> getAllTasks();
   Future<List<TaskModel>> getTasksByTitle(String title);
   Future<int> deleteTask(int id);
-  Future<int> deleteUncompletedTasks();
+  Future<int> deleteAllDoneTasks();
   Future<int> updateTask(TaskModel task);
 }
 
@@ -80,6 +81,13 @@ class LocalDatabaseServiceImpl implements LocalDatabaseService {
   }
 
   @override
+  Future<List<TaskModel>> getAllTasks() async {
+    final db = await database;
+    final result = await db.query('tasks');
+    return result.map((json) => TaskModel.fromMap(json)).toList();
+  }
+
+  @override
   Future<List<TaskModel>> getTasksByTitle(String title) async {
     final db = await database;
     final result = await db.query(
@@ -101,12 +109,12 @@ class LocalDatabaseServiceImpl implements LocalDatabaseService {
   }
 
   @override
-  Future<int> deleteUncompletedTasks() async {
+  Future<int> deleteAllDoneTasks() async {
     final db = await database;
     return await db.delete(
       'tasks',
       where: 'isCompleted = ?',
-      whereArgs: [0],
+      whereArgs: [1],
     );
   }
 

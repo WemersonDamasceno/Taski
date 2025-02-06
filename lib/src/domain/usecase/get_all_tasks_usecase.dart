@@ -13,7 +13,7 @@ class GetAllTasksUsecase implements Usecase<List<TaskModel>, NoParams> {
   @override
   Future<(List<TaskModel>?, Failure?)> call(NoParams params) async {
     try {
-      final tasks = await _repository.getUncompletedTasks();
+      final tasks = await _repository.getAllTasks();
       return (tasks, null);
     } on LocalStorageException {
       return (null, LocalStorageFailure());
