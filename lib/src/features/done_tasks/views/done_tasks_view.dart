@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
+import 'package:taski/src/core/constants/app_colors.dart';
+import 'package:taski/src/core/constants/app_strings.dart';
 import 'package:taski/src/core/enums/state_enum.dart';
+import 'package:taski/src/core/extensions/theme_extension.dart';
 import 'package:taski/src/core/mixins/task_listener_mixin.dart';
 import 'package:taski/src/core/mixins/task_notifier_mixin.dart';
 import 'package:taski/src/core/models/task_event.dart';
+import 'package:taski/src/core/widgets/button/view/app_buttom_widget.dart';
 import 'package:taski/src/core/widgets/state_pages/empty_list_task_widget.dart';
 import 'package:taski/src/core/widgets/state_pages/error_list_task_widget.dart';
 import 'package:taski/src/core/widgets/state_pages/loading_list_task_widget.dart';
@@ -14,14 +18,14 @@ import 'package:taski/src/features/done_tasks/bloc/list_done_task_state.dart';
 import 'package:taski/src/features/done_tasks/widgets/header_done_tasks_widget.dart';
 import 'package:taski/src/features/done_tasks/widgets/task_item_done_widget.dart';
 
-class CompletedTasksView extends StatefulWidget {
-  const CompletedTasksView({super.key});
+class DoneTasksView extends StatefulWidget {
+  const DoneTasksView({super.key});
 
   @override
-  State<CompletedTasksView> createState() => _CompletedTasksViewState();
+  State<DoneTasksView> createState() => _DoneTasksViewState();
 }
 
-class _CompletedTasksViewState extends State<CompletedTasksView>
+class _DoneTasksViewState extends State<DoneTasksView>
     with TaskListenerMixin, TaskNotifierMixin {
   late ListDoneTaskBloc _doneTasksBloc;
 
@@ -47,7 +51,12 @@ class _CompletedTasksViewState extends State<CompletedTasksView>
       child: Column(
         children: [
           HeaderCompletedTasks(
-            onPressed: () => _doneTasksBloc.add(DeleteAllTasksDone()),
+            onPressed: () => _showDialog(
+              context: context,
+              title: AppStrings.deleteAllTasksTitle,
+              description: AppStrings.deleteAllTasksDescription,
+              onConfirm: () => _doneTasksBloc.add(DeleteAllTasksDone()),
+            ),
           ),
           Expanded(
             child: BlocBuilder<ListDoneTaskBloc, ListDoneTaskState>(
@@ -73,9 +82,14 @@ class _CompletedTasksViewState extends State<CompletedTasksView>
                   itemBuilder: (context, index) {
                     return TaskItemDoneWidget(
                       task: state.tasks![index],
-                      onDelete: () => _doneTasksBloc.add(
-                        DeleteTasksById(
-                          id: state.tasks![index].id!,
+                      onDelete: () => _showDialog(
+                        context: context,
+                        title: AppStrings.deleteTasks,
+                        description: AppStrings.deleteTaskDescription,
+                        onConfirm: () => _doneTasksBloc.add(
+                          DeleteTasksById(
+                            id: state.tasks![index].id!,
+                          ),
                         ),
                       ),
                     );
@@ -83,6 +97,48 @@ class _CompletedTasksViewState extends State<CompletedTasksView>
                 );
               },
             ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _showDialog({
+    required BuildContext context,
+    required String title,
+    required String description,
+    required VoidCallback onConfirm,
+  }) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        insetPadding: const EdgeInsets.symmetric(horizontal: 16),
+        title: Text(
+          title,
+          textAlign: TextAlign.start,
+          style: context.textTheme.titleLarge?.copyWith(
+            color: AppColors.slatePurple,
+          ),
+        ),
+        content: Text(
+          description,
+          textAlign: TextAlign.start,
+          style: context.textTheme.bodyMedium?.copyWith(
+            color: AppColors.slateBlue,
+          ),
+        ),
+        actions: [
+          AppButtonWidget.textButton(
+            label: 'Cancelar',
+            colorLabel: AppColors.slatePurple,
+            onPressed: () => Navigator.pop(context),
+          ),
+          AppButtonWidget.filled(
+            label: 'Deletar',
+            onPressed: () {
+              Navigator.pop(context);
+              onConfirm();
+            },
           ),
         ],
       ),
