@@ -11,4 +11,34 @@ class TaskRepositoryImpl implements TaskRepository {
   Future<List<TaskModel>> getUncompletedTasks() async {
     return await databaseService.getUncompletedTasks();
   }
+
+  @override
+  Future<List<TaskModel>> getDoneTasks() async {
+    return await databaseService.getCompletedTasks();
+  }
+
+  @override
+  Future<int> insertTask(TaskModel task) async {
+    return await databaseService.insertTask(task);
+  }
+
+  @override
+  Future<int> deleteTask(int id) async {
+    return await databaseService.deleteTask(id);
+  }
+
+  @override
+  Future<int> deleteUncompletedTasks() async {
+    return await databaseService.deleteUncompletedTasks();
+  }
+
+  @override
+  Future<List<TaskModel>> getTasksByTitle(String title) async {
+    return await databaseService.getTasksByTitle(title);
+  }
+
+  @override
+  Future<int> updateTask(TaskModel task) async {
+    return await databaseService.updateTask(task);
+  }
 }

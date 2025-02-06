@@ -1,3 +1,4 @@
+import 'package:taski/src/core/erros/exceptions.dart';
 import 'package:taski/src/core/erros/failures.dart';
 import 'package:taski/src/core/models/task_model.dart';
 import 'package:taski/src/core/usecase/usecase.dart';
@@ -14,8 +15,10 @@ class FetchTasksUseCase implements Usecase<List<TaskModel>, NoParams> {
       final tasksUncompleted = await repository.getUncompletedTasks();
 
       return (tasksUncompleted, null);
-    } catch (e) {
+    } on LocalStorageException {
       return (null, LocalStorageFailure());
+    } catch (e) {
+      return (null, GenericsFailure());
     }
   }
 }
