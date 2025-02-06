@@ -5,4 +5,5 @@ enum StateEnum {
   error,
   empty,
   notFound,
+  deleted,
 }

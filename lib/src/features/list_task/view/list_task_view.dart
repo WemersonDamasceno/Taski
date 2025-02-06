@@ -68,8 +68,7 @@ class _ListTaskViewState extends State<ListTaskView> with TaskListenerMixin {
                   Expanded(child: SuccessListTaskWidget(tasks: state.tasks!)),
                 ],
               );
-            case StateEnum.loading:
-            case StateEnum.initial:
+            default:
               return const Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

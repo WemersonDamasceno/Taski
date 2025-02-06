@@ -20,12 +20,12 @@ class ListDoneTaskBloc extends Bloc<ListDoneTaskEvent, ListDoneTaskState> {
         _deleteAllTasksDoneUseCase = deleteAllTasksDoneUseCase,
         _deleteTasksByIdUsecase = deleteTasksByIdUsecase,
         super(const ListDoneTaskState()) {
-    on<GetCompletedTasksEvent>(_getUncompletedTasks);
+    on<GetCompletedTasksEvent>(_getDoneTasks);
     on<DeleteAllTasksDone>(_deleteAllTasksDone);
     on<DeleteTasksById>(_deleteTasksById);
   }
 
-  Future<void> _getUncompletedTasks(
+  Future<void> _getDoneTasks(
     GetCompletedTasksEvent event,
     Emitter<ListDoneTaskState> emit,
   ) async {
@@ -55,7 +55,7 @@ class ListDoneTaskBloc extends Bloc<ListDoneTaskEvent, ListDoneTaskState> {
     emit(state.copyWith(stateEnum: StateEnum.loading));
     try {
       await _deleteAllTasksDoneUseCase.call(NoParams());
-      emit(state.copyWith(stateEnum: StateEnum.success));
+      emit(state.copyWith(stateEnum: StateEnum.deleted));
     } catch (e) {
       emit(state.copyWith(stateEnum: StateEnum.error));
     }
@@ -68,7 +68,7 @@ class ListDoneTaskBloc extends Bloc<ListDoneTaskEvent, ListDoneTaskState> {
     emit(state.copyWith(stateEnum: StateEnum.loading));
     try {
       await _deleteTasksByIdUsecase(event.id);
-      emit(state.copyWith(stateEnum: StateEnum.success));
+      emit(state.copyWith(stateEnum: StateEnum.deleted));
     } catch (e) {
       emit(state.copyWith(stateEnum: StateEnum.error));
     }

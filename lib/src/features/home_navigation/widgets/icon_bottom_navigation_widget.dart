@@ -6,14 +6,19 @@ class IconBottomNavigationWidget extends StatelessWidget {
   final bool isSelected;
   final String image;
 
-  const IconBottomNavigationWidget(
-      {super.key, required this.isSelected, required this.image});
+  const IconBottomNavigationWidget({
+    super.key,
+    required this.isSelected,
+    required this.image,
+  });
 
   @override
   Widget build(BuildContext context) {
     return SvgPicture.asset(
       image,
-      fit: BoxFit.scaleDown,
+      fit: BoxFit.cover,
+      height: 24,
+      width: 24,
       colorFilter: ColorFilter.mode(
         isSelected ? AppColors.blue : AppColors.mutedAzure,
         BlendMode.srcIn,

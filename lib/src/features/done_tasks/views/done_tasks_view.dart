@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:taski/src/core/enums/state_enum.dart';
 import 'package:taski/src/core/mixins/task_listener_mixin.dart';
+import 'package:taski/src/core/mixins/task_notifier_mixin.dart';
 import 'package:taski/src/core/models/task_event.dart';
 import 'package:taski/src/core/widgets/state_pages/empty_list_task_widget.dart';
 import 'package:taski/src/core/widgets/state_pages/error_list_task_widget.dart';
@@ -21,7 +22,7 @@ class CompletedTasksView extends StatefulWidget {
 }
 
 class _CompletedTasksViewState extends State<CompletedTasksView>
-    with TaskListenerMixin {
+    with TaskListenerMixin, TaskNotifierMixin {
   late ListDoneTaskBloc _doneTasksBloc;
 
   @override
@@ -33,7 +34,8 @@ class _CompletedTasksViewState extends State<CompletedTasksView>
 
   @override
   void onTaskModified(TaskEvent event) {
-    if (event.operation == TaskOperation.createOrUpdate) {
+    if (event.operation == TaskOperation.createOrUpdate ||
+        event.operation == TaskOperation.delete) {
       _doneTasksBloc.add(GetCompletedTasksEvent());
     }
   }
@@ -45,20 +47,22 @@ class _CompletedTasksViewState extends State<CompletedTasksView>
       child: Column(
         children: [
           HeaderCompletedTasks(
-            onPressed: () {
-              _doneTasksBloc.add(DeleteAllTasksDone());
-            },
+            onPressed: () => _doneTasksBloc.add(DeleteAllTasksDone()),
           ),
           Expanded(
             child: BlocBuilder<ListDoneTaskBloc, ListDoneTaskState>(
               bloc: _doneTasksBloc,
               builder: (context, state) {
+                if (state.stateEnum == StateEnum.deleted) {
+                  notifyTaskModification(null, TaskOperation.delete);
+                }
                 if (state.stateEnum == StateEnum.loading) {
                   return const LoadingListTaskWidget();
                 } else if (state.stateEnum == StateEnum.error) {
                   return ErrorListTaskWidget(
-                    onPressed: () =>
-                        _doneTasksBloc.add(GetCompletedTasksEvent()),
+                    onPressed: () => _doneTasksBloc.add(
+                      GetCompletedTasksEvent(),
+                    ),
                   );
                 } else if (state.tasks == null || state.tasks!.isEmpty) {
                   return const EmptyListTaskWidget();
