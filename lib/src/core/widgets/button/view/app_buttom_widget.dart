@@ -51,10 +51,11 @@ class AppButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     bool isLoading = statusButton == StatusButtonEnum.loading;
+    bool isDisabled = statusButton == StatusButtonEnum.disable;
     return SizedBox(
       height: 50,
       child: ElevatedButton.icon(
-        onPressed: () => onPressed(),
+        onPressed: () => isDisabled || isLoading ? null : onPressed(),
         icon: iconData != null && !isLoading ? Icon(iconData) : null,
         style: ElevatedButton.styleFrom(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
@@ -75,7 +76,7 @@ class AppButtonWidget extends StatelessWidget {
           replacement: Text(
             label,
             style: context.textTheme.titleSmall?.copyWith(
-              color: AppColors.blue,
+              color: isDisabled ? AppColors.mutedAzure : AppColors.blue,
               fontWeight: isFilled ? FontWeight.w600 : FontWeight.w700,
             ),
           ),

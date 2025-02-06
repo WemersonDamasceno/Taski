@@ -30,7 +30,7 @@ class SnackbarFloating extends StatefulWidget {
         backgroundColor: Colors.transparent,
         elevation: 0,
         behavior: SnackBarBehavior.fixed,
-        duration: const Duration(milliseconds: 1500),
+        duration: const Duration(seconds: 2),
       ),
     );
   }

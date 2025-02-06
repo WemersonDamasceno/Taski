@@ -3,6 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:taski/src/core/enums/state_enum.dart';
 import 'package:taski/src/core/erros/failures.dart';
+import 'package:taski/src/core/models/task_model.dart';
 import 'package:taski/src/domain/usecase/create_task_usecase.dart';
 import 'package:taski/src/features/create_task/bloc/create_task_bloc.dart';
 import 'package:taski/src/features/create_task/bloc/create_task_event.dart';
@@ -14,6 +15,7 @@ void main() {
   late CreateTaskBloc bloc;
   late MockCreateTaskUsecase mockUsecase;
   late CreateTaskParams params;
+  final task = TaskModel(title: 'New Task', description: 'Task Note');
 
   setUp(() {
     mockUsecase = MockCreateTaskUsecase();
@@ -25,7 +27,7 @@ void main() {
     blocTest<CreateTaskBloc, CreateTaskState>(
       'emits [loading, success] when CreateTask is added and usecase succeeds',
       build: () {
-        when(() => mockUsecase(params)).thenAnswer((_) async => (true, null));
+        when(() => mockUsecase(params)).thenAnswer((_) async => (task, null));
         return bloc;
       },
       act: (bloc) => bloc.add(CreateTask(task: 'New Task', note: 'Task Note')),
@@ -39,7 +41,7 @@ void main() {
       'emits [loading, error] when CreateTask is added and usecase fails',
       build: () {
         when(() => mockUsecase(params))
-            .thenAnswer((_) async => (false, GenericsFailure()));
+            .thenAnswer((_) async => (null, GenericsFailure()));
         return bloc;
       },
       act: (bloc) => bloc.add(CreateTask(task: 'New Task', note: 'Task Note')),

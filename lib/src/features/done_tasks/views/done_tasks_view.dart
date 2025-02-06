@@ -61,7 +61,7 @@ class _CompletedTasksViewState extends State<CompletedTasksView> {
                       task: state.tasks![index],
                       onDelete: () => _doneTasksBloc.add(
                         DeleteTasksById(
-                          id: state.tasks![index].id,
+                          id: state.tasks![index].id!,
                         ),
                       ),
                     );

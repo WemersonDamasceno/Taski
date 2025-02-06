@@ -27,7 +27,10 @@ class CreateTaskBloc extends Bloc<CreateTaskEvent, CreateTaskState> {
         return emit(state.copyWith(stateEnum: StateEnum.error));
       }
 
-      emit(state.copyWith(stateEnum: StateEnum.success));
+      emit(state.copyWith(
+        taskCreated: successOrFailure.$1,
+        stateEnum: StateEnum.success,
+      ));
     } catch (e) {
       emit(state.copyWith(stateEnum: StateEnum.error));
     }

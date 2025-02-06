@@ -42,13 +42,13 @@ class LocalDatabaseServiceImpl implements LocalDatabaseService {
 
   Future _onCreate(Database db, int version) async {
     await db.execute('''
-      CREATE TABLE tasks(
-        id INTEGER PRIMARY KEY,
-        title TEXT NOT NULL,
-        description TEXT NOT NULL,
-        isCompleted INTEGER NOT NULL
-      )
-    ''');
+    CREATE TABLE tasks(
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      title TEXT NOT NULL,
+      description TEXT NOT NULL,
+      isCompleted INTEGER NOT NULL
+    )
+  ''');
   }
 
   @override
