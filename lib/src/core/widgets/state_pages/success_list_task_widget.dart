@@ -21,7 +21,7 @@ class _SuccessListTaskWidgetState extends State<SuccessListTaskWidget> {
   }
 
   void _toggleTask(int index) {
-    final updatedTask = widget.tasks[index].toggleValue(
+    final updatedTask = widget.tasks[index].copyWith(
       isCompleted: !widget.tasks[index].isCompleted,
     );
 

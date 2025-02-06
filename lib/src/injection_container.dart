@@ -35,8 +35,10 @@ Future<void> initDependency() async {
   getIt.registerLazySingleton<GetDoneTaskUsecase>(
     () => GetDoneTaskUsecase(repository: getIt()),
   );
+  getIt.registerLazySingleton<CreateTaskUsecase>(
+    () => CreateTaskUsecase(repository: getIt()),
+  );
   getIt.registerLazySingleton<GetAllTasksUsecase>(() => GetAllTasksUsecase());
-  getIt.registerLazySingleton<CreateTaskUsecase>(() => CreateTaskUsecase());
   getIt.registerLazySingleton<DeleteTasksByIdUsecase>(
     () => DeleteTasksByIdUsecase(),
   );

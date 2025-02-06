@@ -5,6 +5,8 @@ import 'package:taski/src/core/constants/app_colors.dart';
 import 'package:taski/src/core/constants/app_strings.dart';
 import 'package:taski/src/core/enums/state_enum.dart';
 import 'package:taski/src/core/enums/status_button_enum.dart';
+import 'package:taski/src/core/mixins/task_notifier_mixin.dart';
+import 'package:taski/src/core/models/task_event.dart';
 import 'package:taski/src/core/widgets/app_input_text_widget.dart';
 import 'package:taski/src/core/widgets/button/bloc/button_cubit.dart';
 import 'package:taski/src/core/widgets/button/bloc/button_state.dart';
@@ -43,7 +45,8 @@ class CreateTaskView extends StatefulWidget {
   State<CreateTaskView> createState() => _CreateTaskViewState();
 }
 
-class _CreateTaskViewState extends State<CreateTaskView> with SnackbarMixin {
+class _CreateTaskViewState extends State<CreateTaskView>
+    with SnackbarMixin, TaskNotifierMixin {
   final TextEditingController _taskController = TextEditingController();
   final TextEditingController _noteController = TextEditingController();
 
@@ -55,6 +58,16 @@ class _CreateTaskViewState extends State<CreateTaskView> with SnackbarMixin {
     super.initState();
     _createTaskBloc = GetIt.I.get<CreateTaskBloc>();
     _buttonCubit = GetIt.I.get<ButtonCubit>();
+
+    _buttonCubit.changeStatusButton(StatusButtonEnum.disable);
+
+    _taskController.addListener(() {
+      if (_taskController.text.isNotEmpty) {
+        _buttonCubit.changeStatusButton(StatusButtonEnum.enable);
+        return;
+      }
+      _buttonCubit.changeStatusButton(StatusButtonEnum.disable);
+    });
   }
 
   @override
@@ -64,7 +77,9 @@ class _CreateTaskViewState extends State<CreateTaskView> with SnackbarMixin {
         listener: (context, state) {
           switch (state.stateEnum) {
             case StateEnum.success:
+              notifyTaskModification(state.taskCreated, TaskOperation.create);
               Navigator.pop(context);
+
               showSnackbar(
                 context: context,
                 message: AppStrings.successCreateTask,
@@ -128,12 +143,14 @@ class _CreateTaskViewState extends State<CreateTaskView> with SnackbarMixin {
                     return Align(
                       alignment: Alignment.centerRight,
                       child: AppButtonWidget.textButton(
-                        onPressed: () => _createTaskBloc.add(CreateTask(
-                          task: _taskController.text,
-                          note: _noteController.text,
-                        )),
-                        statusButton: state.statusButton,
                         label: 'Create',
+                        statusButton: state.statusButton,
+                        onPressed: () => _createTaskBloc.add(
+                          CreateTask(
+                            task: _taskController.text,
+                            note: _noteController.text,
+                          ),
+                        ),
                       ),
                     );
                   },

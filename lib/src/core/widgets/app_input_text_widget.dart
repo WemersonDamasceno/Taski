@@ -11,6 +11,7 @@ class AppInputTextWidget extends StatelessWidget {
   });
 
   final TextEditingController controller;
+
   final String hintText;
 
   @override
