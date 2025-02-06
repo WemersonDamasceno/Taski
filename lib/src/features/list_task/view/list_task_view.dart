@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:taski/src/core/enums/state_enum.dart';
+import 'package:taski/src/core/mixins/task_listener_mixin.dart';
+import 'package:taski/src/core/models/task_event.dart';
 import 'package:taski/src/core/widgets/header_page.dart';
 import 'package:taski/src/core/widgets/header_page_loading.dart';
 import 'package:taski/src/core/widgets/state_pages/empty_list_task_widget.dart';
@@ -19,7 +21,7 @@ class ListTaskView extends StatefulWidget {
   State<ListTaskView> createState() => _ListTaskViewState();
 }
 
-class _ListTaskViewState extends State<ListTaskView> {
+class _ListTaskViewState extends State<ListTaskView> with TaskListenerMixin {
   late ListTaskBloc _taskCubit;
 
   @override
@@ -28,6 +30,13 @@ class _ListTaskViewState extends State<ListTaskView> {
 
     _taskCubit = GetIt.I.get<ListTaskBloc>();
     _taskCubit.add(GetUncompletedTasksEvent());
+  }
+
+  @override
+  void onTaskModified(TaskEvent event) {
+    if (event.operation == TaskOperation.create) {
+      _taskCubit.add(GetUncompletedTasksEvent());
+    }
   }
 
   @override
