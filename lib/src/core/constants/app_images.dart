@@ -7,4 +7,6 @@ class AppImages {
   static const todo = '$_pathBase/todo.svg';
   static const create = '$_pathBase/create.svg';
   static const done = '$_pathBase/done.svg';
+
+  static const logoApp = '$_pathBase/logo_app.svg';
 }

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:taski/src/core/constants/app_images.dart';
 import 'package:taski/src/core/extensions/theme_extension.dart';
 
 class AppBarWidget extends StatelessWidget {
@@ -7,17 +9,7 @@ class AppBarWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: Row(
-        children: [
-          Transform.scale(
-              scale: 1.33,
-              child: Checkbox(
-                value: true,
-                onChanged: (value) {},
-              )),
-          Text("Taski", style: context.textTheme.titleSmall),
-        ],
-      ),
+      title: SvgPicture.asset(AppImages.logoApp),
       actions: [
         Padding(
           padding: const EdgeInsets.only(right: 16),
@@ -25,7 +17,7 @@ class AppBarWidget extends StatelessWidget {
             children: [
               Text(
                 "John",
-                style: context.textTheme.titleMedium,
+                style: context.textTheme.bodyMedium,
               ),
               const SizedBox(width: 14),
               const SizedBox(

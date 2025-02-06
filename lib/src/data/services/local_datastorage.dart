@@ -84,7 +84,7 @@ class LocalDatabaseServiceImpl implements LocalDatabaseService {
     final db = await database;
     final result = await db.query(
       'tasks',
-      where: 'title LIKE ?',
+      where: 'LOWER(title) LIKE LOWER(?)',
       whereArgs: ['%$title%'],
     );
     return result.map((json) => TaskModel.fromMap(json)).toList();
