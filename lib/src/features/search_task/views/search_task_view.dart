@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:taski/src/core/enums/state_enum.dart';
+import 'package:taski/src/core/mixins/task_listener_mixin.dart';
+import 'package:taski/src/core/models/task_event.dart';
 import 'package:taski/src/core/widgets/state_pages/empty_list_task_widget.dart';
 import 'package:taski/src/core/widgets/state_pages/error_list_task_widget.dart';
 import 'package:taski/src/core/widgets/state_pages/loading_list_task_widget.dart';
@@ -19,7 +21,8 @@ class SearchTaskByTitleView extends StatefulWidget {
   State<SearchTaskByTitleView> createState() => _SearchTaskByTitleViewState();
 }
 
-class _SearchTaskByTitleViewState extends State<SearchTaskByTitleView> {
+class _SearchTaskByTitleViewState extends State<SearchTaskByTitleView>
+    with TaskListenerMixin {
   late SearchTaskBloc _searchTaskBloc;
   late TextEditingController _searchController;
 
@@ -29,6 +32,14 @@ class _SearchTaskByTitleViewState extends State<SearchTaskByTitleView> {
     _searchController = TextEditingController();
     _searchTaskBloc = GetIt.I.get<SearchTaskBloc>();
     _searchTaskBloc.add(CleanInputEvent());
+  }
+
+  @override
+  void onTaskModified(TaskEvent event) {
+    if (event.operation == TaskOperation.create ||
+        event.operation == TaskOperation.completed) {
+      _searchTaskBloc.add(CleanInputEvent());
+    }
   }
 
   @override

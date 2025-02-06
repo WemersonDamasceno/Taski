@@ -38,7 +38,9 @@ Future<void> initDependency() async {
   getIt.registerLazySingleton<CreateTaskUsecase>(
     () => CreateTaskUsecase(repository: getIt()),
   );
-  getIt.registerLazySingleton<GetAllTasksUsecase>(() => GetAllTasksUsecase());
+  getIt.registerLazySingleton<GetAllTasksUsecase>(
+    () => GetAllTasksUsecase(repository: getIt()),
+  );
   getIt.registerLazySingleton<DeleteTasksByIdUsecase>(
     () => DeleteTasksByIdUsecase(),
   );
@@ -46,7 +48,7 @@ Future<void> initDependency() async {
     () => DeleteAllTasksDoneUsecase(),
   );
   getIt.registerLazySingleton<SearchTasksByTitleUseCase>(
-    () => SearchTasksByTitleUseCase(),
+    () => SearchTasksByTitleUseCase(repository: getIt()),
   );
 
   //****** Blocs ******//
