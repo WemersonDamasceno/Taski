@@ -9,12 +9,14 @@ import 'package:taski/src/domain/usecase/delete_all_tasks_done_usecase.dart';
 import 'package:taski/src/domain/usecase/delete_task_by_id_usecase.dart';
 import 'package:taski/src/domain/usecase/get_all_tasks_usecase.dart';
 import 'package:taski/src/domain/usecase/get_done_task_usecase.dart';
+import 'package:taski/src/domain/usecase/get_quantity_uncompleted_tasks_usecase.dart';
 import 'package:taski/src/domain/usecase/get_uncompleted_tasks_usecase.dart';
 import 'package:taski/src/domain/usecase/search_task_by_title_usecase.dart';
 import 'package:taski/src/domain/usecase/update_task_usecase.dart';
 import 'package:taski/src/features/create_task/bloc/create_task_bloc.dart';
 import 'package:taski/src/features/done_tasks/bloc/list_done_task_bloc.dart';
-import 'package:taski/src/features/list_task/bloc/list_task_bloc.dart';
+import 'package:taski/src/features/list_task/bloc/get_quantity_tasks/get_quantity_tasks_bloc.dart';
+import 'package:taski/src/features/list_task/bloc/list_tasks_uncompleted/list_task_bloc.dart';
 import 'package:taski/src/features/search_task/bloc/search_task_bloc.dart';
 
 final GetIt getIt = GetIt.instance;
@@ -31,8 +33,8 @@ Future<void> initDependency() async {
       ));
 
   //****** Usecases ******//
-  getIt.registerLazySingleton<FetchTasksUseCase>(
-    () => FetchTasksUseCase(repository: getIt()),
+  getIt.registerLazySingleton<GetUncompletedTasksUsecase>(
+    () => GetUncompletedTasksUsecase(repository: getIt()),
   );
   getIt.registerLazySingleton<GetDoneTaskUsecase>(
     () => GetDoneTaskUsecase(repository: getIt()),
@@ -60,10 +62,14 @@ Future<void> initDependency() async {
     () => SearchTasksByTitleUseCase(repository: getIt()),
   );
 
+  getIt.registerLazySingleton<GetQuantityUncompltedTaskUsecase>(
+    () => GetQuantityUncompltedTaskUsecase(repository: getIt()),
+  );
+
   //****** Blocs ******//
   getIt.registerFactory<ButtonCubit>(() => ButtonCubit());
-  getIt.registerFactory<ListTaskBloc>(
-    () => ListTaskBloc(fetchTasksUseCase: getIt()),
+  getIt.registerFactory<ListTaskUncompletedBloc>(
+    () => ListTaskUncompletedBloc(usecase: getIt()),
   );
   getIt.registerFactory<ListDoneTaskBloc>(
     () => ListDoneTaskBloc(
@@ -78,6 +84,9 @@ Future<void> initDependency() async {
 
   getIt.registerFactory<UpdateTaskBloc>(
     () => UpdateTaskBloc(updateTaskUsecase: getIt()),
+  );
+  getIt.registerFactory<GetQuantityTaskUncompletedBloc>(
+    () => GetQuantityTaskUncompletedBloc(usecase: getIt()),
   );
   getIt.registerFactory<SearchTaskBloc>(
     () => SearchTaskBloc(

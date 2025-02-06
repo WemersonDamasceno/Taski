@@ -13,6 +13,11 @@ class TaskRepositoryImpl implements TaskRepository {
   }
 
   @override
+  Future<int> getQuantityOfUncompletedTasks() async {
+    return await databaseService.quantityOfUncompletedTasks();
+  }
+
+  @override
   Future<List<TaskModel>> getDoneTasks() async {
     return await databaseService.getCompletedTasks();
   }

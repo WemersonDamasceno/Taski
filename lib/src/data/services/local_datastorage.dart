@@ -5,12 +5,16 @@ import 'package:taski/src/core/models/task_model.dart';
 abstract class LocalDatabaseService {
   Future<int> insertTask(TaskModel task);
   Future<List<TaskModel>> getUncompletedTasks();
+
   Future<List<TaskModel>> getCompletedTasks();
   Future<List<TaskModel>> getAllTasks();
   Future<List<TaskModel>> getTasksByTitle(String title);
+
   Future<int> deleteTask(int id);
   Future<int> deleteAllDoneTasks();
+
   Future<int> updateTask(TaskModel task);
+  Future<int> quantityOfUncompletedTasks();
 }
 
 class LocalDatabaseServiceImpl implements LocalDatabaseService {
@@ -127,5 +131,14 @@ class LocalDatabaseServiceImpl implements LocalDatabaseService {
       where: 'id = ?',
       whereArgs: [task.id],
     );
+  }
+
+  @override
+  Future<int> quantityOfUncompletedTasks() async {
+    final db = await database;
+    final result = await db.rawQuery(
+      'SELECT COUNT(*) as total FROM tasks WHERE isCompleted = 0',
+    );
+    return Sqflite.firstIntValue(result) ?? 0;
   }
 }

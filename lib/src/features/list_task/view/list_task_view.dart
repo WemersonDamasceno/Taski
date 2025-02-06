@@ -10,9 +10,12 @@ import 'package:taski/src/core/widgets/state_pages/empty_list_task_widget.dart';
 import 'package:taski/src/core/widgets/state_pages/error_list_task_widget.dart';
 import 'package:taski/src/core/widgets/state_pages/loading_list_task_widget.dart';
 import 'package:taski/src/core/widgets/state_pages/success_list_task_widget.dart';
-import 'package:taski/src/features/list_task/bloc/list_task_bloc.dart';
-import 'package:taski/src/features/list_task/bloc/list_task_event.dart';
-import 'package:taski/src/features/list_task/bloc/list_task_state.dart';
+import 'package:taski/src/features/list_task/bloc/get_quantity_tasks/get_quantity_tasks_bloc.dart';
+import 'package:taski/src/features/list_task/bloc/get_quantity_tasks/get_quantity_tasks_event.dart';
+import 'package:taski/src/features/list_task/bloc/get_quantity_tasks/get_quantity_tasks_state.dart';
+import 'package:taski/src/features/list_task/bloc/list_tasks_uncompleted/list_task_bloc.dart';
+import 'package:taski/src/features/list_task/bloc/list_tasks_uncompleted/list_task_event.dart';
+import 'package:taski/src/features/list_task/bloc/list_tasks_uncompleted/list_task_state.dart';
 
 class ListTaskView extends StatefulWidget {
   const ListTaskView({super.key});
@@ -22,14 +25,19 @@ class ListTaskView extends StatefulWidget {
 }
 
 class _ListTaskViewState extends State<ListTaskView> with TaskListenerMixin {
-  late ListTaskBloc _taskCubit;
+  late ListTaskUncompletedBloc _taskCubit;
+  late GetQuantityTaskUncompletedBloc _quantityTasksBloc;
+  int quantityTasks = 0;
 
   @override
   void initState() {
     super.initState();
 
-    _taskCubit = GetIt.I.get<ListTaskBloc>();
+    _taskCubit = GetIt.I.get<ListTaskUncompletedBloc>();
+    _quantityTasksBloc = GetIt.I.get<GetQuantityTaskUncompletedBloc>();
+
     _taskCubit.add(GetUncompletedTasksEvent());
+    _quantityTasksBloc.add(GetQuantityUncompletedTasks());
   }
 
   @override
@@ -43,7 +51,7 @@ class _ListTaskViewState extends State<ListTaskView> with TaskListenerMixin {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 26.0),
-      child: BlocBuilder<ListTaskBloc, StateListTask>(
+      child: BlocBuilder<ListTaskUncompletedBloc, StateListTask>(
         bloc: _taskCubit,
         builder: (context, state) {
           switch (state.stateEnum) {
@@ -52,7 +60,7 @@ class _ListTaskViewState extends State<ListTaskView> with TaskListenerMixin {
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  HeaderPage(tasks: state.tasks!),
+                  HeaderPage(quantityTasks: quantityTasks),
                   const EmptyListTaskWidget(),
                 ],
               );
@@ -61,13 +69,20 @@ class _ListTaskViewState extends State<ListTaskView> with TaskListenerMixin {
                 onPressed: () => _taskCubit.add(GetUncompletedTasksEvent()),
               );
             case StateEnum.success:
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  HeaderPage(tasks: state.tasks!),
-                  Expanded(child: SuccessListTaskWidget(tasks: state.tasks!)),
-                ],
-              );
+              return BlocBuilder<GetQuantityTaskUncompletedBloc,
+                      GetQuantityTasksState>(
+                  bloc: _quantityTasksBloc,
+                  builder: (context, quantityState) {
+                    quantityTasks = quantityState.quantityOfTasks;
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        HeaderPage(quantityTasks: quantityTasks),
+                        Expanded(
+                            child: SuccessListTaskWidget(tasks: state.tasks!)),
+                      ],
+                    );
+                  });
             default:
               return const Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
