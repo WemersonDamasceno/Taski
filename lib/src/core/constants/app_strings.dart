@@ -31,4 +31,11 @@ class AppStrings {
   // ******* Done Tasks Strings *******//
   static const titleDoneTasks = 'Completed Tasks';
   static const deleteAllTasks = 'Delete all';
+
+  static const deleteAllTasksDescription =
+      'Are you sure you want to delete all completed tasks?';
+  static const deleteTaskDescription =
+      'Are you sure you want to delete this task?';
+  static const deleteTasks = 'Delete task';
+  static const deleteAllTasksTitle = 'Delete all task';
 }

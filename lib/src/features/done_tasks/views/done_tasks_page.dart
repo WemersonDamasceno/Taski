@@ -15,7 +15,7 @@ class DoneTasksPage extends StatelessWidget {
           create: (_) => GetIt.I.get<ListDoneTaskBloc>(),
         ),
       ],
-      child: const CompletedTasksView(),
+      child: const DoneTasksView(),
     );
   }
 }

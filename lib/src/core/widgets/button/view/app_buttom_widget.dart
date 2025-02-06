@@ -6,6 +6,7 @@ import 'package:taski/src/core/extensions/theme_extension.dart';
 class AppButtonWidget extends StatelessWidget {
   final String label;
   final IconData? iconData;
+  final Color? colorLabel;
   final Function() onPressed;
   final bool isFilled;
   final StatusButtonEnum statusButton;
@@ -16,6 +17,7 @@ class AppButtonWidget extends StatelessWidget {
     required this.isFilled,
     required this.statusButton,
     this.iconData,
+    this.colorLabel,
   });
 
   factory AppButtonWidget.filled({
@@ -36,6 +38,7 @@ class AppButtonWidget extends StatelessWidget {
   factory AppButtonWidget.textButton({
     required String label,
     required Function() onPressed,
+    Color? colorLabel,
     StatusButtonEnum? statusButton,
     IconData? iconData,
   }) {
@@ -44,6 +47,7 @@ class AppButtonWidget extends StatelessWidget {
       isFilled: false,
       iconData: iconData,
       onPressed: onPressed,
+      colorLabel: colorLabel,
       statusButton: statusButton ?? StatusButtonEnum.enable,
     );
   }
@@ -76,7 +80,9 @@ class AppButtonWidget extends StatelessWidget {
           replacement: Text(
             label,
             style: context.textTheme.titleSmall?.copyWith(
-              color: isDisabled ? AppColors.mutedAzure : AppColors.blue,
+              color: isDisabled
+                  ? AppColors.mutedAzure
+                  : colorLabel ?? AppColors.blue,
               fontWeight: isFilled ? FontWeight.w600 : FontWeight.w700,
             ),
           ),

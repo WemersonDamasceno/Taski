@@ -36,7 +36,8 @@ class _SearchTaskByTitleViewState extends State<SearchTaskByTitleView>
 
   @override
   void onTaskModified(TaskEvent event) {
-    if (event.operation == TaskOperation.createOrUpdate) {
+    if (event.operation == TaskOperation.createOrUpdate ||
+        event.operation == TaskOperation.delete) {
       _searchTaskBloc.add(CleanInputEvent());
     }
   }
@@ -82,8 +83,7 @@ class _SearchTaskByTitleViewState extends State<SearchTaskByTitleView>
                     );
                   case StateEnum.notFound:
                     return const NotFoundTasksWidget();
-                  case StateEnum.loading:
-                  case StateEnum.initial:
+                  default:
                     return const LoadingListTaskWidget();
                 }
               },
