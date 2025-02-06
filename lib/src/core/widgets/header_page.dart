@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:taski/src/core/constants/app_colors.dart';
 import 'package:taski/src/core/constants/app_strings.dart';
-import 'package:taski/src/core/models/task_model.dart';
 
 class HeaderPage extends StatelessWidget {
-  final List<TaskModel> tasks;
+  final int quantityTasks;
 
-  const HeaderPage({super.key, required this.tasks});
+  const HeaderPage({super.key, required this.quantityTasks});
 
   @override
   Widget build(BuildContext context) {
@@ -40,9 +39,9 @@ class HeaderPage extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           Text(
-            tasks.isEmpty
+            quantityTasks == 0
                 ? AppStrings.emptyDescription
-                : AppStrings.welcomeDescription(tasks.length.toString()),
+                : AppStrings.welcomeDescription(quantityTasks.toString()),
             style: const TextStyle(
               color: AppColors.slateBlue,
               fontSize: 16,

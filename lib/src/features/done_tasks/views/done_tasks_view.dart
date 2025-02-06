@@ -81,7 +81,9 @@ class _DoneTasksViewState extends State<DoneTasksView>
                     ),
                   );
                 } else if (state.tasks == null || state.tasks!.isEmpty) {
-                  return const EmptyListTaskWidget();
+                  return const EmptyListTaskWidget(
+                    showButton: false,
+                  );
                 }
 
                 return ListView.builder(

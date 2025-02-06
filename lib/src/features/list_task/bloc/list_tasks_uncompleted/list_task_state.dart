@@ -2,16 +2,11 @@ import 'package:equatable/equatable.dart';
 import 'package:taski/src/core/enums/state_enum.dart';
 import 'package:taski/src/core/models/task_model.dart';
 
-abstract class ListTaskState extends Equatable {
-  @override
-  List<Object?> get props => [];
-}
-
-class StateListTask extends ListTaskState {
+class StateListTask extends Equatable {
   final List<TaskModel>? tasks;
   final StateEnum stateEnum;
 
-  StateListTask({
+  const StateListTask({
     this.tasks,
     this.stateEnum = StateEnum.initial,
   });
