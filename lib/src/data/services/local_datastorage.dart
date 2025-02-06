@@ -5,8 +5,11 @@ import 'package:taski/src/core/models/task_model.dart';
 abstract class LocalDatabaseService {
   Future<int> insertTask(TaskModel task);
   Future<List<TaskModel>> getUncompletedTasks();
-  Future<int> updateTask(TaskModel task);
+  Future<List<TaskModel>> getCompletedTasks();
+  Future<List<TaskModel>> getTasksByTitle(String title);
   Future<int> deleteTask(int id);
+  Future<int> deleteUncompletedTasks();
+  Future<int> updateTask(TaskModel task);
 }
 
 class LocalDatabaseServiceImpl implements LocalDatabaseService {
@@ -60,9 +63,51 @@ class LocalDatabaseServiceImpl implements LocalDatabaseService {
     final result = await db.query(
       'tasks',
       where: 'isCompleted = ?',
-      whereArgs: [0], // 0 representa o valor para isCompleted == false
+      whereArgs: [0],
     );
     return result.map((json) => TaskModel.fromMap(json)).toList();
+  }
+
+  @override
+  Future<List<TaskModel>> getCompletedTasks() async {
+    final db = await database;
+    final result = await db.query(
+      'tasks',
+      where: 'isCompleted = ?',
+      whereArgs: [1],
+    );
+    return result.map((json) => TaskModel.fromMap(json)).toList();
+  }
+
+  @override
+  Future<List<TaskModel>> getTasksByTitle(String title) async {
+    final db = await database;
+    final result = await db.query(
+      'tasks',
+      where: 'title LIKE ?',
+      whereArgs: ['%$title%'],
+    );
+    return result.map((json) => TaskModel.fromMap(json)).toList();
+  }
+
+  @override
+  Future<int> deleteTask(int id) async {
+    final db = await database;
+    return await db.delete(
+      'tasks',
+      where: 'id = ?',
+      whereArgs: [id],
+    );
+  }
+
+  @override
+  Future<int> deleteUncompletedTasks() async {
+    final db = await database;
+    return await db.delete(
+      'tasks',
+      where: 'isCompleted = ?',
+      whereArgs: [0],
+    );
   }
 
   @override
@@ -73,16 +118,6 @@ class LocalDatabaseServiceImpl implements LocalDatabaseService {
       task.toMap(),
       where: 'id = ?',
       whereArgs: [task.id],
-    );
-  }
-
-  @override
-  Future<int> deleteTask(int id) async {
-    final db = await database;
-    return await db.delete(
-      'tasks',
-      where: 'id = ?',
-      whereArgs: [id],
     );
   }
 }
