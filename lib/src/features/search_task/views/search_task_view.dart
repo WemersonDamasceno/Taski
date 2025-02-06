@@ -55,16 +55,10 @@ class _SearchTaskByTitleViewState extends State<SearchTaskByTitleView>
       children: [
         SearchInputWidget(
           controller: _searchController,
-          onChanged: (value) {
-            if (value.isNotEmpty) {
-              _searchTaskBloc.add(SearchTaskByTitleEvent(value));
-            } else {
-              _searchTaskBloc.add(CleanInputEvent());
-            }
-          },
+          onClear: () async => await _onClearInput(),
+          onChanged: (value) => _onChanged(value),
         ),
-        SizedBox(
-          height: MediaQuery.of(context).size.height * .6,
+        Flexible(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 26.0),
             child: BlocBuilder<SearchTaskBloc, SearchTasksState>(
@@ -89,8 +83,22 @@ class _SearchTaskByTitleViewState extends State<SearchTaskByTitleView>
               },
             ),
           ),
-        ),
+        )
       ],
     );
+  }
+
+  Future<void> _onClearInput() async {
+    _searchController.clear();
+    await Future.delayed(const Duration(milliseconds: 300));
+    _searchTaskBloc.add(CleanInputEvent());
+  }
+
+  void _onChanged(String value) {
+    if (value.isNotEmpty) {
+      _searchTaskBloc.add(SearchTaskByTitleEvent(value));
+    } else {
+      _searchTaskBloc.add(CleanInputEvent());
+    }
   }
 }

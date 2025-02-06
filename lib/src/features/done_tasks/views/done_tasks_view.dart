@@ -9,6 +9,7 @@ import 'package:taski/src/core/mixins/task_listener_mixin.dart';
 import 'package:taski/src/core/mixins/task_notifier_mixin.dart';
 import 'package:taski/src/core/models/task_event.dart';
 import 'package:taski/src/core/widgets/button/view/app_buttom_widget.dart';
+import 'package:taski/src/core/widgets/snackbar/snackbar_mixin.dart';
 import 'package:taski/src/core/widgets/state_pages/empty_list_task_widget.dart';
 import 'package:taski/src/core/widgets/state_pages/error_list_task_widget.dart';
 import 'package:taski/src/core/widgets/state_pages/loading_list_task_widget.dart';
@@ -26,7 +27,7 @@ class DoneTasksView extends StatefulWidget {
 }
 
 class _DoneTasksViewState extends State<DoneTasksView>
-    with TaskListenerMixin, TaskNotifierMixin {
+    with TaskListenerMixin, TaskNotifierMixin, SnackbarMixin {
   late ListDoneTaskBloc _doneTasksBloc;
 
   @override
@@ -38,9 +39,15 @@ class _DoneTasksViewState extends State<DoneTasksView>
 
   @override
   void onTaskModified(TaskEvent event) {
-    if (event.operation == TaskOperation.createOrUpdate ||
-        event.operation == TaskOperation.delete) {
-      _doneTasksBloc.add(GetCompletedTasksEvent());
+    _doneTasksBloc.add(GetCompletedTasksEvent());
+    if (event.operation == TaskOperation.delete) {
+      showSnackbar(
+        context: context,
+        message: AppStrings.successDeleteTask,
+        backgroundColor: AppColors.greenPure,
+        iconData: Icons.check_circle_outline_rounded,
+        fontColor: AppColors.white,
+      );
     }
   }
 

@@ -11,11 +11,13 @@ import 'package:taski/src/core/extensions/theme_extension.dart';
 class SearchInputWidget extends StatefulWidget {
   final TextEditingController controller;
   final Function(String) onChanged;
+  final Function() onClear;
 
   const SearchInputWidget({
     super.key,
     required this.controller,
     required this.onChanged,
+    required this.onClear,
   });
 
   @override
@@ -63,9 +65,8 @@ class _SearchInputWidgetState extends State<SearchInputWidget> {
               Icons.cancel_rounded,
               color: AppColors.mutedAzure,
             ),
-            onPressed: () {
-              widget.controller.clear();
-              widget.onChanged('');
+            onPressed: () async {
+              widget.onClear();
             },
           ),
           hintText: AppStrings.searchTask,

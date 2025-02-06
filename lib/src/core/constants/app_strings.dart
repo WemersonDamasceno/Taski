@@ -38,4 +38,6 @@ class AppStrings {
       'Are you sure you want to delete this task?';
   static const deleteTasks = 'Delete task';
   static const deleteAllTasksTitle = 'Delete all task';
+
+  static const successDeleteTask = 'Task successfully deleted!';
 }
