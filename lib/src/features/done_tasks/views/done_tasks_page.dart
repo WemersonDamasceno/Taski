@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
-import 'package:taski/src/features/done_tasks/bloc/list_done_task_bloc.dart';
+import 'package:taski/src/features/done_tasks/bloc/enable_buton/enable_button_cubit.dart';
+import 'package:taski/src/features/done_tasks/bloc/list_done_task/list_done_task_bloc.dart';
 import 'package:taski/src/features/done_tasks/views/done_tasks_view.dart';
 
 class DoneTasksPage extends StatelessWidget {
@@ -13,6 +14,9 @@ class DoneTasksPage extends StatelessWidget {
       providers: [
         BlocProvider<ListDoneTaskBloc>(
           create: (_) => GetIt.I.get<ListDoneTaskBloc>(),
+        ),
+        BlocProvider<EnableDeleteButtonCubit>(
+          create: (_) => GetIt.I.get<EnableDeleteButtonCubit>(),
         ),
       ],
       child: const DoneTasksView(),

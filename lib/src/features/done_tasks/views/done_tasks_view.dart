@@ -13,9 +13,10 @@ import 'package:taski/src/core/widgets/snackbar/snackbar_mixin.dart';
 import 'package:taski/src/core/widgets/state_pages/empty_list_task_widget.dart';
 import 'package:taski/src/core/widgets/state_pages/error_list_task_widget.dart';
 import 'package:taski/src/core/widgets/state_pages/loading_list_task_widget.dart';
-import 'package:taski/src/features/done_tasks/bloc/list_done_task_bloc.dart';
-import 'package:taski/src/features/done_tasks/bloc/list_done_task_event.dart';
-import 'package:taski/src/features/done_tasks/bloc/list_done_task_state.dart';
+import 'package:taski/src/features/done_tasks/bloc/enable_buton/enable_button_cubit.dart';
+import 'package:taski/src/features/done_tasks/bloc/list_done_task/list_done_task_bloc.dart';
+import 'package:taski/src/features/done_tasks/bloc/list_done_task/list_done_task_event.dart';
+import 'package:taski/src/features/done_tasks/bloc/list_done_task/list_done_task_state.dart';
 import 'package:taski/src/features/done_tasks/widgets/header_done_tasks_widget.dart';
 import 'package:taski/src/features/done_tasks/widgets/task_item_done_widget.dart';
 
@@ -29,11 +30,13 @@ class DoneTasksView extends StatefulWidget {
 class _DoneTasksViewState extends State<DoneTasksView>
     with TaskListenerMixin, TaskNotifierMixin, SnackbarMixin {
   late ListDoneTaskBloc _doneTasksBloc;
+  late EnableDeleteButtonCubit _enableButtonCubit;
 
   @override
   void initState() {
     super.initState();
     _doneTasksBloc = GetIt.I.get<ListDoneTaskBloc>();
+    _enableButtonCubit = GetIt.I.get<EnableDeleteButtonCubit>();
     _doneTasksBloc.add(GetCompletedTasksEvent());
   }
 
@@ -58,6 +61,7 @@ class _DoneTasksViewState extends State<DoneTasksView>
       child: Column(
         children: [
           HeaderCompletedTasks(
+            enableDeleteButton: _enableButtonCubit,
             onPressed: () => _showDialog(
               context: context,
               title: AppStrings.deleteAllTasksTitle,
@@ -69,6 +73,8 @@ class _DoneTasksViewState extends State<DoneTasksView>
             child: BlocBuilder<ListDoneTaskBloc, ListDoneTaskState>(
               bloc: _doneTasksBloc,
               builder: (context, state) {
+                _enableButtonCubit
+                    .changeState(state.tasks?.isNotEmpty ?? false);
                 if (state.stateEnum == StateEnum.deleted) {
                   notifyTaskModification(null, TaskOperation.delete);
                 }
