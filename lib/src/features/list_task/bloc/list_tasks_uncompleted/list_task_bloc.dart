@@ -23,14 +23,11 @@ class ListTaskUncompletedBloc extends Bloc<ListTaskEvent, StateListTask> {
         limit: event.limit,
         offset: event.offset,
       ));
-
-      await Future.delayed(const Duration(seconds: 1));
-
+      await Future.delayed(const Duration(seconds: 3));
       if (result.$2 != null) {
         emit(state.copyWith(stateEnum: StateEnum.error));
         return;
       }
-
       emit(
         state.copyWith(
           tasks: result.$1,

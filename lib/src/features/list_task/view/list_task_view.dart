@@ -24,23 +24,32 @@ class ListTaskView extends StatefulWidget {
 
 class _ListTaskViewState extends State<ListTaskView> {
   static const _pageSize = 10;
-  late final ListTaskUncompletedBloc _taskBloc =
-      GetIt.I.get<ListTaskUncompletedBloc>();
-  late final GetQuantityTaskUncompletedBloc _quantityTasksBloc =
-      GetIt.I.get<GetQuantityTaskUncompletedBloc>();
-  final PagingController<int, TaskModel> _pagingController =
-      PagingController(firstPageKey: 0);
+  late final ListTaskUncompletedBloc _tasksUncompletedBloc;
+  late GetQuantityTaskUncompletedBloc _quantityTasksBloc;
+  late final PagingController<int, TaskModel> _pagingController;
+
+  bool _isFirstFetch = true;
 
   @override
   void initState() {
     super.initState();
-    _pagingController.addPageRequestListener(_fetchTasks);
+
+    _quantityTasksBloc = GetIt.I.get<GetQuantityTaskUncompletedBloc>();
+    _tasksUncompletedBloc = GetIt.I.get<ListTaskUncompletedBloc>();
+    _pagingController = PagingController(firstPageKey: 0);
+
+    _pagingController.refresh();
+    _pagingController.addPageRequestListener((pageKey) {
+      if (_isFirstFetch || pageKey > 0) {
+        _fetchTasks(pageKey);
+        _isFirstFetch = false;
+      }
+    });
     _quantityTasksBloc.add(GetQuantityUncompletedTasks());
   }
 
-  // Refatoração do método de fetch para melhorar a leitura e evitar conflitos
   void _fetchTasks(int pageKey) {
-    _taskBloc.add(
+    _tasksUncompletedBloc.add(
       GetPagedUncompletedTasksEvent(limit: _pageSize, offset: pageKey),
     );
   }
@@ -56,15 +65,18 @@ class _ListTaskViewState extends State<ListTaskView> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 26.0),
       child: BlocListener<ListTaskUncompletedBloc, StateListTask>(
-        bloc: _taskBloc,
+        bloc: _tasksUncompletedBloc,
         listener: (context, state) {
           if (state.stateEnum == StateEnum.success) {
             final isLastPage = state.tasks!.length < _pageSize;
+            final currentItems = _pagingController.itemList ?? [];
+            final newItems = state.tasks!;
+
             if (isLastPage) {
-              _pagingController.appendLastPage(state.tasks!);
+              _pagingController.appendLastPage(newItems);
             } else {
-              final nextPageKey = _pagingController.itemList?.length ?? 0;
-              _pagingController.appendPage(state.tasks!, nextPageKey);
+              final nextPageKey = currentItems.length + newItems.length;
+              _pagingController.appendPage(newItems, nextPageKey);
             }
           } else if (state.stateEnum == StateEnum.error) {
             _pagingController.error = 'Erro ao carregar tarefas';
