@@ -36,14 +36,15 @@ class _ListTaskViewState extends State<ListTaskView> with TaskListenerMixin {
     _taskCubit = GetIt.I.get<ListTaskUncompletedBloc>();
     _quantityTasksBloc = GetIt.I.get<GetQuantityTaskUncompletedBloc>();
 
-    _taskCubit.add(GetUncompletedTasksEvent());
     _quantityTasksBloc.add(GetQuantityUncompletedTasks());
+    _taskCubit.add(GetUncompletedTasksEvent());
   }
 
   @override
   void onTaskModified(TaskEvent event) {
     if (event.operation == TaskOperation.createOrUpdate) {
       _taskCubit.add(GetUncompletedTasksEvent());
+      _quantityTasksBloc.add(GetQuantityUncompletedTasks());
     }
   }
 

@@ -23,7 +23,6 @@ class GetQuantityTaskUncompletedBloc
     emit(state.copyWith(stateEnum: StateEnum.loading));
     try {
       final result = await _usecase(NoParams());
-      await Future.delayed(const Duration(seconds: 1));
 
       if (result.$2 != null) {
         emit(state.copyWith(stateEnum: StateEnum.error));
