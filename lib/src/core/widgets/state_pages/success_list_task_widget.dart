@@ -4,10 +4,13 @@ import 'package:get_it/get_it.dart';
 import 'package:taski/src/core/bloc/update_task_bloc.dart';
 import 'package:taski/src/core/bloc/update_task_event.dart';
 import 'package:taski/src/core/bloc/update_task_state.dart';
+import 'package:taski/src/core/constants/app_colors.dart';
+import 'package:taski/src/core/constants/app_strings.dart';
 import 'package:taski/src/core/enums/state_enum.dart';
 import 'package:taski/src/core/mixins/task_notifier_mixin.dart';
 import 'package:taski/src/core/models/task_event.dart';
 import 'package:taski/src/core/models/task_model.dart';
+import 'package:taski/src/core/widgets/snackbar/snackbar_mixin.dart';
 import 'package:taski/src/core/widgets/task_item_widget.dart';
 
 class SuccessListTaskWidget extends StatefulWidget {
@@ -23,7 +26,7 @@ class SuccessListTaskWidget extends StatefulWidget {
 }
 
 class _SuccessListTaskWidgetState extends State<SuccessListTaskWidget>
-    with TaskNotifierMixin {
+    with TaskNotifierMixin, SnackbarMixin {
   late UpdateTaskBloc _updateTaskBloc;
 
   @override
@@ -41,7 +44,7 @@ class _SuccessListTaskWidgetState extends State<SuccessListTaskWidget>
     setState(() {
       widget.tasks[index] = updatedTask;
 
-      Future.delayed(const Duration(seconds: 2)).whenComplete(() {
+      Future.delayed(const Duration(seconds: 1)).whenComplete(() {
         _updateTaskBloc.add(
           UpdateTask(
             taskModel: widget.tasks[index],
@@ -57,6 +60,15 @@ class _SuccessListTaskWidgetState extends State<SuccessListTaskWidget>
       bloc: _updateTaskBloc,
       listener: (context, state) {
         if (state.stateEnum == StateEnum.success) {
+          showSnackbar(
+            context: context,
+            fontColor: AppColors.white,
+            backgroundColor: AppColors.greenPure,
+            iconData: Icons.check_circle_outline_rounded,
+            message: AppStrings.taskCompleted(
+              _formatteTitle(state.task!.title),
+            ),
+          );
           notifyTaskModification(state.task, TaskOperation.createOrUpdate);
         }
       },
@@ -70,5 +82,12 @@ class _SuccessListTaskWidgetState extends State<SuccessListTaskWidget>
         },
       ),
     );
+  }
+
+  String _formatteTitle(String title) {
+    if (title.length > 10) {
+      return '${title.substring(0, 10)}...';
+    }
+    return title;
   }
 }

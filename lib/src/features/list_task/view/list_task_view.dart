@@ -79,7 +79,8 @@ class _ListTaskViewState extends State<ListTaskView> with TaskListenerMixin {
                       children: [
                         HeaderPage(quantityTasks: quantityTasks),
                         Expanded(
-                            child: SuccessListTaskWidget(tasks: state.tasks!)),
+                          child: SuccessListTaskWidget(tasks: state.tasks!),
+                        ),
                       ],
                     );
                   });
