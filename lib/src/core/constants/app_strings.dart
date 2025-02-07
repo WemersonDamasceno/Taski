@@ -40,4 +40,6 @@ class AppStrings {
   static const deleteAllTasksTitle = 'Delete all task';
 
   static const successDeleteTask = 'Task successfully deleted!';
+  static String taskCompleted(String value) =>
+      'Task $value completed successfully';
 }
