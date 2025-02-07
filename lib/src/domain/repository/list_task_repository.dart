@@ -1,7 +1,10 @@
 import 'package:taski/src/core/models/task_model.dart';
 
 abstract class TaskRepository {
-  Future<List<TaskModel>> getUncompletedTasks();
+  Future<List<TaskModel>> getUncompletedTasks({
+    required int limit,
+    required int offset,
+  });
   Future<int> getQuantityOfUncompletedTasks();
 
   Future<List<TaskModel>> getDoneTasks();

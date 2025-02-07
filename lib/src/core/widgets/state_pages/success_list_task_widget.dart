@@ -72,14 +72,17 @@ class _SuccessListTaskWidgetState extends State<SuccessListTaskWidget>
           notifyTaskModification(state.task, TaskOperation.createOrUpdate);
         }
       },
-      child: ListView.builder(
-        itemCount: widget.tasks.length,
-        itemBuilder: (context, index) {
-          return TaskItemWidget(
-            task: widget.tasks[index],
-            onToggle: () => _toggleTask(index),
-          );
-        },
+      child: SizedBox(
+        height: double.infinity,
+        child: ListView.builder(
+          itemCount: widget.tasks.length,
+          itemBuilder: (context, index) {
+            return TaskItemWidget(
+              task: widget.tasks[index],
+              onToggle: () => _toggleTask(index),
+            );
+          },
+        ),
       ),
     );
   }

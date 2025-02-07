@@ -6,15 +6,26 @@ class LoadingListTaskWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: 3,
-      itemBuilder: (context, index) {
-        return const LoadingItemWidget(
-          width: 200,
+    final Size size = MediaQuery.of(context).size;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        LoadingItemWidget(
+          width: size.width,
           height: 56,
-          margin: EdgeInsets.only(top: 16),
-        );
-      },
+          margin: const EdgeInsets.only(top: 16),
+        ),
+        LoadingItemWidget(
+          width: size.width,
+          height: 56,
+          margin: const EdgeInsets.only(top: 16),
+        ),
+        LoadingItemWidget(
+          width: size.width,
+          height: 56,
+          margin: const EdgeInsets.only(top: 16),
+        ),
+      ],
     );
   }
 }

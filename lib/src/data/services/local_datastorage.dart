@@ -4,7 +4,10 @@ import 'package:taski/src/core/models/task_model.dart';
 
 abstract class LocalDatabaseService {
   Future<int> insertTask(TaskModel task);
-  Future<List<TaskModel>> getUncompletedTasks();
+  Future<List<TaskModel>> getUncompletedTasks({
+    required int limit,
+    required int offset,
+  });
 
   Future<List<TaskModel>> getCompletedTasks();
   Future<List<TaskModel>> getAllTasks();
@@ -63,12 +66,17 @@ class LocalDatabaseServiceImpl implements LocalDatabaseService {
   }
 
   @override
-  Future<List<TaskModel>> getUncompletedTasks() async {
+  Future<List<TaskModel>> getUncompletedTasks({
+    required int limit,
+    required int offset,
+  }) async {
     final db = await database;
     final result = await db.query(
       'tasks',
       where: 'isCompleted = ?',
       whereArgs: [0],
+      limit: limit,
+      offset: offset,
     );
     return result.map((json) => TaskModel.fromMap(json)).toList();
   }

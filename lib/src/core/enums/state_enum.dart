@@ -6,4 +6,5 @@ enum StateEnum {
   empty,
   notFound,
   deleted,
+  loadingMore,
 }
