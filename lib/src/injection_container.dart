@@ -14,7 +14,8 @@ import 'package:taski/src/domain/usecase/get_uncompleted_tasks_usecase.dart';
 import 'package:taski/src/domain/usecase/search_task_by_title_usecase.dart';
 import 'package:taski/src/domain/usecase/update_task_usecase.dart';
 import 'package:taski/src/features/create_task/bloc/create_task_bloc.dart';
-import 'package:taski/src/features/done_tasks/bloc/list_done_task_bloc.dart';
+import 'package:taski/src/features/done_tasks/bloc/enable_buton/enable_button_cubit.dart';
+import 'package:taski/src/features/done_tasks/bloc/list_done_task/list_done_task_bloc.dart';
 import 'package:taski/src/features/list_task/bloc/get_quantity_tasks/get_quantity_tasks_bloc.dart';
 import 'package:taski/src/features/list_task/bloc/list_tasks_uncompleted/list_task_bloc.dart';
 import 'package:taski/src/features/search_task/bloc/search_task_bloc.dart';
@@ -87,6 +88,9 @@ Future<void> initDependency() async {
   );
   getIt.registerFactory<GetQuantityTaskUncompletedBloc>(
     () => GetQuantityTaskUncompletedBloc(usecase: getIt()),
+  );
+  getIt.registerFactory<EnableDeleteButtonCubit>(
+    () => EnableDeleteButtonCubit(),
   );
   getIt.registerFactory<SearchTaskBloc>(
     () => SearchTaskBloc(

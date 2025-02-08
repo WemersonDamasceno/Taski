@@ -4,8 +4,8 @@ import 'package:taski/src/core/usecase/usecase.dart';
 import 'package:taski/src/domain/usecase/delete_all_tasks_done_usecase.dart';
 import 'package:taski/src/domain/usecase/delete_task_by_id_usecase.dart';
 import 'package:taski/src/domain/usecase/get_done_task_usecase.dart';
-import 'package:taski/src/features/done_tasks/bloc/list_done_task_event.dart';
-import 'package:taski/src/features/done_tasks/bloc/list_done_task_state.dart';
+import 'package:taski/src/features/done_tasks/bloc/list_done_task/list_done_task_event.dart';
+import 'package:taski/src/features/done_tasks/bloc/list_done_task/list_done_task_state.dart';
 
 class ListDoneTaskBloc extends Bloc<ListDoneTaskEvent, ListDoneTaskState> {
   final GetDoneTaskUsecase _getDoneTasksUseCase;
