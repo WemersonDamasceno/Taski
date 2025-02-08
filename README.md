@@ -81,11 +81,11 @@ O projeto utiliza:
 
 ## O que está incluso no projeto? 🌟
 
-✅&nbsp; [Bloc][bloc_link] - Bloc architecture para código escalável e testável que oferece uma separação clara entre lógica de negócios e apresentação
+✅  [Bloc][bloc_link] - Bloc architecture para código escalável e testável que oferece uma separação clara entre lógica de negócios e apresentação
 
-✅&nbsp; [Testing][testing_link] - Testes Unitários e Widgets
+✅  [Testing][testing_link] - Testes Unitários e Widgets (Cobertura de testes: **75%**)
 
-✅&nbsp; [Continuous Integration][github_actions_link] - Lint, format, test, e aplicação de code coverage usando [GitHub Actions][github_actions_link]
+✅  [Continuous Integration][github_actions_link] - Lint, format, test, e aplicação de code coverage usando [GitHub Actions][github_actions_link]
 
 [architecture_link]: https://raw.githubusercontent.com/ResoCoder/flutter-tdd-clean-architecture-course/master/architecture-proposal.png
 [bloc_link]: https://bloclibrary.dev
@@ -93,7 +93,7 @@ O projeto utiliza:
 [testing_link]: https://flutter.dev/docs/testing
 
 ## Telas Implementadas
-As telas foram implementadas seguindo o design que foi sugerido no [Figma]([url](https://www.figma.com/design/eJ3Yn9Bv3eEAVh0kiz338h/Taski-To-Do-(Copy)?node-id=0-1&p=f&t=0a8Anem7lDSAUUry-0)): 
+As telas foram implementadas seguindo o design que foi sugerido no [Figma](https://www.figma.com/design/eJ3Yn9Bv3eEAVh0kiz338h/Taski-To-Do-(Copy)?node-id=0-1&p=f&t=0a8Anem7lDSAUUry-0):
 
 ## Como Usar
 
@@ -123,8 +123,6 @@ Antes de tudo, configure o ambiente Flutter da sua máquina, veja mais em [Flutt
    flutter run
    ```
 
-O app pode ser baixado aqui: [Download aqui!](https://github.com/WemersonDamasceno/Taski/raw/refs/heads/main/assets/apk/taski.apk)
-
 ## Contribuindo
 
 Se você deseja contribuir para este projeto, sinta-se à vontade para abrir uma issue ou enviar um pull request. Todas as contribuições são bem-vindas!
@@ -137,9 +135,9 @@ Este projeto está licenciado sob a licença MIT. Consulte o arquivo [LICENSE](L
 
 Confira um vídeo demonstrativo do aplicativo em funcionamento:
 
-
 https://github.com/user-attachments/assets/d1407450-9567-4f56-95bd-d5154766d901
 
+O app pode ser baixado aqui: [Download aqui!](https://github.com/WemersonDamasceno/Taski/raw/refs/heads/main/assets/apk/taski.apk)
 
 ---
 
