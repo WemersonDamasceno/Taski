@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:equatable/equatable.dart';
 import 'package:taski/src/core/models/task_model.dart';
 
 class TaskEventBus {
@@ -22,11 +23,14 @@ class TaskEventBus {
   }
 }
 
-class TaskEvent {
+class TaskEvent extends Equatable {
   final TaskModel? task;
   final TaskOperation operation;
 
-  TaskEvent(this.task, this.operation);
+  const TaskEvent(this.task, this.operation);
+
+  @override
+  List<Object?> get props => [task, operation];
 }
 
 enum TaskOperation {

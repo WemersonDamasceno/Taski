@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:taski/src/core/constants/app_images.dart';
 import 'package:taski/src/core/constants/app_strings.dart';
+import 'package:taski/src/core/extensions/size_extension.dart';
 import 'package:taski/src/core/extensions/theme_extension.dart';
 import 'package:taski/src/core/widgets/button/view/app_buttom_widget.dart';
 
@@ -11,11 +12,10 @@ class ErrorListTaskWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
     return Center(
       child: Column(
         children: [
-          SizedBox(height: size.height * .15),
+          SizedBox(height: context.mediaQuerySize.height * .15),
           Image.asset(
             AppImages.errorImage,
             width: 80,
