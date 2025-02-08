@@ -30,6 +30,7 @@ class EmptyListTaskWidget extends StatelessWidget {
               Visibility(
                 visible: showButton,
                 child: AppButtonWidget.filled(
+                  key: const ValueKey('create-task'),
                   label: AppStrings.createTask,
                   iconData: Icons.add,
                   onPressed: () {

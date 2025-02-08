@@ -109,7 +109,7 @@ class _CreateTaskViewState extends State<CreateTaskView>
             height: context.mediaQuerySize.height * .5,
             padding: const EdgeInsets.only(top: 34, left: 42, right: 42),
             child: Column(
-              mainAxisSize: MainAxisSize.min,
+              mainAxisSize: MainAxisSize.max,
               children: [
                 Row(
                   children: [
@@ -146,6 +146,7 @@ class _CreateTaskViewState extends State<CreateTaskView>
                     return Align(
                       alignment: Alignment.centerRight,
                       child: AppButtonWidget.textButton(
+                        key: const ValueKey('create-task'),
                         label: 'Create',
                         statusButton: state.statusButton,
                         onPressed: () => _createTaskBloc.add(

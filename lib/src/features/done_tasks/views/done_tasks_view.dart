@@ -96,6 +96,7 @@ class _DoneTasksViewState extends State<DoneTasksView>
                   itemCount: state.tasks!.length,
                   itemBuilder: (context, index) {
                     return TaskItemDoneWidget(
+                      key: ValueKey('item-${state.tasks![index].id}'),
                       task: state.tasks![index],
                       onDelete: () => _showDialog(
                         context: context,
@@ -144,11 +145,13 @@ class _DoneTasksViewState extends State<DoneTasksView>
         ),
         actions: [
           AppButtonWidget.textButton(
+            key: const ValueKey('delete-cancel'),
             label: 'Cancelar',
             colorLabel: AppColors.slatePurple,
             onPressed: () => Navigator.pop(context),
           ),
           AppButtonWidget.filled(
+            key: const ValueKey('delete-confirm'),
             label: 'Deletar',
             onPressed: () {
               Navigator.pop(context);

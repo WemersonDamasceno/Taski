@@ -23,6 +23,7 @@ class AppButtonWidget extends StatelessWidget {
   factory AppButtonWidget.filled({
     required String label,
     required Function() onPressed,
+    required ValueKey<String> key,
     StatusButtonEnum? statusButton,
     IconData? iconData,
   }) {
@@ -38,6 +39,7 @@ class AppButtonWidget extends StatelessWidget {
   factory AppButtonWidget.textButton({
     required String label,
     required Function() onPressed,
+    required ValueKey<String> key,
     Color? colorLabel,
     StatusButtonEnum? statusButton,
     IconData? iconData,
@@ -57,8 +59,8 @@ class AppButtonWidget extends StatelessWidget {
     bool isLoading = statusButton == StatusButtonEnum.loading;
     bool isDisabled = statusButton == StatusButtonEnum.disable;
     return SizedBox(
-      height: 50,
       child: ElevatedButton.icon(
+        key: key,
         onPressed: () => isDisabled || isLoading ? null : onPressed(),
         icon: iconData != null && !isLoading ? Icon(iconData) : null,
         style: ElevatedButton.styleFrom(

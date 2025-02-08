@@ -34,6 +34,7 @@ class ErrorListTaskWidget extends StatelessWidget {
           ),
           const SizedBox(height: 24),
           AppButtonWidget.filled(
+            key: const ValueKey('refresh'),
             label: AppStrings.tryAgain,
             onPressed: onPressed,
             iconData: Icons.refresh,
