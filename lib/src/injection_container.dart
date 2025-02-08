@@ -1,7 +1,8 @@
 import 'package:get_it/get_it.dart';
 import 'package:taski/src/core/bloc/update_task_bloc.dart';
 import 'package:taski/src/core/widgets/button/bloc/button_cubit.dart';
-import 'package:taski/src/data/repository/list_task_repository_impl.dart';
+import 'package:taski/src/data/repository/task_repository_impl.dart';
+import 'package:taski/src/data/services/database_provider.dart';
 import 'package:taski/src/data/services/local_datastorage.dart';
 import 'package:taski/src/domain/repository/list_task_repository.dart';
 import 'package:taski/src/domain/usecase/create_task_usecase.dart';
@@ -23,9 +24,16 @@ import 'package:taski/src/features/search_task/bloc/search_task_bloc.dart';
 final GetIt getIt = GetIt.instance;
 
 Future<void> initDependency() async {
+  //****** Database Provider ******//
+  getIt.registerLazySingleton<DatabaseProvider>(
+    () => DatabaseProviderImpl(),
+  );
+
   //****** Services ******//
   getIt.registerLazySingleton<LocalDatabaseService>(
-    () => LocalDatabaseServiceImpl(),
+    () => LocalDatabaseServiceImpl(
+      databaseProvider: getIt(),
+    ),
   );
 
   //****** Repository ******//

@@ -41,17 +41,12 @@ class _SuccessListTaskWidgetState extends State<SuccessListTaskWidget>
       isCompleted: !widget.tasks[index].isCompleted,
     );
 
-    setState(() {
-      widget.tasks[index] = updatedTask;
-
-      Future.delayed(const Duration(seconds: 1)).whenComplete(() {
-        _updateTaskBloc.add(
-          UpdateTask(
-            taskModel: widget.tasks[index],
-          ),
-        );
-      });
-    });
+    setState(() => widget.tasks[index] = updatedTask);
+    _updateTaskBloc.add(
+      UpdateTask(
+        taskModel: widget.tasks[index],
+      ),
+    );
   }
 
   @override
