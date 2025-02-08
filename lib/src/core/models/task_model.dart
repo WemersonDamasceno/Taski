@@ -1,4 +1,7 @@
-class TaskModel {
+import 'package:equatable/equatable.dart';
+
+// ignore: must_be_immutable
+class TaskModel extends Equatable {
   final int? id;
   final String title;
   final String description;
@@ -42,4 +45,7 @@ class TaskModel {
       isCompleted: isCompleted ?? this.isCompleted,
     );
   }
+
+  @override
+  List<Object?> get props => [id, title, description, isCompleted];
 }
