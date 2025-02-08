@@ -10,6 +10,7 @@ import 'package:taski/src/core/models/task_model.dart';
 import 'package:taski/src/core/widgets/state_pages/empty_list_task_widget.dart';
 import 'package:taski/src/core/widgets/state_pages/error_list_task_widget.dart';
 import 'package:taski/src/features/done_tasks/bloc/enable_buton/enable_button_cubit.dart';
+import 'package:taski/src/features/done_tasks/bloc/enable_buton/enable_button_state.dart';
 import 'package:taski/src/features/done_tasks/bloc/list_done_task/list_done_task_bloc.dart';
 import 'package:taski/src/features/done_tasks/bloc/list_done_task/list_done_task_event.dart';
 import 'package:taski/src/features/done_tasks/bloc/list_done_task/list_done_task_state.dart';
@@ -19,7 +20,7 @@ class MockListDoneTaskBloc
     extends MockBloc<ListDoneTaskEvent, ListDoneTaskState>
     implements ListDoneTaskBloc {}
 
-class MockEnableDeleteButtonCubit extends MockCubit<bool>
+class MockEnableDeleteButtonCubit extends MockCubit<EnableButtonState>
     implements EnableDeleteButtonCubit {}
 
 void main() {
@@ -45,7 +46,9 @@ void main() {
     when(() => mockListDoneTaskBloc.state).thenReturn(
       ListDoneTaskState(stateEnum: StateEnum.success, tasks: [task1]),
     );
-    when(() => mockEnableButtonCubit.state).thenReturn(true);
+    when(() => mockEnableButtonCubit.state).thenReturn(const EnableButtonState(
+      enable: true,
+    ));
 
     await tester.pumpWidget(
       MaterialApp(
@@ -66,7 +69,9 @@ void main() {
       const ListDoneTaskState(stateEnum: StateEnum.empty, tasks: []),
     );
 
-    when(() => mockEnableButtonCubit.state).thenReturn(true);
+    when(() => mockEnableButtonCubit.state).thenReturn(
+      const EnableButtonState(enable: true),
+    );
 
     await tester.pumpWidget(
       MaterialApp(
@@ -85,7 +90,9 @@ void main() {
     when(() => mockListDoneTaskBloc.state).thenReturn(
       const ListDoneTaskState(stateEnum: StateEnum.error),
     );
-    when(() => mockEnableButtonCubit.state).thenReturn(true);
+    when(() => mockEnableButtonCubit.state).thenReturn(
+      const EnableButtonState(enable: true),
+    );
 
     await tester.pumpWidget(
       MaterialApp(

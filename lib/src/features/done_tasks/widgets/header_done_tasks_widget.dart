@@ -4,6 +4,7 @@ import 'package:taski/src/core/constants/app_colors.dart';
 import 'package:taski/src/core/constants/app_strings.dart';
 import 'package:taski/src/core/extensions/theme_extension.dart';
 import 'package:taski/src/features/done_tasks/bloc/enable_buton/enable_button_cubit.dart';
+import 'package:taski/src/features/done_tasks/bloc/enable_buton/enable_button_state.dart';
 
 class HeaderCompletedTasks extends StatelessWidget {
   final Function() onPressed;
@@ -28,14 +29,16 @@ class HeaderCompletedTasks extends StatelessWidget {
               color: AppColors.slatePurple,
             ),
           ),
-          BlocBuilder<EnableDeleteButtonCubit, bool>(
+          BlocBuilder<EnableDeleteButtonCubit, EnableButtonState>(
               bloc: enableDeleteButton,
-              builder: (__, value) {
+              builder: (__, state) {
                 return TextButton(
-                  onPressed: () => value ? onPressed() : null,
+                  onPressed: () => state.enable ? onPressed() : null,
                   child: Text(AppStrings.deleteAllTasks,
                       style: context.textTheme.bodyMedium?.copyWith(
-                        color: value ? AppColors.fireRed : AppColors.mutedAzure,
+                        color: state.enable
+                            ? AppColors.fireRed
+                            : AppColors.mutedAzure,
                       )),
                 );
               }),

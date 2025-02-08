@@ -107,6 +107,7 @@ class _CreateTaskViewState extends State<CreateTaskView>
         builder: (_, state) {
           return Container(
             height: context.mediaQuerySize.height * .5,
+            width: context.mediaQuerySize.width,
             padding: const EdgeInsets.only(top: 34, left: 42, right: 42),
             child: Column(
               mainAxisSize: MainAxisSize.max,
@@ -119,6 +120,7 @@ class _CreateTaskViewState extends State<CreateTaskView>
                           Checkbox(value: false, onChanged: (bool? value) {}),
                     ),
                     AppInputTextWidget(
+                      key: const Key('task-input'),
                       hintText: AppStrings.hintTask,
                       controller: _taskController,
                       maxLength: 40,
