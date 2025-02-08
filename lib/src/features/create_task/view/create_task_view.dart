@@ -5,6 +5,7 @@ import 'package:taski/src/core/constants/app_colors.dart';
 import 'package:taski/src/core/constants/app_strings.dart';
 import 'package:taski/src/core/enums/state_enum.dart';
 import 'package:taski/src/core/enums/status_button_enum.dart';
+import 'package:taski/src/core/extensions/size_extension.dart';
 import 'package:taski/src/core/mixins/task_notifier_mixin.dart';
 import 'package:taski/src/core/models/task_event.dart';
 import 'package:taski/src/core/widgets/app_input_text_widget.dart';
@@ -105,7 +106,7 @@ class _CreateTaskViewState extends State<CreateTaskView>
         },
         builder: (_, state) {
           return Container(
-            height: MediaQuery.of(context).size.height * .5,
+            height: context.mediaQuerySize.height * .5,
             padding: const EdgeInsets.only(top: 34, left: 42, right: 42),
             child: Column(
               mainAxisSize: MainAxisSize.min,
