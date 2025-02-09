@@ -5,7 +5,7 @@
 
 
     <application
-        android:label="taski"
+        android:label="Taski"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

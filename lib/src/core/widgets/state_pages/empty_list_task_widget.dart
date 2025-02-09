@@ -16,7 +16,7 @@ class EmptyListTaskWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(height: context.mediaQuerySize.height * .15),
+        SizedBox(height: context.mediaQuerySize.height * .1),
         Center(
           child: Column(
             children: [
