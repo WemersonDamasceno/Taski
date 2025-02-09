@@ -23,8 +23,12 @@ class CreateTaskView extends StatefulWidget {
   static void showBottomSheet(BuildContext context) {
     showModalBottomSheet(
       context: context,
+      isScrollControlled: true,
+      constraints: BoxConstraints(
+        minHeight: context.mediaQuerySize.height * .5,
+      ),
       useSafeArea: true,
-      backgroundColor: Colors.white,
+      backgroundColor: AppColors.white,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
       ),
@@ -74,43 +78,47 @@ class _CreateTaskViewState extends State<CreateTaskView>
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<CreateTaskBloc, CreateTaskState>(
-        bloc: _createTaskBloc,
-        listener: (context, state) {
-          switch (state.stateEnum) {
-            case StateEnum.success:
-              notifyTaskModification(
-                  state.taskCreated, TaskOperation.createOrUpdate);
-              Navigator.pop(context);
+      bloc: _createTaskBloc,
+      listener: (context, state) {
+        switch (state.stateEnum) {
+          case StateEnum.success:
+            notifyTaskModification(
+                state.taskCreated, TaskOperation.createOrUpdate);
+            Navigator.pop(context);
 
-              showSnackbar(
-                context: context,
-                message: AppStrings.successCreateTask,
-                backgroundColor: AppColors.greenPure,
-                iconData: Icons.check_circle_outline_rounded,
-                fontColor: AppColors.white,
-              );
-              break;
-            case StateEnum.error:
-              Navigator.pop(context);
-              showSnackbar(
-                context: context,
-                message: AppStrings.errorTitle,
-                backgroundColor: AppColors.redLight,
-                iconData: Icons.warning_amber_rounded,
-                fontColor: AppColors.white,
-              );
-              break;
-            default:
-              _buttonCubit.changeStatusButton(StatusButtonEnum.loading);
-          }
-        },
-        builder: (_, state) {
-          return Container(
-            height: context.mediaQuerySize.height * .5,
-            width: context.mediaQuerySize.width,
-            padding: const EdgeInsets.only(top: 34, left: 42, right: 42),
+            showSnackbar(
+              context: context,
+              message: AppStrings.successCreateTask,
+              backgroundColor: AppColors.greenPure,
+              iconData: Icons.check_circle_outline_rounded,
+              fontColor: AppColors.white,
+            );
+            break;
+          case StateEnum.error:
+            Navigator.pop(context);
+            showSnackbar(
+              context: context,
+              message: AppStrings.errorTitle,
+              backgroundColor: AppColors.redLight,
+              iconData: Icons.warning_amber_rounded,
+              fontColor: AppColors.white,
+            );
+            break;
+          default:
+            _buttonCubit.changeStatusButton(StatusButtonEnum.loading);
+        }
+      },
+      builder: (_, state) {
+        return Padding(
+          padding: EdgeInsets.only(
+            bottom: MediaQuery.of(context).viewInsets.bottom,
+            right: 26,
+            left: 26,
+            top: 32,
+          ),
+          child: SingleChildScrollView(
             child: Column(
-              mainAxisSize: MainAxisSize.max,
+              mainAxisSize: MainAxisSize.min,
               children: [
                 Row(
                   children: [
@@ -163,7 +171,9 @@ class _CreateTaskViewState extends State<CreateTaskView>
                 ),
               ],
             ),
-          );
-        });
+          ),
+        );
+      },
+    );
   }
 }
