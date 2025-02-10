@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:taski/src/core/constants/app_constants.dart';
 import 'package:taski/src/core/constants/app_images.dart';
 import 'package:taski/src/core/constants/app_strings.dart';
 import 'package:taski/src/core/extensions/size_extension.dart';
@@ -30,7 +31,7 @@ class EmptyListTaskWidget extends StatelessWidget {
               Visibility(
                 visible: showButton,
                 child: AppButtonWidget.filled(
-                  key: const ValueKey('create-task'),
+                  key: AppConstants.openCreateTask,
                   label: AppStrings.createTask,
                   iconData: Icons.add,
                   onPressed: () {

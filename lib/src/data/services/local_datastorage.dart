@@ -1,5 +1,6 @@
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:taski/src/core/constants/app_constants.dart';
 import 'package:taski/src/core/models/task_model.dart';
 
 abstract class LocalDatabaseService {
@@ -31,7 +32,7 @@ class LocalDatabaseServiceImpl implements LocalDatabaseService {
 
   Future<Database> get database async {
     if (_database != null) return _database!;
-    _database = await _initDB('tasks.db');
+    _database = await _initDB(AppConstants.databaseName);
     return _database!;
   }
 

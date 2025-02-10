@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:taski/src/core/constants/app_colors.dart';
 import 'package:taski/src/core/constants/app_images.dart';
+import 'package:taski/src/core/constants/app_strings.dart';
 import 'package:taski/src/features/home_navigation/widgets/icon_bottom_navigation_widget.dart';
 
 class AppBottomNavigationWidget extends StatelessWidget {
@@ -30,7 +31,7 @@ class AppBottomNavigationWidget extends StatelessWidget {
             isSelected: selectedIndex == 0,
           ),
           backgroundColor: AppColors.white,
-          label: "Todo",
+          label: AppStrings.todoBottomNavigator,
         ),
         BottomNavigationBarItem(
           icon: IconBottomNavigationWidget(
@@ -38,7 +39,7 @@ class AppBottomNavigationWidget extends StatelessWidget {
             isSelected: selectedIndex == 1,
           ),
           backgroundColor: AppColors.white,
-          label: "Create",
+          label: AppStrings.createBottomNavigator,
         ),
         BottomNavigationBarItem(
           icon: IconBottomNavigationWidget(
@@ -46,7 +47,7 @@ class AppBottomNavigationWidget extends StatelessWidget {
             isSelected: selectedIndex == 2,
           ),
           backgroundColor: AppColors.white,
-          label: "Search",
+          label: AppStrings.searchBottomNavigator,
         ),
         BottomNavigationBarItem(
           icon: IconBottomNavigationWidget(
@@ -54,7 +55,7 @@ class AppBottomNavigationWidget extends StatelessWidget {
             isSelected: selectedIndex == 3,
           ),
           backgroundColor: AppColors.white,
-          label: "Done",
+          label: AppStrings.doneBottomNavigator,
         ),
       ],
     );
