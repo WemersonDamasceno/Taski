@@ -127,9 +127,6 @@ Antes de tudo, configure o ambiente Flutter da sua máquina, veja mais em [Flutt
 
 Se você deseja contribuir para este projeto, sinta-se à vontade para abrir uma issue ou enviar um pull request. Todas as contribuições são bem-vindas!
 
-## Licença
-
-Este projeto está licenciado sob a licença MIT. Consulte o arquivo [LICENSE](LICENSE) para mais detalhes.
 
 ## Demonstração em Vídeo 🎥
 
