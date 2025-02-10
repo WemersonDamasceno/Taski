@@ -7,10 +7,9 @@ import 'package:taski/src/domain/repository/list_task_repository.dart';
 
 class SearchTasksByTitleUseCase
     implements Usecase<List<TaskModel>, SearchTaskParams> {
-  final TaskRepository _repository;
-
   SearchTasksByTitleUseCase({required TaskRepository repository})
       : _repository = repository;
+  final TaskRepository _repository;
 
   @override
   Future<(List<TaskModel>?, Failure?)> call(SearchTaskParams params) async {
@@ -26,8 +25,8 @@ class SearchTasksByTitleUseCase
 }
 
 class SearchTaskParams extends Equatable {
-  final String title;
   const SearchTaskParams({required this.title});
+  final String title;
   @override
   List<Object?> get props => [title];
 }

@@ -48,7 +48,7 @@ void main() {
     );
     when(() => mockEnableButtonCubit.state).thenReturn(const EnableButtonState(
       enable: true,
-    ));
+    ),);
 
     await tester.pumpWidget(
       MaterialApp(

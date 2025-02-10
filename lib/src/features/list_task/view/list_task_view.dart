@@ -100,7 +100,7 @@ class _ListTaskViewState extends State<ListTaskView> with TaskListenerMixin {
                 }
               },
             );
-          }),
+          },),
     );
   }
 }

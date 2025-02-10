@@ -5,13 +5,12 @@ import 'package:taski/src/core/enums/state_enum.dart';
 import 'package:taski/src/domain/usecase/update_task_usecase.dart';
 
 class UpdateTaskBloc extends Bloc<UpdateTaskEvent, UpdateTaskState> {
-  final UpdateTaskUsecase _updateTaskUseCase;
-
   UpdateTaskBloc({required UpdateTaskUsecase updateTaskUsecase})
       : _updateTaskUseCase = updateTaskUsecase,
         super(const UpdateTaskState()) {
     on<UpdateTask>(_updateTask);
   }
+  final UpdateTaskUsecase _updateTaskUseCase;
 
   Future<void> _updateTask(
     UpdateTask event,
@@ -25,10 +24,12 @@ class UpdateTaskBloc extends Bloc<UpdateTaskEvent, UpdateTaskState> {
         return emit(state.copyWith(stateEnum: StateEnum.error));
       }
 
-      emit(state.copyWith(
-        task: successOrFailure.$1,
-        stateEnum: StateEnum.success,
-      ));
+      emit(
+        state.copyWith(
+          task: successOrFailure.$1,
+          stateEnum: StateEnum.success,
+        ),
+      );
     } catch (e) {
       emit(state.copyWith(stateEnum: StateEnum.error));
     }

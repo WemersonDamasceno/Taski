@@ -38,14 +38,14 @@ void main() {
         initialState: const CreateTaskState(stateEnum: StateEnum.initial),
         Stream.fromIterable([
           const CreateTaskState(stateEnum: StateEnum.success),
-        ]));
+        ]),);
 
     whenListen(
         mockButtonCubit,
         initialState: const ButtonState(statusButton: StatusButtonEnum.enable),
         Stream.fromIterable([
           const ButtonState(statusButton: StatusButtonEnum.disable),
-        ]));
+        ]),);
 
     await tester.pumpWidget(
       MaterialApp(

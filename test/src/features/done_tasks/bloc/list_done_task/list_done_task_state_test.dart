@@ -19,7 +19,7 @@ void main() {
 
       final newState = state.copyWith(
         tasks: [
-          TaskModel(id: 2, title: 'New Task', description: 'Description')
+          TaskModel(id: 2, title: 'New Task', description: 'Description'),
         ],
         stateEnum: StateEnum.loading,
       );
@@ -52,7 +52,7 @@ void main() {
       );
       final state3 = ListDoneTaskState(
         tasks: [
-          TaskModel(id: 2, title: 'Different Task', description: 'Description')
+          TaskModel(id: 2, title: 'Different Task', description: 'Description'),
         ],
         stateEnum: StateEnum.loading,
       );

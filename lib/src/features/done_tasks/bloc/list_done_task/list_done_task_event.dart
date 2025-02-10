@@ -13,9 +13,8 @@ class DeleteAllTasksDone extends ListDoneTaskEvent {
 }
 
 class DeleteTasksById extends ListDoneTaskEvent {
-  final int id;
-
   DeleteTasksById({required this.id});
+  final int id;
   @override
   List<Object?> get props => [id];
 }

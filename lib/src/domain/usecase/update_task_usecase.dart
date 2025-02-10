@@ -5,10 +5,9 @@ import 'package:taski/src/core/usecase/usecase.dart';
 import 'package:taski/src/domain/repository/list_task_repository.dart';
 
 class UpdateTaskUsecase implements Usecase<TaskModel, TaskModel> {
-  final TaskRepository _repository;
-
   UpdateTaskUsecase({required TaskRepository repository})
       : _repository = repository;
+  final TaskRepository _repository;
 
   @override
   Future<(TaskModel?, Failure?)> call(TaskModel task) async {

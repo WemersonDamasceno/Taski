@@ -40,14 +40,14 @@ void main() {
         title: 'Task 1',
         description: 'Description',
         isCompleted: false,
-      )
+      ),
     ];
 
     blocTest<SearchTaskBloc, SearchTasksState>(
       'emits [loading, success] when SearchTaskByTitleEvent is added and returns tasks',
       build: () {
         when(() => mockSearchTasksByTitleUseCase(
-            const SearchTaskParams(title: 'Task'))).thenAnswer(
+            const SearchTaskParams(title: 'Task'),),).thenAnswer(
           (_) async => (mockTasks, null),
         );
         return searchTaskBloc;
@@ -63,7 +63,7 @@ void main() {
       'emits [loading, notFound] when SearchTaskByTitleEvent is added and no tasks found',
       build: () {
         when(() => mockSearchTasksByTitleUseCase(
-            const SearchTaskParams(title: 'Task'))).thenAnswer(
+            const SearchTaskParams(title: 'Task'),),).thenAnswer(
           (_) async => (<TaskModel>[], null),
         );
         return searchTaskBloc;
@@ -79,7 +79,7 @@ void main() {
       'emits [loading, error] when SearchTaskByTitleEvent fails',
       build: () {
         when(() => mockSearchTasksByTitleUseCase(
-            const SearchTaskParams(title: 'Task'))).thenThrow(Exception());
+            const SearchTaskParams(title: 'Task'),),).thenThrow(Exception());
         return searchTaskBloc;
       },
       act: (bloc) => bloc.add(SearchTaskByTitleEvent('Task')),

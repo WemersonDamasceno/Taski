@@ -3,13 +3,13 @@ import 'package:taski/src/core/enums/state_enum.dart';
 import 'package:taski/src/core/models/task_model.dart';
 
 class StateListTask extends Equatable {
-  final List<TaskModel>? tasks;
-  final StateEnum stateEnum;
 
   const StateListTask({
     this.tasks,
     this.stateEnum = StateEnum.initial,
   });
+  final List<TaskModel>? tasks;
+  final StateEnum stateEnum;
 
   StateListTask copyWith({
     List<TaskModel>? tasks,

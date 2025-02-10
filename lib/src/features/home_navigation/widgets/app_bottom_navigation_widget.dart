@@ -5,14 +5,13 @@ import 'package:taski/src/core/constants/app_strings.dart';
 import 'package:taski/src/features/home_navigation/widgets/icon_bottom_navigation_widget.dart';
 
 class AppBottomNavigationWidget extends StatelessWidget {
-  final int selectedIndex;
-  final void Function(int index) onItemTapped;
-
   const AppBottomNavigationWidget({
-    super.key,
     required this.selectedIndex,
     required this.onItemTapped,
+    super.key,
   });
+  final int selectedIndex;
+  final void Function(int index) onItemTapped;
 
   @override
   Widget build(BuildContext context) {

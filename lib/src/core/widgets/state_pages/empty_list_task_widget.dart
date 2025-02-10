@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:taski/src/core/constants/app_colors.dart';
 import 'package:taski/src/core/constants/app_constants.dart';
 import 'package:taski/src/core/constants/app_images.dart';
 import 'package:taski/src/core/constants/app_strings.dart';
@@ -8,9 +9,8 @@ import 'package:taski/src/core/widgets/button/view/app_buttom_widget.dart';
 import 'package:taski/src/features/create_task/view/create_task_view.dart';
 
 class EmptyListTaskWidget extends StatelessWidget {
-  final bool showButton;
-
   const EmptyListTaskWidget({super.key, this.showButton = true});
+  final bool showButton;
 
   @override
   Widget build(BuildContext context) {
@@ -37,6 +37,17 @@ class EmptyListTaskWidget extends StatelessWidget {
                   onPressed: () {
                     CreateTaskView.showBottomSheet(context);
                   },
+                ),
+              ),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: AppColors.white,
+                  foregroundColor: AppColors.slateBlue,
+                ),
+                onPressed: () {},
+                child: Text(
+                  AppStrings.createTask,
+                  style: context.textTheme.titleSmall,
                 ),
               ),
             ],

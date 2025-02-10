@@ -26,7 +26,7 @@ void main() {
     mockEnableDeleteButtonCubit = MockEnableDeleteButtonCubit();
     GetIt.I.registerSingleton<ListDoneTaskBloc>(mockListDoneTaskBloc);
     GetIt.I.registerSingleton<EnableDeleteButtonCubit>(
-        mockEnableDeleteButtonCubit);
+        mockEnableDeleteButtonCubit,);
   });
 
   tearDown(() {
@@ -40,14 +40,14 @@ void main() {
         initialState: const ListDoneTaskState(stateEnum: StateEnum.initial),
         Stream<ListDoneTaskState>.fromIterable([
           ListDoneTaskState(stateEnum: StateEnum.success, tasks: [
-            TaskModel(id: 1, title: 'Task 1', description: 'Description 1')
-          ])
-        ]));
+            TaskModel(id: 1, title: 'Task 1', description: 'Description 1'),
+          ],),
+        ]),);
     whenListen(
         mockEnableDeleteButtonCubit,
         initialState: const EnableButtonState(enable: true),
         Stream<EnableButtonState>.fromIterable(
-            [const EnableButtonState(enable: true)]));
+            [const EnableButtonState(enable: true)],),);
 
     await tester.pumpWidget(
       const MaterialApp(

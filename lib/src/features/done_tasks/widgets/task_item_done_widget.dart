@@ -4,14 +4,13 @@ import 'package:taski/src/core/extensions/theme_extension.dart';
 import 'package:taski/src/core/models/task_model.dart';
 
 class TaskItemDoneWidget extends StatelessWidget {
-  final TaskModel task;
-  final VoidCallback onDelete;
-
   const TaskItemDoneWidget({
-    super.key,
     required this.task,
     required this.onDelete,
+    super.key,
   });
+  final TaskModel task;
+  final VoidCallback onDelete;
 
   @override
   Widget build(BuildContext context) {

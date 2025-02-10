@@ -14,9 +14,8 @@ import 'package:taski/src/core/widgets/snackbar/snackbar_mixin.dart';
 import 'package:taski/src/core/widgets/task_item_widget.dart';
 
 class SuccessListTaskWidget extends StatefulWidget {
+  const SuccessListTaskWidget({required this.tasks, super.key});
   final List<TaskModel> tasks;
-
-  const SuccessListTaskWidget({super.key, required this.tasks});
 
   @override
   State<SuccessListTaskWidget> createState() => _SuccessListTaskWidgetState();

@@ -3,18 +3,17 @@ import 'package:shimmer/shimmer.dart';
 import 'package:taski/src/core/constants/app_colors.dart';
 
 class LoadingItemWidget extends StatelessWidget {
+  const LoadingItemWidget({
+    required this.width,
+    required this.height,
+    super.key,
+    this.radius = 7,
+    this.margin,
+  });
   final double width;
   final double height;
   final double radius;
   final EdgeInsets? margin;
-
-  const LoadingItemWidget({
-    super.key,
-    required this.width,
-    required this.height,
-    this.radius = 7,
-    this.margin,
-  });
 
   @override
   Widget build(BuildContext context) {

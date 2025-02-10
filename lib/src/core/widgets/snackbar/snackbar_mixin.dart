@@ -4,7 +4,7 @@ import 'package:taski/src/core/constants/app_colors.dart';
 import 'snackbar_floating.dart';
 
 mixin SnackbarMixin {
-  showSnackbarSuccess({
+  void showSnackbarSuccess({
     required BuildContext context,
     required String message,
   }) {
@@ -22,7 +22,7 @@ mixin SnackbarMixin {
     ).show();
   }
 
-  showSnackbarError({
+  void showSnackbarError({
     required BuildContext context,
     required String message,
   }) {

@@ -5,9 +5,9 @@ import 'package:taski/src/core/extensions/theme_extension.dart';
 
 class AppInputTextWidget extends StatelessWidget {
   const AppInputTextWidget({
-    super.key,
     required this.controller,
     required this.hintText,
+    super.key,
     this.maxLength = 100,
   });
 

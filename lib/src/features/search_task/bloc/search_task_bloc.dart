@@ -7,8 +7,6 @@ import 'package:taski/src/features/search_task/bloc/search_task_event.dart';
 import 'package:taski/src/features/search_task/bloc/search_task_state.dart';
 
 class SearchTaskBloc extends Bloc<SearchTaskEvent, SearchTasksState> {
-  final GetAllTasksUsecase _getAllTasksUsecase;
-  final SearchTasksByTitleUseCase _searchTasksByTitleUseCase;
 
   SearchTaskBloc({
     required GetAllTasksUsecase getAllTasksUsecase,
@@ -19,6 +17,8 @@ class SearchTaskBloc extends Bloc<SearchTaskEvent, SearchTasksState> {
     on<SearchTaskByTitleEvent>(searchTaskByTitle);
     on<CleanInputEvent>(getAllTasks);
   }
+  final GetAllTasksUsecase _getAllTasksUsecase;
+  final SearchTasksByTitleUseCase _searchTasksByTitleUseCase;
 
   Future<void> searchTaskByTitle(
     SearchTaskByTitleEvent event,
@@ -40,7 +40,7 @@ class SearchTaskBloc extends Bloc<SearchTaskEvent, SearchTasksState> {
         stateEnum: successOrFailure.$1!.isNotEmpty
             ? StateEnum.success
             : StateEnum.notFound,
-      ));
+      ),);
     } catch (e) {
       emit(state.copyWith(stateEnum: StateEnum.error));
     }
@@ -63,7 +63,7 @@ class SearchTaskBloc extends Bloc<SearchTaskEvent, SearchTasksState> {
         stateEnum: successOrFailure.$1!.isNotEmpty
             ? StateEnum.success
             : StateEnum.empty,
-      ));
+      ),);
     } catch (e) {
       emit(state.copyWith(stateEnum: StateEnum.error));
     }

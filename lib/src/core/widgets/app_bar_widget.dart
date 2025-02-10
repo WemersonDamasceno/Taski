@@ -17,7 +17,7 @@ class AppBarWidget extends StatelessWidget {
           child: Row(
             children: [
               Text(
-                "John",
+                'John',
                 style: context.textTheme.bodyMedium,
               ),
               const SizedBox(width: 14),
@@ -31,7 +31,7 @@ class AppBarWidget extends StatelessWidget {
                     AppImages.avatar,
                     fit: BoxFit.cover,
                     errorBuilder: (context, error, stackTrace) {
-                      return const Center(child: Text("JW"));
+                      return const Center(child: Text('JW'));
                     },
                   ),
                 ),
