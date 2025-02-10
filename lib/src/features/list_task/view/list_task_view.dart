@@ -52,52 +52,55 @@ class _ListTaskViewState extends State<ListTaskView> with TaskListenerMixin {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 26.0),
-      child: BlocBuilder<ListTaskUncompletedBloc, StateListTask>(
-        bloc: _taskCubit,
-        builder: (context, state) {
-          switch (state.stateEnum) {
-            case StateEnum.empty:
-            case StateEnum.notFound:
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  HeaderPage(quantityTasks: quantityTasks),
-                  const EmptyListTaskWidget(),
-                ],
-              );
-            case StateEnum.error:
-              return ErrorListTaskWidget(
-                onPressed: () => _taskCubit.add(GetUncompletedTasksEvent()),
-              );
-            case StateEnum.success:
-              return BlocBuilder<GetQuantityTaskUncompletedBloc,
-                      GetQuantityTasksState>(
-                  bloc: _quantityTasksBloc,
-                  builder: (context, quantityState) {
-                    quantityTasks = quantityState.quantityOfTasks;
+      child: BlocBuilder<GetQuantityTaskUncompletedBloc, GetQuantityTasksState>(
+          bloc: _quantityTasksBloc,
+          builder: (context, quantityState) {
+            quantityTasks = quantityState.quantityOfTasks;
+            return BlocBuilder<ListTaskUncompletedBloc, StateListTask>(
+              bloc: _taskCubit,
+              builder: (context, state) {
+                switch (state.stateEnum) {
+                  case StateEnum.empty:
+                  case StateEnum.notFound:
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        HeaderPage(quantityTasks: quantityTasks),
+                        const EmptyListTaskWidget(),
+                      ],
+                    );
+                  case StateEnum.error:
+                    return ErrorListTaskWidget(
+                      onPressed: () =>
+                          _taskCubit.add(GetUncompletedTasksEvent()),
+                    );
+                  case StateEnum.success:
                     return Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         HeaderPage(quantityTasks: quantityTasks),
                         Expanded(
-                          child: SuccessListTaskWidget(tasks: state.tasks!),
+                          child: SuccessListTaskWidget(
+                            tasks: state.tasks!,
+                          ),
                         ),
                       ],
                     );
-                  });
-            default:
-              return const Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  HeaderPageLoading(),
-                  Expanded(
-                    child: LoadingListTaskWidget(),
-                  ),
-                ],
-              );
-          }
-        },
-      ),
+
+                  default:
+                    return const Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        HeaderPageLoading(),
+                        Expanded(
+                          child: LoadingListTaskWidget(),
+                        ),
+                      ],
+                    );
+                }
+              },
+            );
+          }),
     );
   }
 }
