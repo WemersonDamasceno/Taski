@@ -12,6 +12,7 @@ class AppButtonWidget extends StatelessWidget {
   final StatusButtonEnum statusButton;
 
   const AppButtonWidget._({
+    super.key,
     required this.label,
     required this.onPressed,
     required this.isFilled,
@@ -21,13 +22,14 @@ class AppButtonWidget extends StatelessWidget {
   });
 
   factory AppButtonWidget.filled({
+    Key? key,
     required String label,
     required Function() onPressed,
-    required ValueKey<String> key,
     StatusButtonEnum? statusButton,
     IconData? iconData,
   }) {
     return AppButtonWidget._(
+      key: key,
       label: label,
       statusButton: statusButton ?? StatusButtonEnum.enable,
       onPressed: onPressed,
@@ -37,14 +39,15 @@ class AppButtonWidget extends StatelessWidget {
   }
 
   factory AppButtonWidget.textButton({
+    Key? key,
     required String label,
     required Function() onPressed,
-    required ValueKey<String> key,
     Color? colorLabel,
     StatusButtonEnum? statusButton,
     IconData? iconData,
   }) {
     return AppButtonWidget._(
+      key: key,
       label: label,
       isFilled: false,
       iconData: iconData,
@@ -58,6 +61,7 @@ class AppButtonWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     bool isLoading = statusButton == StatusButtonEnum.loading;
     bool isDisabled = statusButton == StatusButtonEnum.disable;
+
     return SizedBox(
       child: ElevatedButton.icon(
         key: key,

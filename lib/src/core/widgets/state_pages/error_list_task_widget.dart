@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:taski/src/core/constants/app_constants.dart';
 import 'package:taski/src/core/constants/app_images.dart';
 import 'package:taski/src/core/constants/app_strings.dart';
 import 'package:taski/src/core/extensions/size_extension.dart';
@@ -34,7 +35,7 @@ class ErrorListTaskWidget extends StatelessWidget {
           ),
           const SizedBox(height: 24),
           AppButtonWidget.filled(
-            key: const ValueKey('refresh'),
+            key: AppConstants.refresh,
             label: AppStrings.tryAgain,
             onPressed: onPressed,
             iconData: Icons.refresh,

@@ -44,12 +44,9 @@ class _DoneTasksViewState extends State<DoneTasksView>
   void onTaskModified(TaskEvent event) {
     _doneTasksBloc.add(GetCompletedTasksEvent());
     if (event.operation == TaskOperation.delete) {
-      showSnackbar(
+      showSnackbarSuccess(
         context: context,
         message: AppStrings.successDeleteTask,
-        backgroundColor: AppColors.greenPure,
-        iconData: Icons.check_circle_outline_rounded,
-        fontColor: AppColors.white,
       );
     }
   }
@@ -146,13 +143,13 @@ class _DoneTasksViewState extends State<DoneTasksView>
         actions: [
           AppButtonWidget.textButton(
             key: const ValueKey('delete-cancel'),
-            label: 'Cancelar',
+            label: AppStrings.cancel,
             colorLabel: AppColors.slatePurple,
             onPressed: () => Navigator.pop(context),
           ),
           AppButtonWidget.filled(
             key: const ValueKey('delete-confirm'),
-            label: 'Deletar',
+            label: AppStrings.deleteTask,
             onPressed: () {
               Navigator.pop(context);
               onConfirm();

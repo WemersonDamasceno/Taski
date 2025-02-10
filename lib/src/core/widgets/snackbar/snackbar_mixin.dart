@@ -1,21 +1,37 @@
 import 'package:flutter/material.dart';
+import 'package:taski/src/core/constants/app_colors.dart';
 
 import 'snackbar_floating.dart';
 
 mixin SnackbarMixin {
-  showSnackbar({
+  showSnackbarSuccess({
     required BuildContext context,
     required String message,
-    required Color backgroundColor,
-    required Color fontColor,
-    required IconData iconData,
   }) {
     return SnackbarFloating(
       context: context,
-      iconData: iconData,
+      snackbarFontColor: AppColors.white,
+      snackbarBackgroundColor: AppColors.greenPure,
+      iconData: Icons.check_circle_outline_rounded,
       labelSnackbar: message,
-      snackbarBackgroundColor: backgroundColor,
-      snackbarFontColor: fontColor,
+      margin: const EdgeInsets.only(
+        bottom: 82,
+        left: 24,
+        right: 24,
+      ),
+    ).show();
+  }
+
+  showSnackbarError({
+    required BuildContext context,
+    required String message,
+  }) {
+    return SnackbarFloating(
+      context: context,
+      snackbarBackgroundColor: AppColors.redLight,
+      iconData: Icons.warning_amber_rounded,
+      snackbarFontColor: AppColors.white,
+      labelSnackbar: message,
       margin: const EdgeInsets.only(
         bottom: 82,
         left: 24,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:taski/src/core/constants/app_colors.dart';
+import 'package:taski/src/core/constants/app_constants.dart';
 import 'package:taski/src/core/constants/app_strings.dart';
 import 'package:taski/src/core/enums/state_enum.dart';
 import 'package:taski/src/core/enums/status_button_enum.dart';
@@ -86,22 +87,16 @@ class _CreateTaskViewState extends State<CreateTaskView>
                 state.taskCreated, TaskOperation.createOrUpdate);
             Navigator.pop(context);
 
-            showSnackbar(
+            showSnackbarSuccess(
               context: context,
               message: AppStrings.successCreateTask,
-              backgroundColor: AppColors.greenPure,
-              iconData: Icons.check_circle_outline_rounded,
-              fontColor: AppColors.white,
             );
             break;
           case StateEnum.error:
             Navigator.pop(context);
-            showSnackbar(
+            showSnackbarError(
               context: context,
               message: AppStrings.errorTitle,
-              backgroundColor: AppColors.redLight,
-              iconData: Icons.warning_amber_rounded,
-              fontColor: AppColors.white,
             );
             break;
           default:
@@ -128,7 +123,7 @@ class _CreateTaskViewState extends State<CreateTaskView>
                           Checkbox(value: false, onChanged: (bool? value) {}),
                     ),
                     AppInputTextWidget(
-                      key: const Key('task-input'),
+                      key: AppConstants.taskInput,
                       hintText: AppStrings.hintTask,
                       controller: _taskController,
                       maxLength: 40,
@@ -144,6 +139,7 @@ class _CreateTaskViewState extends State<CreateTaskView>
                       child: Icon(Icons.edit, color: AppColors.mutedAzure),
                     ),
                     AppInputTextWidget(
+                      key: AppConstants.noteInput,
                       hintText: AppStrings.hintAddNote,
                       controller: _noteController,
                     ),
@@ -156,8 +152,8 @@ class _CreateTaskViewState extends State<CreateTaskView>
                     return Align(
                       alignment: Alignment.centerRight,
                       child: AppButtonWidget.textButton(
-                        key: const ValueKey('create-task'),
-                        label: 'Create',
+                        key: AppConstants.createTaskButton,
+                        label: AppStrings.create,
                         statusButton: state.statusButton,
                         onPressed: () => _createTaskBloc.add(
                           CreateTask(
