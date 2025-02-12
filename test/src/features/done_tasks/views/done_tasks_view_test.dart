@@ -46,9 +46,11 @@ void main() {
     when(() => mockListDoneTaskBloc.state).thenReturn(
       ListDoneTaskState(stateEnum: StateEnum.success, tasks: [task1]),
     );
-    when(() => mockEnableButtonCubit.state).thenReturn(const EnableButtonState(
-      enable: true,
-    ),);
+    when(() => mockEnableButtonCubit.state).thenReturn(
+      const EnableButtonState(
+        enable: true,
+      ),
+    );
 
     await tester.pumpWidget(
       MaterialApp(

@@ -46,8 +46,11 @@ void main() {
     blocTest<SearchTaskBloc, SearchTasksState>(
       'emits [loading, success] when SearchTaskByTitleEvent is added and returns tasks',
       build: () {
-        when(() => mockSearchTasksByTitleUseCase(
-            const SearchTaskParams(title: 'Task'),),).thenAnswer(
+        when(
+          () => mockSearchTasksByTitleUseCase(
+            const SearchTaskParams(title: 'Task'),
+          ),
+        ).thenAnswer(
           (_) async => (mockTasks, null),
         );
         return searchTaskBloc;
@@ -62,8 +65,11 @@ void main() {
     blocTest<SearchTaskBloc, SearchTasksState>(
       'emits [loading, notFound] when SearchTaskByTitleEvent is added and no tasks found',
       build: () {
-        when(() => mockSearchTasksByTitleUseCase(
-            const SearchTaskParams(title: 'Task'),),).thenAnswer(
+        when(
+          () => mockSearchTasksByTitleUseCase(
+            const SearchTaskParams(title: 'Task'),
+          ),
+        ).thenAnswer(
           (_) async => (<TaskModel>[], null),
         );
         return searchTaskBloc;
@@ -78,8 +84,11 @@ void main() {
     blocTest<SearchTaskBloc, SearchTasksState>(
       'emits [loading, error] when SearchTaskByTitleEvent fails',
       build: () {
-        when(() => mockSearchTasksByTitleUseCase(
-            const SearchTaskParams(title: 'Task'),),).thenThrow(Exception());
+        when(
+          () => mockSearchTasksByTitleUseCase(
+            const SearchTaskParams(title: 'Task'),
+          ),
+        ).thenThrow(Exception());
         return searchTaskBloc;
       },
       act: (bloc) => bloc.add(SearchTaskByTitleEvent('Task')),

@@ -7,15 +7,23 @@ void main() {
     test('supports value comparison', () {
       expect(
         const GetQuantityTasksState(
-            quantityOfTasks: 5, stateEnum: StateEnum.success,),
-        equals(const GetQuantityTasksState(
-            quantityOfTasks: 5, stateEnum: StateEnum.success,),),
+          quantityOfTasks: 5,
+          stateEnum: StateEnum.success,
+        ),
+        equals(
+          const GetQuantityTasksState(
+            quantityOfTasks: 5,
+            stateEnum: StateEnum.success,
+          ),
+        ),
       );
     });
 
     test('copyWith updates state correctly', () {
       const state = GetQuantityTasksState(
-          quantityOfTasks: 5, stateEnum: StateEnum.initial,);
+        quantityOfTasks: 5,
+        stateEnum: StateEnum.initial,
+      );
 
       final updatedState =
           state.copyWith(quantityOfTasks: 10, stateEnum: StateEnum.success);
@@ -26,7 +34,9 @@ void main() {
 
     test('props contains correct values', () {
       const state = GetQuantityTasksState(
-          quantityOfTasks: 5, stateEnum: StateEnum.success,);
+        quantityOfTasks: 5,
+        stateEnum: StateEnum.success,
+      );
 
       expect(state.props, [5, StateEnum.success]);
     });

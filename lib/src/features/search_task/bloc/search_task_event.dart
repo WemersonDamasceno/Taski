@@ -8,7 +8,6 @@ abstract class SearchTaskEvent extends Equatable {
 class CleanInputEvent extends SearchTaskEvent {}
 
 class SearchTaskByTitleEvent extends SearchTaskEvent {
-
   SearchTaskByTitleEvent(this.title);
   final String title;
 

@@ -9,9 +9,11 @@ import 'package:taski/src/core/constants/app_strings.dart';
 import 'package:taski/src/core/extensions/theme_extension.dart';
 
 class SearchInputWidget extends StatefulWidget {
-
   const SearchInputWidget({
-    required this.controller, required this.onChanged, required this.onClear, super.key,
+    required this.controller,
+    required this.onChanged,
+    required this.onClear,
+    super.key,
   });
   final TextEditingController controller;
   final Function(String) onChanged;

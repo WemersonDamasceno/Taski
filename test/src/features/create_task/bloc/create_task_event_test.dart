@@ -10,8 +10,10 @@ void main() {
 
   group('CreateTaskEvent', () {
     test('events: should support value comparisons', () {
-      expect(CreateTask(task: 'Test Task', note: 'Test Note'),
-          CreateTask(task: 'Test Task', note: 'Test Note'),);
+      expect(
+        CreateTask(task: 'Test Task', note: 'Test Note'),
+        CreateTask(task: 'Test Task', note: 'Test Note'),
+      );
     });
 
     test('should have correct props', () {

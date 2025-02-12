@@ -471,7 +471,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "52d3964ef62f921a1b3586c2fe97f4740ba948a0"
+      resolved-ref: "088e6280634e2ad56bad07cbe25ddbda4c9099fe"
       url: "https://github.com/WemersonDamasceno/my_custom_lints.git"
     source: git
     version: "1.0.1"

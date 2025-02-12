@@ -3,7 +3,6 @@ import 'package:taski/src/core/enums/state_enum.dart';
 import 'package:taski/src/core/models/task_model.dart';
 
 class StateListTask extends Equatable {
-
   const StateListTask({
     this.tasks,
     this.stateEnum = StateEnum.initial,

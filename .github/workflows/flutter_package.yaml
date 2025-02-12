@@ -64,7 +64,7 @@ jobs:
         run: dart format --set-exit-if-changed lib test
       
       - name: 🕵️ Analyze
-        run: flutter analyze lib test
+        run: flutter analyze lib test && dart run custom_lint    
 
       - name: 🧪 Run Tests
         run: flutter test --coverage --update-goldens
