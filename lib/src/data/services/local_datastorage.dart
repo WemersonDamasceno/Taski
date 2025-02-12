@@ -19,14 +19,13 @@ abstract class LocalDatabaseService {
 }
 
 class LocalDatabaseServiceImpl implements LocalDatabaseService {
-  LocalDatabaseServiceImpl._();
-
-  static LocalDatabaseServiceImpl? _instance;
-
   factory LocalDatabaseServiceImpl() {
     _instance ??= LocalDatabaseServiceImpl._();
     return _instance!;
   }
+  LocalDatabaseServiceImpl._();
+
+  static LocalDatabaseServiceImpl? _instance;
 
   Database? _database;
 
@@ -46,7 +45,7 @@ class LocalDatabaseServiceImpl implements LocalDatabaseService {
     );
   }
 
-  Future _onCreate(Database db, int version) async {
+  Future<void> _onCreate(Database db, int version) async {
     await db.execute('''
     CREATE TABLE tasks(
       id INTEGER PRIMARY KEY AUTOINCREMENT,

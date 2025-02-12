@@ -7,14 +7,13 @@ import 'package:taski/src/features/done_tasks/bloc/enable_buton/enable_button_cu
 import 'package:taski/src/features/done_tasks/bloc/enable_buton/enable_button_state.dart';
 
 class HeaderCompletedTasks extends StatelessWidget {
-  final Function() onPressed;
-  final EnableDeleteButtonCubit enableDeleteButton;
-
   const HeaderCompletedTasks({
-    super.key,
     required this.onPressed,
     required this.enableDeleteButton,
+    super.key,
   });
+  final Function() onPressed;
+  final EnableDeleteButtonCubit enableDeleteButton;
 
   @override
   Widget build(BuildContext context) {
@@ -30,18 +29,20 @@ class HeaderCompletedTasks extends StatelessWidget {
             ),
           ),
           BlocBuilder<EnableDeleteButtonCubit, EnableButtonState>(
-              bloc: enableDeleteButton,
-              builder: (__, state) {
-                return TextButton(
-                  onPressed: () => state.enable ? onPressed() : null,
-                  child: Text(AppStrings.deleteAllTasks,
-                      style: context.textTheme.bodyMedium?.copyWith(
-                        color: state.enable
-                            ? AppColors.fireRed
-                            : AppColors.mutedAzure,
-                      )),
-                );
-              }),
+            bloc: enableDeleteButton,
+            builder: (__, state) {
+              return TextButton(
+                onPressed: () => state.enable ? onPressed() : null,
+                child: Text(
+                  AppStrings.deleteAllTasks,
+                  style: context.textTheme.bodyMedium?.copyWith(
+                    color:
+                        state.enable ? AppColors.fireRed : AppColors.mutedAzure,
+                  ),
+                ),
+              );
+            },
+          ),
         ],
       ),
     );

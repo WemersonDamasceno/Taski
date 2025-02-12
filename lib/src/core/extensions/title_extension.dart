@@ -1,5 +1,5 @@
 extension TitleExtension on String {
-  get formatteTitle {
+  String get formatteTitle {
     if (length > 10) {
       return '${substring(0, 10)}...';
     }

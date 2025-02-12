@@ -7,14 +7,13 @@ import 'package:taski/src/features/list_task/bloc/get_quantity_tasks/get_quantit
 
 class GetQuantityTaskUncompletedBloc
     extends Bloc<GetQuantityTasksEvent, GetQuantityTasksState> {
-  final GetQuantityUncompltedTaskUsecase _usecase;
-
-  GetQuantityTaskUncompletedBloc(
-      {required GetQuantityUncompltedTaskUsecase usecase})
-      : _usecase = usecase,
+  GetQuantityTaskUncompletedBloc({
+    required GetQuantityUncompltedTaskUsecase usecase,
+  })  : _usecase = usecase,
         super(const GetQuantityTasksState()) {
     on<GetQuantityUncompletedTasks>(_onGetQuantityUncompletedTasks);
   }
+  final GetQuantityUncompltedTaskUsecase _usecase;
 
   Future<void> _onGetQuantityUncompletedTasks(
     GetQuantityUncompletedTasks event,
@@ -29,10 +28,12 @@ class GetQuantityTaskUncompletedBloc
         return;
       }
 
-      emit(state.copyWith(
-        quantityOfTasks: result.$1,
-        stateEnum: StateEnum.success,
-      ));
+      emit(
+        state.copyWith(
+          quantityOfTasks: result.$1,
+          stateEnum: StateEnum.success,
+        ),
+      );
     } catch (_) {
       emit(state.copyWith(stateEnum: StateEnum.error));
     }

@@ -7,9 +7,8 @@ import 'package:taski/src/core/extensions/theme_extension.dart';
 import 'package:taski/src/core/widgets/button/view/app_buttom_widget.dart';
 
 class ErrorListTaskWidget extends StatelessWidget {
+  const ErrorListTaskWidget({required this.onPressed, super.key});
   final Function() onPressed;
-
-  const ErrorListTaskWidget({super.key, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +38,7 @@ class ErrorListTaskWidget extends StatelessWidget {
             label: AppStrings.tryAgain,
             onPressed: onPressed,
             iconData: Icons.refresh,
-          )
+          ),
         ],
       ),
     );

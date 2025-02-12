@@ -7,6 +7,7 @@ import 'package:taski/src/core/enums/state_enum.dart';
 import 'package:taski/src/core/enums/status_button_enum.dart';
 import 'package:taski/src/core/widgets/button/bloc/button_cubit.dart';
 import 'package:taski/src/core/widgets/button/bloc/button_state.dart';
+import 'package:taski/src/core/widgets/button/view/app_buttom_widget.dart';
 import 'package:taski/src/features/create_task/bloc/create_task_bloc.dart';
 import 'package:taski/src/features/create_task/bloc/create_task_state.dart';
 import 'package:taski/src/features/create_task/view/create_task_view.dart';
@@ -34,18 +35,20 @@ void main() {
   testWidgets('Deve exibir o BottomSheet corretamente',
       (WidgetTester tester) async {
     whenListen(
-        mockCreateTaskBloc,
-        initialState: const CreateTaskState(stateEnum: StateEnum.initial),
-        Stream.fromIterable([
-          const CreateTaskState(stateEnum: StateEnum.success),
-        ]));
+      mockCreateTaskBloc,
+      initialState: const CreateTaskState(stateEnum: StateEnum.initial),
+      Stream.fromIterable([
+        const CreateTaskState(stateEnum: StateEnum.success),
+      ]),
+    );
 
     whenListen(
-        mockButtonCubit,
-        initialState: const ButtonState(statusButton: StatusButtonEnum.enable),
-        Stream.fromIterable([
-          const ButtonState(statusButton: StatusButtonEnum.disable),
-        ]));
+      mockButtonCubit,
+      initialState: const ButtonState(statusButton: StatusButtonEnum.enable),
+      Stream.fromIterable([
+        const ButtonState(statusButton: StatusButtonEnum.disable),
+      ]),
+    );
 
     await tester.pumpWidget(
       MaterialApp(
@@ -54,11 +57,11 @@ void main() {
             builder: (context) {
               return Scaffold(
                 body: Center(
-                  child: ElevatedButton(
+                  child: AppButtonWidget.textButton(
+                    label: 'Abrir BottomSheet',
                     onPressed: () {
                       CreateTaskView.showBottomSheet(context);
                     },
-                    child: const Text('Abrir BottomSheet'),
                   ),
                 ),
               );

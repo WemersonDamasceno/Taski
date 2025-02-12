@@ -8,9 +8,8 @@ import 'package:taski/src/core/widgets/button/view/app_buttom_widget.dart';
 import 'package:taski/src/features/create_task/view/create_task_view.dart';
 
 class EmptyListTaskWidget extends StatelessWidget {
-  final bool showButton;
-
   const EmptyListTaskWidget({super.key, this.showButton = true});
+  final bool showButton;
 
   @override
   Widget build(BuildContext context) {

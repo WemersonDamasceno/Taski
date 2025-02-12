@@ -4,10 +4,9 @@ import 'package:taski/src/core/extensions/theme_extension.dart';
 import 'package:taski/src/core/models/task_model.dart';
 
 class TaskItemWidget extends StatelessWidget {
+  const TaskItemWidget({required this.task, super.key, this.onToggle});
   final TaskModel task;
   final VoidCallback? onToggle;
-
-  const TaskItemWidget({super.key, required this.task, this.onToggle});
 
   @override
   Widget build(BuildContext context) {

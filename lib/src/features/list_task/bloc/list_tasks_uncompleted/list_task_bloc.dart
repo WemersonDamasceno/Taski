@@ -6,13 +6,12 @@ import 'package:taski/src/features/list_task/bloc/list_tasks_uncompleted/list_ta
 import 'package:taski/src/features/list_task/bloc/list_tasks_uncompleted/list_task_state.dart';
 
 class ListTaskUncompletedBloc extends Bloc<ListTaskEvent, StateListTask> {
-  final GetUncompletedTasksUsecase _usecase;
-
   ListTaskUncompletedBloc({required GetUncompletedTasksUsecase usecase})
       : _usecase = usecase,
         super(const StateListTask()) {
     on<GetUncompletedTasksEvent>(_onGetUncompletedTasks);
   }
+  final GetUncompletedTasksUsecase _usecase;
 
   Future<void> _onGetUncompletedTasks(
     GetUncompletedTasksEvent event,

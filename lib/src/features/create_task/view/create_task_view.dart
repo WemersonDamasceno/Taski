@@ -84,7 +84,9 @@ class _CreateTaskViewState extends State<CreateTaskView>
         switch (state.stateEnum) {
           case StateEnum.success:
             notifyTaskModification(
-                state.taskCreated, TaskOperation.createOrUpdate);
+              state.taskCreated,
+              TaskOperation.createOrUpdate,
+            );
             Navigator.pop(context);
 
             showSnackbarSuccess(

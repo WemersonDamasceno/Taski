@@ -5,13 +5,12 @@ import 'package:taski/src/features/create_task/bloc/create_task_event.dart';
 import 'package:taski/src/features/create_task/bloc/create_task_state.dart';
 
 class CreateTaskBloc extends Bloc<CreateTaskEvent, CreateTaskState> {
-  final CreateTaskUsecase _createTaskUsecase;
-
   CreateTaskBloc({required CreateTaskUsecase createTaskUsecase})
       : _createTaskUsecase = createTaskUsecase,
         super(const CreateTaskState()) {
     on<CreateTask>(_createTask);
   }
+  final CreateTaskUsecase _createTaskUsecase;
 
   Future<void> _createTask(
     CreateTask event,
@@ -27,10 +26,12 @@ class CreateTaskBloc extends Bloc<CreateTaskEvent, CreateTaskState> {
         return emit(state.copyWith(stateEnum: StateEnum.error));
       }
 
-      emit(state.copyWith(
-        taskCreated: successOrFailure.$1,
-        stateEnum: StateEnum.success,
-      ));
+      emit(
+        state.copyWith(
+          taskCreated: successOrFailure.$1,
+          stateEnum: StateEnum.success,
+        ),
+      );
     } catch (e) {
       emit(state.copyWith(stateEnum: StateEnum.error));
     }

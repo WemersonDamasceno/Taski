@@ -1,30 +1,24 @@
+// ignore_for_file: use_my_design_system
 import 'package:flutter/material.dart';
 import 'package:taski/src/core/constants/app_colors.dart';
 import 'package:taski/src/core/enums/status_button_enum.dart';
 import 'package:taski/src/core/extensions/theme_extension.dart';
 
 class AppButtonWidget extends StatelessWidget {
-  final String label;
-  final IconData? iconData;
-  final Color? colorLabel;
-  final Function() onPressed;
-  final bool isFilled;
-  final StatusButtonEnum statusButton;
-
   const AppButtonWidget._({
-    super.key,
     required this.label,
     required this.onPressed,
     required this.isFilled,
     required this.statusButton,
+    super.key,
     this.iconData,
     this.colorLabel,
   });
 
   factory AppButtonWidget.filled({
-    Key? key,
     required String label,
     required Function() onPressed,
+    Key? key,
     StatusButtonEnum? statusButton,
     IconData? iconData,
   }) {
@@ -39,9 +33,9 @@ class AppButtonWidget extends StatelessWidget {
   }
 
   factory AppButtonWidget.textButton({
-    Key? key,
     required String label,
     required Function() onPressed,
+    Key? key,
     Color? colorLabel,
     StatusButtonEnum? statusButton,
     IconData? iconData,
@@ -56,11 +50,17 @@ class AppButtonWidget extends StatelessWidget {
       statusButton: statusButton ?? StatusButtonEnum.enable,
     );
   }
+  final String label;
+  final IconData? iconData;
+  final Color? colorLabel;
+  final Function() onPressed;
+  final bool isFilled;
+  final StatusButtonEnum statusButton;
 
   @override
   Widget build(BuildContext context) {
-    bool isLoading = statusButton == StatusButtonEnum.loading;
-    bool isDisabled = statusButton == StatusButtonEnum.disable;
+    final bool isLoading = statusButton == StatusButtonEnum.loading;
+    final bool isDisabled = statusButton == StatusButtonEnum.disable;
 
     return SizedBox(
       child: ElevatedButton.icon(

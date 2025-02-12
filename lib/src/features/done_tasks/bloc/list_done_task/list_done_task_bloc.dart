@@ -8,10 +8,6 @@ import 'package:taski/src/features/done_tasks/bloc/list_done_task/list_done_task
 import 'package:taski/src/features/done_tasks/bloc/list_done_task/list_done_task_state.dart';
 
 class ListDoneTaskBloc extends Bloc<ListDoneTaskEvent, ListDoneTaskState> {
-  final GetDoneTaskUsecase _getDoneTasksUseCase;
-  final DeleteAllTasksDoneUsecase _deleteAllTasksDoneUseCase;
-  final DeleteTasksByIdUsecase _deleteTasksByIdUsecase;
-
   ListDoneTaskBloc({
     required GetDoneTaskUsecase getDoneTasksUseCase,
     required DeleteAllTasksDoneUsecase deleteAllTasksDoneUseCase,
@@ -24,6 +20,9 @@ class ListDoneTaskBloc extends Bloc<ListDoneTaskEvent, ListDoneTaskState> {
     on<DeleteAllTasksDone>(_deleteAllTasksDone);
     on<DeleteTasksById>(_deleteTasksById);
   }
+  final GetDoneTaskUsecase _getDoneTasksUseCase;
+  final DeleteAllTasksDoneUsecase _deleteAllTasksDoneUseCase;
+  final DeleteTasksByIdUsecase _deleteTasksByIdUsecase;
 
   Future<void> _getDoneTasks(
     GetCompletedTasksEvent event,
@@ -37,12 +36,14 @@ class ListDoneTaskBloc extends Bloc<ListDoneTaskEvent, ListDoneTaskState> {
         return emit(state.copyWith(stateEnum: StateEnum.error));
       }
 
-      emit(state.copyWith(
-        tasks: successOrFailure.$1,
-        stateEnum: successOrFailure.$1!.isNotEmpty
-            ? StateEnum.success
-            : StateEnum.empty,
-      ));
+      emit(
+        state.copyWith(
+          tasks: successOrFailure.$1,
+          stateEnum: successOrFailure.$1!.isNotEmpty
+              ? StateEnum.success
+              : StateEnum.empty,
+        ),
+      );
     } catch (e) {
       emit(state.copyWith(stateEnum: StateEnum.error));
     }

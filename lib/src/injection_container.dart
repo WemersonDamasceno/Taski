@@ -29,9 +29,11 @@ Future<void> initDependency() async {
   );
 
   //****** Repository ******//
-  getIt.registerLazySingleton<TaskRepository>(() => TaskRepositoryImpl(
-        databaseService: getIt(),
-      ));
+  getIt.registerLazySingleton<TaskRepository>(
+    () => TaskRepositoryImpl(
+      databaseService: getIt(),
+    ),
+  );
 
   //****** Usecases ******//
   getIt.registerLazySingleton<GetUncompletedTasksUsecase>(

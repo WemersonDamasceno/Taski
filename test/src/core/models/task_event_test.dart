@@ -6,7 +6,7 @@ import 'package:taski/src/core/models/task_model.dart';
 
 void main() {
   late TaskEventBus taskEventBus;
-  late TaskModel taskModel =
+  late final TaskModel taskModel =
       TaskModel(id: 1, title: 'Task Test', description: 'Description');
   late TaskEvent taskEvent;
 

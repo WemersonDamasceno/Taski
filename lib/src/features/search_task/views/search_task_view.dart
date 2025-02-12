@@ -83,7 +83,7 @@ class _SearchTaskByTitleViewState extends State<SearchTaskByTitleView>
               },
             ),
           ),
-        )
+        ),
       ],
     );
   }

@@ -4,11 +4,10 @@ import 'package:equatable/equatable.dart';
 import 'package:taski/src/core/models/task_model.dart';
 
 class TaskEventBus {
-  static final TaskEventBus _instance = TaskEventBus._internal();
-
   factory TaskEventBus() => _instance;
 
   TaskEventBus._internal();
+  static final TaskEventBus _instance = TaskEventBus._internal();
 
   final _controller = StreamController<TaskEvent>.broadcast();
 
@@ -24,10 +23,9 @@ class TaskEventBus {
 }
 
 class TaskEvent extends Equatable {
+  const TaskEvent(this.task, this.operation);
   final TaskModel? task;
   final TaskOperation operation;
-
-  const TaskEvent(this.task, this.operation);
 
   @override
   List<Object?> get props => [task, operation];

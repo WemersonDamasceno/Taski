@@ -5,9 +5,8 @@ import 'package:taski/src/core/usecase/usecase.dart';
 import 'package:taski/src/domain/repository/list_task_repository.dart';
 
 class GetUncompletedTasksUsecase implements Usecase<List<TaskModel>, NoParams> {
-  final TaskRepository repository;
-
   GetUncompletedTasksUsecase({required this.repository});
+  final TaskRepository repository;
 
   @override
   Future<(List<TaskModel>?, Failure?)> call(NoParams params) async {

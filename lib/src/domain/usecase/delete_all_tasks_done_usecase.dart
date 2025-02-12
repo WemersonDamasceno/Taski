@@ -4,10 +4,9 @@ import 'package:taski/src/core/usecase/usecase.dart';
 import 'package:taski/src/domain/repository/list_task_repository.dart';
 
 class DeleteAllTasksDoneUsecase implements Usecase<bool, NoParams> {
-  final TaskRepository _repository;
-
   DeleteAllTasksDoneUsecase({required TaskRepository repository})
       : _repository = repository;
+  final TaskRepository _repository;
 
   @override
   Future<(bool?, Failure?)> call(NoParams params) async {

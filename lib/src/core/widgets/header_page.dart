@@ -3,9 +3,8 @@ import 'package:taski/src/core/constants/app_colors.dart';
 import 'package:taski/src/core/constants/app_strings.dart';
 
 class HeaderPage extends StatelessWidget {
+  const HeaderPage({required this.quantityTasks, super.key});
   final int quantityTasks;
-
-  const HeaderPage({super.key, required this.quantityTasks});
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +28,7 @@ class HeaderPage extends StatelessWidget {
                   ),
                 ),
                 TextSpan(
-                  text: "John.",
+                  text: 'John.',
                   style: TextStyle(
                     color: AppColors.blue,
                   ),

@@ -7,18 +7,19 @@ class HeaderPageLoading extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          LoadingItemWidget(
-            width: 139,
-            height: 24,
-          ),
-          SizedBox(height: 8),
-          LoadingItemWidget(
-            width: 200,
-            height: 20,
-          ),
-          SizedBox(height: 24),
-        ]);
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        LoadingItemWidget(
+          width: 139,
+          height: 24,
+        ),
+        SizedBox(height: 8),
+        LoadingItemWidget(
+          width: 200,
+          height: 20,
+        ),
+        SizedBox(height: 24),
+      ],
+    );
   }
 }

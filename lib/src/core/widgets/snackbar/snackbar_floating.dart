@@ -3,22 +3,21 @@ import 'package:taski/src/core/constants/app_colors.dart';
 import 'package:taski/src/core/extensions/theme_extension.dart';
 
 class SnackbarFloating extends StatefulWidget {
-  final BuildContext context;
-  final String labelSnackbar;
-  final Color snackbarBackgroundColor;
-  final Color snackbarFontColor;
-  final EdgeInsets margin;
-  final IconData iconData;
-
   const SnackbarFloating({
-    super.key,
     required this.context,
     required this.labelSnackbar,
     required this.snackbarBackgroundColor,
     required this.snackbarFontColor,
     required this.margin,
     required this.iconData,
+    super.key,
   });
+  final BuildContext context;
+  final String labelSnackbar;
+  final Color snackbarBackgroundColor;
+  final Color snackbarFontColor;
+  final EdgeInsets margin;
+  final IconData iconData;
 
   void show() {
     if (!context.mounted) return;

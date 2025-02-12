@@ -2,13 +2,12 @@ import 'package:equatable/equatable.dart';
 import 'package:taski/src/core/enums/state_enum.dart';
 
 class GetQuantityTasksState extends Equatable {
-  final int quantityOfTasks;
-  final StateEnum stateEnum;
-
   const GetQuantityTasksState({
     this.stateEnum = StateEnum.initial,
     this.quantityOfTasks = 0,
   });
+  final int quantityOfTasks;
+  final StateEnum stateEnum;
 
   GetQuantityTasksState copyWith({
     StateEnum? stateEnum,

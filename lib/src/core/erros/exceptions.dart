@@ -1,9 +1,9 @@
 class LocalStorageException implements Exception {
-  final String message;
   LocalStorageException(this.message);
+  final String message;
 }
 
 class GenericsException implements Exception {
-  final String message;
   GenericsException(this.message);
+  final String message;
 }
