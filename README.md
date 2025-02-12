@@ -83,7 +83,7 @@ O projeto utiliza:
 
 ✅  [Bloc][bloc_link] - Bloc architecture para código escalável e testável que oferece uma separação clara entre lógica de negócios e apresentação
 
-✅  [Testing][testing_link] - Testes Unitários e Widgets (Cobertura de testes: **75%**)
+✅  [Testing][testing_link] - Testes Unitários e Widgets (Cobertura de testes: **83%**)
 
 ✅  [Continuous Integration][github_actions_link] - Lint, format, test, e aplicação de code coverage usando [GitHub Actions][github_actions_link]
 
