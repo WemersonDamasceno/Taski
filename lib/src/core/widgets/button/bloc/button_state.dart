@@ -1,11 +1,11 @@
 import 'package:equatable/equatable.dart';
-import 'package:taski/src/core/enums/status_button_enum.dart';
+import 'package:nova_design_system/nova_design_system.dart';
 
 class ButtonState extends Equatable {
-  const ButtonState({this.statusButton = StatusButtonEnum.disable});
-  final StatusButtonEnum statusButton;
+  const ButtonState({this.statusButton = UIStatusButton.disable});
+  final UIStatusButton statusButton;
 
-  ButtonState copyWith({StatusButtonEnum? statusButton}) {
+  ButtonState copyWith({UIStatusButton? statusButton}) {
     return ButtonState(statusButton: statusButton ?? this.statusButton);
   }
 

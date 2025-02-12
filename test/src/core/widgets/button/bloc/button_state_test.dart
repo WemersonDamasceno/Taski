@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:taski/src/core/enums/status_button_enum.dart';
+import 'package:nova_design_system/core/widgets/buttons/ui_status_button.dart';
 import 'package:taski/src/core/widgets/button/bloc/button_state.dart';
 
 void main() {
@@ -7,7 +7,7 @@ void main() {
       'ButtonState should have default statusButton as StatusButtonEnum.disable',
       () {
     const state = ButtonState();
-    expect(state.statusButton, StatusButtonEnum.disable);
+    expect(state.statusButton, UIStatusButton.disable);
   });
 
   test(
@@ -15,9 +15,9 @@ void main() {
       () {
     const state = ButtonState();
 
-    final newState = state.copyWith(statusButton: StatusButtonEnum.loading);
+    final newState = state.copyWith(statusButton: UIStatusButton.loading);
 
-    expect(newState.statusButton, StatusButtonEnum.loading);
+    expect(newState.statusButton, UIStatusButton.loading);
     expect(newState, isNot(equals(state)));
   });
 
@@ -32,9 +32,9 @@ void main() {
   });
 
   test('ButtonState should correctly compare equality', () {
-    const state1 = ButtonState(statusButton: StatusButtonEnum.enable);
-    const state2 = ButtonState(statusButton: StatusButtonEnum.enable);
-    const state3 = ButtonState(statusButton: StatusButtonEnum.loading);
+    const state1 = ButtonState(statusButton: UIStatusButton.enable);
+    const state2 = ButtonState(statusButton: UIStatusButton.enable);
+    const state3 = ButtonState(statusButton: UIStatusButton.loading);
 
     expect(state1, equals(state2));
     expect(state1, isNot(equals(state3)));

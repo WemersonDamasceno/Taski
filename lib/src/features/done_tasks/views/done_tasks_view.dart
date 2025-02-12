@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
-import 'package:taski/src/core/constants/app_colors.dart';
+import 'package:nova_design_system/nova_design_system.dart';
 import 'package:taski/src/core/constants/app_strings.dart';
 import 'package:taski/src/core/enums/state_enum.dart';
-import 'package:taski/src/core/extensions/theme_extension.dart';
 import 'package:taski/src/core/mixins/task_listener_mixin.dart';
 import 'package:taski/src/core/mixins/task_notifier_mixin.dart';
 import 'package:taski/src/core/models/task_event.dart';
-import 'package:taski/src/core/widgets/button/view/app_buttom_widget.dart';
-import 'package:taski/src/core/widgets/snackbar/snackbar_mixin.dart';
 import 'package:taski/src/core/widgets/state_pages/empty_list_task_widget.dart';
 import 'package:taski/src/core/widgets/state_pages/error_list_task_widget.dart';
 import 'package:taski/src/core/widgets/state_pages/loading_list_task_widget.dart';
@@ -28,7 +25,7 @@ class DoneTasksView extends StatefulWidget {
 }
 
 class _DoneTasksViewState extends State<DoneTasksView>
-    with TaskListenerMixin, TaskNotifierMixin, SnackbarMixin {
+    with TaskListenerMixin, TaskNotifierMixin, UISnackbarMixin {
   late ListDoneTaskBloc _doneTasksBloc;
   late EnableDeleteButtonCubit _enableButtonCubit;
 
@@ -130,24 +127,24 @@ class _DoneTasksViewState extends State<DoneTasksView>
           title,
           textAlign: TextAlign.start,
           style: context.textTheme.titleLarge?.copyWith(
-            color: AppColors.slatePurple,
+            color: UIAppColors.slatePurple,
           ),
         ),
         content: Text(
           description,
           textAlign: TextAlign.start,
           style: context.textTheme.bodyMedium?.copyWith(
-            color: AppColors.slateBlue,
+            color: UIAppColors.slateBlue,
           ),
         ),
         actions: [
-          AppButtonWidget.textButton(
+          UIButton.textButton(
             key: const ValueKey('delete-cancel'),
             label: AppStrings.cancel,
-            colorLabel: AppColors.slatePurple,
+            colorLabel: UIAppColors.slatePurple,
             onPressed: () => Navigator.pop(context),
           ),
-          AppButtonWidget.filled(
+          UIButton.filled(
             key: const ValueKey('delete-confirm'),
             label: AppStrings.deleteTask,
             onPressed: () {

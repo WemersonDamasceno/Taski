@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
+import 'package:nova_design_system/nova_design_system.dart';
 import 'package:taski/src/core/bloc/update_task_bloc.dart';
 import 'package:taski/src/core/bloc/update_task_event.dart';
 import 'package:taski/src/core/bloc/update_task_state.dart';
@@ -10,7 +11,6 @@ import 'package:taski/src/core/extensions/title_extension.dart';
 import 'package:taski/src/core/mixins/task_notifier_mixin.dart';
 import 'package:taski/src/core/models/task_event.dart';
 import 'package:taski/src/core/models/task_model.dart';
-import 'package:taski/src/core/widgets/snackbar/snackbar_mixin.dart';
 import 'package:taski/src/core/widgets/task_item_widget.dart';
 
 class SuccessListTaskWidget extends StatefulWidget {
@@ -22,7 +22,7 @@ class SuccessListTaskWidget extends StatefulWidget {
 }
 
 class _SuccessListTaskWidgetState extends State<SuccessListTaskWidget>
-    with TaskNotifierMixin, SnackbarMixin {
+    with TaskNotifierMixin, UISnackbarMixin {
   late UpdateTaskBloc _updateTaskBloc;
 
   @override

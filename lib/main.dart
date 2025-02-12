@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:taski/src/core/theme/theme_app.dart';
+import 'package:nova_design_system/nova_design_system.dart';
 import 'package:taski/src/features/home_navigation/views/home_navigation.dart';
 import 'package:taski/src/injection_container.dart';
 
@@ -14,7 +14,7 @@ class TaskiApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: AppTheme.lightTheme,
+      theme: UIAppTheme.lightTheme,
       debugShowCheckedModeBanner: false,
       home: const HomeNavigationPage(),
     );

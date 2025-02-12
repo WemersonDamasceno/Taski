@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:nova_design_system/nova_design_system.dart';
 import 'package:taski/src/core/constants/app_constants.dart';
 import 'package:taski/src/core/constants/app_images.dart';
 import 'package:taski/src/core/constants/app_strings.dart';
 import 'package:taski/src/core/extensions/size_extension.dart';
-import 'package:taski/src/core/extensions/theme_extension.dart';
-import 'package:taski/src/core/widgets/button/view/app_buttom_widget.dart';
 
 class ErrorListTaskWidget extends StatelessWidget {
   const ErrorListTaskWidget({required this.onPressed, super.key});
@@ -33,7 +32,7 @@ class ErrorListTaskWidget extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 24),
-          AppButtonWidget.filled(
+          UIButton.filled(
             key: AppConstants.refresh,
             label: AppStrings.tryAgain,
             onPressed: onPressed,

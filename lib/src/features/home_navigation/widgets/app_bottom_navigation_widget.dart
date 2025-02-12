@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:taski/src/core/constants/app_colors.dart';
+import 'package:nova_design_system/nova_design_system.dart';
 import 'package:taski/src/core/constants/app_images.dart';
 import 'package:taski/src/core/constants/app_strings.dart';
 import 'package:taski/src/features/home_navigation/widgets/icon_bottom_navigation_widget.dart';
@@ -19,8 +19,8 @@ class AppBottomNavigationWidget extends StatelessWidget {
       currentIndex: selectedIndex,
       onTap: onItemTapped,
       enableFeedback: true,
-      selectedItemColor: AppColors.blue,
-      unselectedItemColor: AppColors.mutedAzure,
+      selectedItemColor: UIAppColors.blue,
+      unselectedItemColor: UIAppColors.mutedAzure,
       showSelectedLabels: true,
       showUnselectedLabels: true,
       items: [
@@ -29,7 +29,7 @@ class AppBottomNavigationWidget extends StatelessWidget {
             image: AppImages.todo,
             isSelected: selectedIndex == 0,
           ),
-          backgroundColor: AppColors.white,
+          backgroundColor: UIAppColors.white,
           label: AppStrings.todoBottomNavigator,
         ),
         BottomNavigationBarItem(
@@ -37,7 +37,7 @@ class AppBottomNavigationWidget extends StatelessWidget {
             image: AppImages.create,
             isSelected: selectedIndex == 1,
           ),
-          backgroundColor: AppColors.white,
+          backgroundColor: UIAppColors.white,
           label: AppStrings.createBottomNavigator,
         ),
         BottomNavigationBarItem(
@@ -45,7 +45,7 @@ class AppBottomNavigationWidget extends StatelessWidget {
             image: AppImages.searchImage,
             isSelected: selectedIndex == 2,
           ),
-          backgroundColor: AppColors.white,
+          backgroundColor: UIAppColors.white,
           label: AppStrings.searchBottomNavigator,
         ),
         BottomNavigationBarItem(
@@ -53,7 +53,7 @@ class AppBottomNavigationWidget extends StatelessWidget {
             image: AppImages.done,
             isSelected: selectedIndex == 3,
           ),
-          backgroundColor: AppColors.white,
+          backgroundColor: UIAppColors.white,
           label: AppStrings.doneBottomNavigator,
         ),
       ],

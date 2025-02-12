@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:taski/src/core/constants/app_colors.dart';
+import 'package:nova_design_system/nova_design_system.dart';
 import 'package:taski/src/core/constants/app_strings.dart';
-import 'package:taski/src/core/extensions/theme_extension.dart';
 import 'package:taski/src/features/done_tasks/bloc/enable_buton/enable_button_cubit.dart';
 import 'package:taski/src/features/done_tasks/bloc/enable_buton/enable_button_state.dart';
 
@@ -25,7 +24,7 @@ class HeaderCompletedTasks extends StatelessWidget {
           Text(
             AppStrings.titleDoneTasks,
             style: context.textTheme.titleMedium?.copyWith(
-              color: AppColors.slatePurple,
+              color: UIAppColors.slatePurple,
             ),
           ),
           BlocBuilder<EnableDeleteButtonCubit, EnableButtonState>(
@@ -36,8 +35,9 @@ class HeaderCompletedTasks extends StatelessWidget {
                 child: Text(
                   AppStrings.deleteAllTasks,
                   style: context.textTheme.bodyMedium?.copyWith(
-                    color:
-                        state.enable ? AppColors.fireRed : AppColors.mutedAzure,
+                    color: state.enable
+                        ? UIAppColors.fireRed
+                        : UIAppColors.mutedAzure,
                   ),
                 ),
               );

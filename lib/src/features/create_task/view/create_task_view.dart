@@ -1,19 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
-import 'package:taski/src/core/constants/app_colors.dart';
+import 'package:nova_design_system/nova_design_system.dart';
 import 'package:taski/src/core/constants/app_constants.dart';
 import 'package:taski/src/core/constants/app_strings.dart';
 import 'package:taski/src/core/enums/state_enum.dart';
-import 'package:taski/src/core/enums/status_button_enum.dart';
 import 'package:taski/src/core/extensions/size_extension.dart';
 import 'package:taski/src/core/mixins/task_notifier_mixin.dart';
 import 'package:taski/src/core/models/task_event.dart';
-import 'package:taski/src/core/widgets/app_input_text_widget.dart';
 import 'package:taski/src/core/widgets/button/bloc/button_cubit.dart';
 import 'package:taski/src/core/widgets/button/bloc/button_state.dart';
-import 'package:taski/src/core/widgets/button/view/app_buttom_widget.dart';
-import 'package:taski/src/core/widgets/snackbar/snackbar_mixin.dart';
 import 'package:taski/src/features/create_task/bloc/create_task_bloc.dart';
 import 'package:taski/src/features/create_task/bloc/create_task_event.dart';
 import 'package:taski/src/features/create_task/bloc/create_task_state.dart';
@@ -29,7 +25,7 @@ class CreateTaskView extends StatefulWidget {
         minHeight: context.mediaQuerySize.height * .5,
       ),
       useSafeArea: true,
-      backgroundColor: AppColors.white,
+      backgroundColor: UIAppColors.white,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
       ),
@@ -52,7 +48,7 @@ class CreateTaskView extends StatefulWidget {
 }
 
 class _CreateTaskViewState extends State<CreateTaskView>
-    with SnackbarMixin, TaskNotifierMixin {
+    with UISnackbarMixin, TaskNotifierMixin {
   final TextEditingController _taskController = TextEditingController();
   final TextEditingController _noteController = TextEditingController();
 
@@ -65,14 +61,14 @@ class _CreateTaskViewState extends State<CreateTaskView>
     _createTaskBloc = GetIt.I.get<CreateTaskBloc>();
     _buttonCubit = GetIt.I.get<ButtonCubit>();
 
-    _buttonCubit.changeStatusButton(StatusButtonEnum.disable);
+    _buttonCubit.changeStatusButton(UIStatusButton.disable);
 
     _taskController.addListener(() {
       if (_taskController.text.isNotEmpty) {
-        _buttonCubit.changeStatusButton(StatusButtonEnum.enable);
+        _buttonCubit.changeStatusButton(UIStatusButton.enable);
         return;
       }
-      _buttonCubit.changeStatusButton(StatusButtonEnum.disable);
+      _buttonCubit.changeStatusButton(UIStatusButton.disable);
     });
   }
 
@@ -102,7 +98,7 @@ class _CreateTaskViewState extends State<CreateTaskView>
             );
             break;
           default:
-            _buttonCubit.changeStatusButton(StatusButtonEnum.loading);
+            _buttonCubit.changeStatusButton(UIStatusButton.loading);
         }
       },
       builder: (_, state) {
@@ -124,7 +120,7 @@ class _CreateTaskViewState extends State<CreateTaskView>
                       child:
                           Checkbox(value: false, onChanged: (bool? value) {}),
                     ),
-                    AppInputTextWidget(
+                    UITextInput(
                       key: AppConstants.taskInput,
                       hintText: AppStrings.hintTask,
                       controller: _taskController,
@@ -138,9 +134,9 @@ class _CreateTaskViewState extends State<CreateTaskView>
                   children: [
                     const Padding(
                       padding: EdgeInsets.only(right: 16, left: 16, top: 12),
-                      child: Icon(Icons.edit, color: AppColors.mutedAzure),
+                      child: Icon(Icons.edit, color: UIAppColors.mutedAzure),
                     ),
-                    AppInputTextWidget(
+                    UITextInput(
                       key: AppConstants.noteInput,
                       hintText: AppStrings.hintAddNote,
                       controller: _noteController,
@@ -153,7 +149,7 @@ class _CreateTaskViewState extends State<CreateTaskView>
                   builder: (context, state) {
                     return Align(
                       alignment: Alignment.centerRight,
-                      child: AppButtonWidget.textButton(
+                      child: UIButton.textButton(
                         key: AppConstants.createTaskButton,
                         label: AppStrings.create,
                         statusButton: state.statusButton,

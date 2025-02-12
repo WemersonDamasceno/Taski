@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:taski/src/core/constants/app_colors.dart';
+import 'package:nova_design_system/nova_design_system.dart';
 import 'package:taski/src/core/constants/app_images.dart';
-import 'package:taski/src/core/extensions/theme_extension.dart';
 
 class AppBarWidget extends StatelessWidget {
   const AppBarWidget({super.key});
@@ -10,7 +9,11 @@ class AppBarWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: SvgPicture.asset(AppImages.logoApp),
+      title: Padding(
+        padding: const EdgeInsets.only(left: 8),
+        child: SvgPicture.asset(AppImages.logoApp),
+      ),
+      centerTitle: false,
       actions: [
         Padding(
           padding: const EdgeInsets.only(right: 16),
@@ -24,7 +27,7 @@ class AppBarWidget extends StatelessWidget {
               ClipRRect(
                 borderRadius: const BorderRadius.all(Radius.circular(100)),
                 child: Container(
-                  color: AppColors.slateBlue,
+                  color: UIAppColors.slateBlue,
                   height: 42,
                   width: 42,
                   child: Image.network(

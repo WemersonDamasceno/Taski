@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:taski/src/core/constants/app_colors.dart';
+import 'package:nova_design_system/nova_design_system.dart';
 
 class IconBottomNavigationWidget extends StatelessWidget {
   const IconBottomNavigationWidget({
@@ -19,7 +19,7 @@ class IconBottomNavigationWidget extends StatelessWidget {
       height: 24,
       width: 24,
       colorFilter: ColorFilter.mode(
-        isSelected ? AppColors.blue : AppColors.mutedAzure,
+        isSelected ? UIAppColors.blue : UIAppColors.mutedAzure,
         BlendMode.srcIn,
       ),
     );
