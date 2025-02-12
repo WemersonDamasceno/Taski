@@ -14,12 +14,12 @@ analyzer:
 
 custom_lint:
   rules:
-    - deprecated_widget:
-        widgets:
-          - ElevatedButton
-        replacement: AppButtonWidget
-        message: "O uso de ElevatedButton é proibido. Use AppButtonWidget em seu lugar."
+    - use_my_design_system:
+      AppButtonWidget:
+        - instead_of: ElevatedButton
+          from_package: flutter
 
+   
 linter:
   rules:
     - always_declare_return_types

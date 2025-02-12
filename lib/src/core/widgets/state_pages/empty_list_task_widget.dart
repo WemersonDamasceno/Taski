@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:taski/src/core/constants/app_colors.dart';
 import 'package:taski/src/core/constants/app_constants.dart';
 import 'package:taski/src/core/constants/app_images.dart';
 import 'package:taski/src/core/constants/app_strings.dart';
@@ -37,17 +36,6 @@ class EmptyListTaskWidget extends StatelessWidget {
                   onPressed: () {
                     CreateTaskView.showBottomSheet(context);
                   },
-                ),
-              ),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.white,
-                  foregroundColor: AppColors.slateBlue,
-                ),
-                onPressed: () {},
-                child: Text(
-                  AppStrings.createTask,
-                  style: context.textTheme.titleSmall,
                 ),
               ),
             ],
