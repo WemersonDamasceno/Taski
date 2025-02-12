@@ -1,4 +1,4 @@
-package com.example.taski
+package com.wemerson_dev.taski
 
 import io.flutter.embedding.android.FlutterActivity
 
