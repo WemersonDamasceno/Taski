@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:taski/src/core/widgets/loading_item_widget.dart';
+import 'package:nova_design_system/core/widgets/item_shimmer/item_shimmer.dart';
 
 class LoadingListTaskWidget extends StatelessWidget {
   const LoadingListTaskWidget({super.key});
@@ -9,7 +9,7 @@ class LoadingListTaskWidget extends StatelessWidget {
     return ListView.builder(
       itemCount: 3,
       itemBuilder: (context, index) {
-        return const LoadingItemWidget(
+        return const UIItemShimmer(
           width: 200,
           height: 56,
           margin: EdgeInsets.only(top: 16),

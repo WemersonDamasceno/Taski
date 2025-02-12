@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:taski/src/core/widgets/loading_item_widget.dart';
+import 'package:nova_design_system/nova_design_system.dart';
 
 class HeaderPageLoading extends StatelessWidget {
   const HeaderPageLoading({super.key});
@@ -9,12 +9,12 @@ class HeaderPageLoading extends StatelessWidget {
     return const Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        LoadingItemWidget(
+        UIItemShimmer(
           width: 139,
           height: 24,
         ),
         SizedBox(height: 8),
-        LoadingItemWidget(
+        UIItemShimmer(
           width: 200,
           height: 20,
         ),

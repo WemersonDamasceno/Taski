@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:taski/src/core/constants/app_colors.dart';
+import 'package:nova_design_system/nova_design_system.dart';
 import 'package:taski/src/core/constants/app_strings.dart';
 
 class HeaderPage extends StatelessWidget {
@@ -24,13 +24,13 @@ class HeaderPage extends StatelessWidget {
                 TextSpan(
                   text: AppStrings.welcomeTitle,
                   style: TextStyle(
-                    color: AppColors.slatePurple,
+                    color: UIAppColors.slatePurple,
                   ),
                 ),
                 TextSpan(
                   text: 'John.',
                   style: TextStyle(
-                    color: AppColors.blue,
+                    color: UIAppColors.blue,
                   ),
                 ),
               ],
@@ -42,7 +42,7 @@ class HeaderPage extends StatelessWidget {
                 ? AppStrings.emptyDescription
                 : AppStrings.welcomeDescription(quantityTasks.toString()),
             style: const TextStyle(
-              color: AppColors.slateBlue,
+              color: UIAppColors.slateBlue,
               fontSize: 16,
             ),
           ),

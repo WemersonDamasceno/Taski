@@ -3,11 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:nova_design_system/nova_design_system.dart';
 import 'package:taski/src/core/enums/state_enum.dart';
-import 'package:taski/src/core/enums/status_button_enum.dart';
 import 'package:taski/src/core/widgets/button/bloc/button_cubit.dart';
 import 'package:taski/src/core/widgets/button/bloc/button_state.dart';
-import 'package:taski/src/core/widgets/button/view/app_buttom_widget.dart';
 import 'package:taski/src/features/create_task/bloc/create_task_bloc.dart';
 import 'package:taski/src/features/create_task/bloc/create_task_state.dart';
 import 'package:taski/src/features/create_task/view/create_task_view.dart';
@@ -44,9 +43,9 @@ void main() {
 
     whenListen(
       mockButtonCubit,
-      initialState: const ButtonState(statusButton: StatusButtonEnum.enable),
+      initialState: const ButtonState(statusButton: UIStatusButton.enable),
       Stream.fromIterable([
-        const ButtonState(statusButton: StatusButtonEnum.disable),
+        const ButtonState(statusButton: UIStatusButton.disable),
       ]),
     );
 
@@ -57,7 +56,7 @@ void main() {
             builder: (context) {
               return Scaffold(
                 body: Center(
-                  child: AppButtonWidget.textButton(
+                  child: UIButton.textButton(
                     label: 'Abrir BottomSheet',
                     onPressed: () {
                       CreateTaskView.showBottomSheet(context);

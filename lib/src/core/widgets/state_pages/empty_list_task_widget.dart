@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:nova_design_system/nova_design_system.dart';
 import 'package:taski/src/core/constants/app_constants.dart';
 import 'package:taski/src/core/constants/app_images.dart';
 import 'package:taski/src/core/constants/app_strings.dart';
 import 'package:taski/src/core/extensions/size_extension.dart';
-import 'package:taski/src/core/extensions/theme_extension.dart';
-import 'package:taski/src/core/widgets/button/view/app_buttom_widget.dart';
 import 'package:taski/src/features/create_task/view/create_task_view.dart';
 
 class EmptyListTaskWidget extends StatelessWidget {
@@ -29,7 +28,7 @@ class EmptyListTaskWidget extends StatelessWidget {
               const SizedBox(height: 24),
               Visibility(
                 visible: showButton,
-                child: AppButtonWidget.filled(
+                child: UIButton.filled(
                   key: AppConstants.openCreateTask,
                   label: AppStrings.createTask,
                   iconData: Icons.add,

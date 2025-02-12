@@ -1,12 +1,10 @@
-// Definindo o widget SearchInputWidget
 import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:taski/src/core/constants/app_colors.dart';
+import 'package:nova_design_system/nova_design_system.dart';
 import 'package:taski/src/core/constants/app_images.dart';
 import 'package:taski/src/core/constants/app_strings.dart';
-import 'package:taski/src/core/extensions/theme_extension.dart';
 
 class SearchInputWidget extends StatefulWidget {
   const SearchInputWidget({
@@ -54,7 +52,7 @@ class _SearchInputWidgetState extends State<SearchInputWidget> {
         controller: widget.controller,
         decoration: InputDecoration(
           filled: true,
-          fillColor: AppColors.paleWhite,
+          fillColor: UIAppColors.paleWhite,
           prefixIcon: SvgPicture.asset(
             AppImages.searchImage,
             fit: BoxFit.scaleDown,
@@ -62,7 +60,7 @@ class _SearchInputWidgetState extends State<SearchInputWidget> {
           suffixIcon: IconButton(
             icon: const Icon(
               Icons.cancel_rounded,
-              color: AppColors.mutedAzure,
+              color: UIAppColors.mutedAzure,
             ),
             onPressed: () async {
               widget.onClear();
@@ -70,15 +68,15 @@ class _SearchInputWidgetState extends State<SearchInputWidget> {
           ),
           hintText: AppStrings.searchTask,
           hintStyle: context.textTheme.titleSmall?.copyWith(
-            color: AppColors.mutedAzure,
+            color: UIAppColors.mutedAzure,
           ),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
-            borderSide: const BorderSide(color: AppColors.mutedAzure),
+            borderSide: const BorderSide(color: UIAppColors.mutedAzure),
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
-            borderSide: const BorderSide(color: AppColors.blue),
+            borderSide: const BorderSide(color: UIAppColors.blue),
           ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),

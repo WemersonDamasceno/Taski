@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:taski/src/core/constants/app_colors.dart';
-import 'package:taski/src/core/extensions/theme_extension.dart';
+import 'package:nova_design_system/nova_design_system.dart';
 import 'package:taski/src/core/models/task_model.dart';
 
 class TaskItemWidget extends StatelessWidget {
@@ -23,7 +22,7 @@ class TaskItemWidget extends StatelessWidget {
           task.title,
           style: const TextStyle(
             fontWeight: FontWeight.bold,
-            color: AppColors.slatePurple,
+            color: UIAppColors.slatePurple,
           ),
         ),
         subtitle: task.description.isNotEmpty
@@ -35,7 +34,7 @@ class TaskItemWidget extends StatelessWidget {
         trailing: IconButton(
           icon: const Icon(
             Icons.more_horiz,
-            color: AppColors.slateBlue,
+            color: UIAppColors.slateBlue,
           ),
           onPressed: () {},
         ),

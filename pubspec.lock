@@ -491,6 +491,15 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.2"
+  nova_design_system:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: main
+      resolved-ref: "141a6d7bd2547bd6187d79f2e23dacab14e6e23a"
+      url: "https://github.com/WemersonDamasceno/nova_design_system.git"
+    source: git
+    version: "0.0.1"
   package_config:
     dependency: transitive
     description:
@@ -628,7 +637,7 @@ packages:
     source: hosted
     version: "2.0.1"
   shimmer:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: shimmer
       sha256: "5f88c883a22e9f9f299e5ba0e4f7e6054857224976a5d9f839d4ebdc94a14ac9"

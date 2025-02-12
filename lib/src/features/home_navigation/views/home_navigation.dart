@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:taski/src/core/constants/app_colors.dart';
+import 'package:nova_design_system/nova_design_system.dart';
 import 'package:taski/src/core/widgets/app_bar_widget.dart';
 import 'package:taski/src/features/create_task/view/create_task_view.dart';
 import 'package:taski/src/features/done_tasks/views/done_tasks_page.dart';
@@ -27,7 +27,7 @@ class _HomeNavigationPageState extends State<HomeNavigationPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.white,
+      backgroundColor: UIAppColors.white,
       appBar: const PreferredSize(
         preferredSize: Size.fromHeight(kToolbarHeight),
         child: AppBarWidget(),
