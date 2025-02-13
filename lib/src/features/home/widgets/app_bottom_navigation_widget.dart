@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nova_design_system/nova_design_system.dart';
 import 'package:taski/src/core/constants/app_images.dart';
 import 'package:taski/src/core/constants/app_strings.dart';
-import 'package:taski/src/features/home_navigation/widgets/icon_bottom_navigation_widget.dart';
+import 'package:taski/src/features/home/widgets/icon_bottom_navigation_widget.dart';
 
 class AppBottomNavigationWidget extends StatelessWidget {
   const AppBottomNavigationWidget({

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nova_design_system/nova_design_system.dart';
-import 'package:taski/src/features/home_navigation/views/home_navigation.dart';
+import 'package:taski/src/features/home/views/home_page.dart';
 import 'package:taski/src/injection_container.dart';
 
 void main() async {
@@ -16,7 +16,7 @@ class TaskiApp extends StatelessWidget {
     return MaterialApp(
       theme: UIAppTheme.lightTheme,
       debugShowCheckedModeBanner: false,
-      home: const HomeNavigationPage(),
+      home: const HomePage(),
     );
   }
 }
