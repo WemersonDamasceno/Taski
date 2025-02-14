@@ -1,5 +1,6 @@
 import 'package:get_it/get_it.dart';
 import 'package:taski/src/core/bloc/update_task_bloc.dart';
+import 'package:taski/src/core/utils/connectivity_info.dart';
 import 'package:taski/src/core/widgets/button/bloc/button_cubit.dart';
 import 'package:taski/src/data/repository/list_task_repository_impl.dart';
 import 'package:taski/src/data/services/local_datastorage.dart';
@@ -13,9 +14,11 @@ import 'package:taski/src/domain/usecase/get_quantity_uncompleted_tasks_usecase.
 import 'package:taski/src/domain/usecase/get_uncompleted_tasks_usecase.dart';
 import 'package:taski/src/domain/usecase/search_task_by_title_usecase.dart';
 import 'package:taski/src/domain/usecase/update_task_usecase.dart';
+import 'package:taski/src/domain/usecase/verify_connection_usecase.dart';
 import 'package:taski/src/features/create_task/bloc/create_task_bloc.dart';
 import 'package:taski/src/features/done_tasks/bloc/enable_buton/enable_button_cubit.dart';
 import 'package:taski/src/features/done_tasks/bloc/list_done_task/list_done_task_bloc.dart';
+import 'package:taski/src/features/home_navigation/bloc/internet_listener_bloc.dart';
 import 'package:taski/src/features/list_task/bloc/get_quantity_tasks/get_quantity_tasks_bloc.dart';
 import 'package:taski/src/features/list_task/bloc/list_tasks_uncompleted/list_task_bloc.dart';
 import 'package:taski/src/features/search_task/bloc/search_task_bloc.dart';
@@ -27,6 +30,9 @@ Future<void> initDependency() async {
   getIt.registerLazySingleton<LocalDatabaseService>(
     () => LocalDatabaseServiceImpl(),
   );
+  getIt.registerLazySingleton<ConnectivityInfo>(
+    () => ConnectivityInfoImpl(),
+  );
 
   //****** Repository ******//
   getIt.registerLazySingleton<TaskRepository>(
@@ -36,6 +42,11 @@ Future<void> initDependency() async {
   );
 
   //****** Usecases ******//
+  getIt.registerLazySingleton<VerifyConnectionUsecase>(
+    () => VerifyConnectionUsecase(
+      getIt(),
+    ),
+  );
   getIt.registerLazySingleton<GetUncompletedTasksUsecase>(
     () => GetUncompletedTasksUsecase(repository: getIt()),
   );
@@ -70,6 +81,9 @@ Future<void> initDependency() async {
   );
 
   //****** Blocs ******//
+  getIt.registerFactory<InternetListenerBloc>(
+    () => InternetListenerBloc(usecase: getIt()),
+  );
   getIt.registerFactory<ButtonCubit>(() => ButtonCubit());
   getIt.registerFactory<ListTaskUncompletedBloc>(
     () => ListTaskUncompletedBloc(usecase: getIt()),

@@ -2,9 +2,11 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 import 'package:taski/main.dart' as app;
+import 'package:taski/main.dart';
 import 'package:taski/src/core/constants/app_constants.dart';
 
 void main() {
+  kIsTestMode = true;
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
   final openCreateTask = find.byKey(AppConstants.openCreateTask);
